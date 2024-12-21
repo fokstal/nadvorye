@@ -7,6 +7,7 @@ type WeatherModel = {
         lon: number,
     },
     current: {
+        last_updated: string,
         temp_c: number,
         feelslike_c: number,
         wind_kph: number,

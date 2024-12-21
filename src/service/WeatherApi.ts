@@ -54,6 +54,7 @@ class WeatherApi {
                 lon: valueJSON.location.lon,
             },
             current: {
+                last_updated: valueJSON.current.last_updated,
                 temp_c: valueJSON.current.temp_c,
                 feelslike_c: valueJSON.current.feelslike_c,
                 wind_kph: valueJSON.current.wind_kph,

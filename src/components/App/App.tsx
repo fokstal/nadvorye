@@ -7,6 +7,7 @@ import "./App.scss";
 import background from "../../assets/images/road_asphalt_rain.jpg";
 import getDominantColor from "../../helpers/getDominantColor";
 import WeatherApiLang from "../../models/WeatherApiLang";
+import convertDateFrom_ISO8601 from "../../helpers/convertDateFrom_ISO8601";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
@@ -66,7 +67,7 @@ const App: FC = () => {
                                         {currentCity}
                                     </span>
                                     <span className="weather-widget__body-content-info-add-date">
-                                        06:09 - Sunday, 6 Oct 19
+                                        {convertDateFrom_ISO8601(weather.current.last_updated)}
                                     </span>
                                 </div>
                                 <img className="weather-widget__body-content-info-icon" src={weather.current.condition.icon} />
