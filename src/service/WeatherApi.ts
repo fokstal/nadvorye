@@ -1,10 +1,10 @@
-import WeatherApiLang from "../models/WeatherApiLang";
+import Language from "../const/Language";
 import WeatherModel from "../models/WeatherModel";
 
 class WeatherApi {
     private _key: string;
     private _host: string;
-    private _lang: WeatherApiLang;
+    private _lang: Language;
 
     public get Key() {
         return this._key;
@@ -16,7 +16,7 @@ class WeatherApi {
         return this._lang;
     }
 
-    public constructor(key: string, host: string, lang = WeatherApiLang.RU) {
+    public constructor(key: string, host: string, lang = Language.RU) {
         this._key = key;
         this._host = host;
         this._lang = lang;

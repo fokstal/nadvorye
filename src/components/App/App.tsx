@@ -6,15 +6,18 @@ import { WeatherApiConfig } from "../../app.config";
 import "./App.scss";
 import background from "../../assets/images/road_asphalt_rain.jpg";
 import getDominantColor from "../../helpers/getDominantColor";
-import WeatherApiLang from "../../models/WeatherApiLang";
+import Language, { LanguageFlags } from "../../const/Language";
 import convertDateFrom_ISO8601 from "../../helpers/convertDateFrom_ISO8601";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
     const [currentCity, setCurrentCity] = useState("Minsk");
+    const [currentLang, setCurrentLang] = useState(Language.EN);
     const [dominantColor, setDominantColor] = useState("transparent");
     const [isUseApi, setIsUseApi] = useState(false);
-    const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, WeatherApiLang.EN);
+
+    const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
+    const languagesArray = Object.values(Language);
 
     const imgBackgroundRef = useRef<HTMLImageElement | null>(null);
     const searchInputRef = useRef<HTMLInputElement | null>(null);
@@ -26,6 +29,12 @@ const App: FC = () => {
         }
 
         setWeather(WeatherApi.convertJSONToWeatherModel(weatherData_Minsk.currentAt_211224));
+    };
+
+    const nextLanguage = () => {
+        const currentIndex = languagesArray.indexOf(currentLang);
+        const nextIndex = (currentIndex + 1) % languagesArray.length;
+        setCurrentLang(languagesArray[nextIndex]);
     };
 
     useEffect(() => {
@@ -67,7 +76,7 @@ const App: FC = () => {
                                         {currentCity}
                                     </span>
                                     <span className="weather-widget__body-content-info-add-date">
-                                        {convertDateFrom_ISO8601(weather.current.last_updated)}
+                                        {convertDateFrom_ISO8601(weather.current.last_updated, currentLang)}
                                     </span>
                                 </div>
                                 <img className="weather-widget__body-content-info-icon" src={weather.current.condition.icon} />
@@ -98,6 +107,11 @@ const App: FC = () => {
                                         Condition text: {weather.current.condition.text}
                                     </li>
                                 </ul>
+                            </div>
+                            <div className="weather-widget__body-menu-control">
+                                <div className="weather-widget__body-menu-control-lang" onClick={() => nextLanguage()}>
+                                    {LanguageFlags[currentLang]}
+                                </div>
                             </div>
                         </div>
                     </div>
