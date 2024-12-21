@@ -1,0 +1,108 @@
+.weather-widget {
+    width: 864px;
+    height: 540px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 15px 0 0 15px;
+    color: whitesmoke;
+
+    &__background {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+    &__body {
+        position: absolute;
+        width: 864px;
+        height: 540px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            padding-left: 75px;
+
+            &-title {
+                margin: 0;
+                margin-top: 50px;
+            }
+
+            &-info {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 25px;
+                margin-bottom: 50px;
+
+                &-temp {
+                    font-size: 80px;
+                }
+
+                &-add {
+                    display: flex;
+                    flex-direction: column;
+
+                    &-city {
+                        font-size: 36px;
+                    }
+
+                    &-date {}
+                }
+            }
+        }
+
+        &-menu {
+            width: 30%;
+            height: 100%;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+            display: flex;
+            flex-direction: column;
+
+            &-search {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                height: 50px;
+                border-bottom: 1px whitesmoke solid;
+
+                &-input {
+                    background: transparent;
+                    border: none;
+                    color: whitesmoke;
+                    font-size: 25px;
+                    font-weight: 100;
+                    width: 70%;
+
+                    &:focus-visible {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+
+                &-btn {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 25px;
+                    border-radius: 0;
+                    border: none;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: .6;
+                    }
+                }
+            }
+        }
+    }
+}
