@@ -58,59 +58,58 @@ const App: FC = () => {
     return (
         <>
             <input type="checkbox" name="" id="" checked={isUseApi} onChange={() => setIsUseApi(prevChecked => !prevChecked)} />
-            <div className="weather-widget">
-                <img className="weather-widget__background" src={background} ref={imgBackgroundRef} />
+            <div className="weather">
+                <img className="weather__background" src={background} ref={imgBackgroundRef} />
                 {
                     weather &&
-                    <div className="weather-widget__body">
-                        <div className="weather-widget__body-content">
-                            <h1 className="weather-widget__body-content-title">
+                    <div className="weather__body">
+                        <div className="weather__body-content">
+                            <h1 className="weather__body-content-title">
                                 Nadvorye
                             </h1>
-                            <div className="weather-widget__body-content-info">
-                                <span className="weather-widget__body-content-info-temp">
+                            <div className="weather__body-content-info">
+                                <span className="weather__body-content-info-temp">
                                     {weather.current.temp_c}&deg;C
                                 </span>
-                                <div className="weather-widget__body-content-info-add">
-                                    <span className="weather-widget__body-content-info-add-city">
-                                        {/* {weather.location.name} */}
-                                        {currentCity}
+                                <div className="weather__body-content-info-add">
+                                    <span className="weather__body-content-info-add-city">
+                                        {weather.location.name}
                                     </span>
-                                    <span className="weather-widget__body-content-info-add-date">
+                                    <span className="weather__body-content-info-add-date">
                                         {convertDateFrom_ISO8601(weather.current.last_updated, currentLang)}
                                     </span>
                                 </div>
-                                <img className="weather-widget__body-content-info-icon" src={weather.current.condition.icon} />
+                                <img className="weather__body-content-info-icon" src={weather.current.condition.icon} />
                             </div>
                         </div>
-                        <div className="weather-widget__body-menu">
-                            <form className="weather-widget__body-menu-search">
-                                <input className="weather-widget__body-menu-search-input" type="text" name="" id="searchTextBox" ref={searchInputRef} onChange={(e) => setCurrentCity(e.target.value)} />
-                                <button className="weather-widget__body-menu-search-btn" type="button" style={{ background: dominantColor + 80 }} onClick={() => fetchCurrentWeather()}>
+                        <div className="weather__body-menu">
+                            <form className="weather__body-menu-search">
+                                <input className="weather__body-menu-search-input" type="text" name="" id="searchTextBox" ref={searchInputRef} onChange={(e) => setCurrentCity(e.target.value)} />
+                                <button className="weather__body-menu-search-btn" type="button" style={{ background: dominantColor + 80 }} onClick={() => fetchCurrentWeather()}>
                                     <img src={searchIcon} alt="🔍" />
                                 </button>
                             </form>
-                            <div className="weather-widget__body-menu-details">
-                                <ul className="weather-widget__body-menu-details-list">
-                                    <li className="weather-widget__body-menu-details-list-item">
+                            <div className="weather__body-menu-details">
+                                <ul className="weather__body-menu-details-list">
+                                    <li className="weather__body-menu-details-list-item">
                                         Feels like: {weather.current.feelslike_c}&deg;C
                                     </li>
-                                    <li className="weather-widget__body-menu-details-list-item">
+                                    <li className="weather__body-menu-details-list-item">
                                         Wind: {weather.current.wind_kph} kph
                                     </li>
-                                    <li className="weather-widget__body-menu-details-list-item">
+                                    <li className="weather__body-menu-details-list-item">
                                         Humidity: {weather.current.humidity}
                                     </li>
-                                    <li className="weather-widget__body-menu-details-list-item">
+                                    <li className="weather__body-menu-details-list-item">
                                         Cloud: {weather.current.cloud}
                                     </li>
-                                    <li className="weather-widget__body-menu-details-list-item">
+                                    <li className="weather__body-menu-details-list-item">
                                         Condition text: {weather.current.condition.text}
                                     </li>
                                 </ul>
                             </div>
-                            <div className="weather-widget__body-menu-control">
-                                <div className="weather-widget__body-menu-control-lang" onClick={() => nextLanguage()}>
+                            <div className="weather__body-menu-control">
+                                <div className="weather__body-menu-control-lang" onClick={() => nextLanguage()}>
                                     {LanguageFlags[currentLang]}
                                 </div>
                             </div>
