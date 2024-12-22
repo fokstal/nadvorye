@@ -4,10 +4,11 @@ import { weatherData_Minsk } from "../../assets/weatherData";
 import WeatherApi from "../../service/WeatherApi";
 import { WeatherApiConfig } from "../../app.config";
 import "./App.scss";
-import background from "../../assets/images/road_asphalt_rain.jpg";
-import getDominantColor from "../../helpers/getDominantColor";
+import getDominantColorInHex from "../../helpers/getDominantColor";
 import Language, { LanguageFlags } from "../../const/Language";
 import convertDateFrom_ISO8601 from "../../helpers/convertDateFrom_ISO8601";
+import background from "../../assets/images/louise_lake_mountains.jpg";
+import searchIcon from "../../assets/icons/search.svg";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
@@ -45,7 +46,7 @@ const App: FC = () => {
 
         if (imgBackground) {
             imgBackground.onload = () => {
-                setDominantColor(getDominantColor(imgBackground));
+                setDominantColor(getDominantColorInHex(imgBackground));
             };
         }
 
@@ -85,8 +86,8 @@ const App: FC = () => {
                         <div className="weather-widget__body-menu">
                             <form className="weather-widget__body-menu-search">
                                 <input className="weather-widget__body-menu-search-input" type="text" name="" id="searchTextBox" ref={searchInputRef} onChange={(e) => setCurrentCity(e.target.value)} />
-                                <button className="weather-widget__body-menu-search-btn" type="button" style={{ background: dominantColor }} onClick={() => fetchCurrentWeather()}>
-                                    🔍
+                                <button className="weather-widget__body-menu-search-btn" type="button" style={{ background: dominantColor + 80 }} onClick={() => fetchCurrentWeather()}>
+                                    <img src={searchIcon} alt="🔍" />
                                 </button>
                             </form>
                             <div className="weather-widget__body-menu-details">

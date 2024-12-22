@@ -1,24 +1,27 @@
-function getDominantColor(image: HTMLImageElement): string {
-    // Создаем элемент canvas
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
+function rgbToHex(r: number, g: number, b: number): string {
+    const toHex = (c: number) => {
+        const hex = c.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+    };
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+function getDominantColorInHex(image: HTMLImageElement): string {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
 
     if (!ctx) {
-        throw new Error('Не удалось получить контекст канваса');
+        throw new Error("Не удалось получить контекст канваса");
     }
 
-    // Устанавливаем размеры канваса равными размерам изображения
     canvas.width = image.width;
     canvas.height = image.height;
 
-    // Рисуем изображение на канвасе
     ctx.drawImage(image, 0, 0);
 
-    // Получаем данные о пикселях
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;
 
-    // Считаем частоту цветов
     const colorCount: { [key: string]: number } = {};
     for (let i = 0; i < data.length; i += 4) {
         const r = data[i];
@@ -33,8 +36,7 @@ function getDominantColor(image: HTMLImageElement): string {
         }
     }
 
-    // Находим наиболее частый цвет
-    let dominantColor = '';
+    let dominantColor = "";
     let maxCount = 0;
     for (const color in colorCount) {
         if (colorCount[color] > maxCount) {
@@ -43,7 +45,10 @@ function getDominantColor(image: HTMLImageElement): string {
         }
     }
 
-    return `rgb(${dominantColor})`;
+    const [r, g, b] = dominantColor.split(",").map(Number);
+
+    return rgbToHex(r, g, b);
 }
 
-export default getDominantColor;
+export default getDominantColorInHex;
+export { rgbToHex }
