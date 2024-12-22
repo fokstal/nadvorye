@@ -9,6 +9,7 @@ import Language from "../../const/Language";
 import convertDateFrom_ISO8601 from "../../helpers/convertDateFrom_ISO8601";
 import background from "../../assets/images/louise_lake_mountains.jpg";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import Header from "../Header/Header";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
@@ -61,7 +62,7 @@ const App: FC = () => {
                 {weather && (
                     <div className="weather__body">
                         <div className="weather__body-content">
-                            <h1 className="weather__body-content-title">Nadvorye</h1>
+                            <Header />
                             <div className="weather__body-content-info">
                                 <span className="weather__body-content-info-temp">{weather.current.temp_c}&deg;C</span>
                                 <div className="weather__body-content-info-add">

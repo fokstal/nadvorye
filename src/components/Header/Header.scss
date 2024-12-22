@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+
+    &__logo {
+        position: absolute;
+        margin: 0;
+        left: 20px;
+        font-size: 50px;
+        opacity: .3;
+        font-family: "Marck-Script", sans-serif;
+    }
+
+    &__link-list {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        list-style-type: none;
+        margin: 0 auto;
+        padding: 0;
+
+        &-item {
+            a {
+                color: #434343;
+                font-size: 20px;
+                font-weight: 100;
+                text-decoration: none;
+                border-bottom: 2px transparent solid;
+                transition: border .2s;
+                cursor: pointer;
+
+                &:hover {
+                    border-bottom: 2px #434343 solid;
+                }
+            }
+        }
+    }
+}
