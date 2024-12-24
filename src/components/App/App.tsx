@@ -6,10 +6,10 @@ import { WeatherApiConfig } from "../../app.config";
 import "./App.scss";
 import getDominantColorInHex from "../../helpers/getDominantColor";
 import Language from "../../const/Language";
-import convertDateFrom_ISO8601 from "../../helpers/convertDateFrom_ISO8601";
 import background from "../../assets/images/louise_lake_mountains.jpg";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import Header from "../Header/Header";
+import Home from "../Content/Current/Home/Home";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
@@ -63,16 +63,7 @@ const App: FC = () => {
                     <div className="weather__body">
                         <div className="weather__body-content">
                             <Header />
-                            <div className="weather__body-content-info">
-                                <span className="weather__body-content-info-temp">{weather.current.temp_c}&deg;C</span>
-                                <div className="weather__body-content-info-add">
-                                    <span className="weather__body-content-info-add-city">{weather.location.name}</span>
-                                    <span className="weather__body-content-info-add-date">
-                                        {convertDateFrom_ISO8601(weather.current.last_updated, currentLang)}
-                                    </span>
-                                </div>
-                                <img className="weather__body-content-info-icon" src={weather.current.condition.icon} />
-                            </div>
+                            <Home weather={weather} currentLang={currentLang} />
                         </div>
                         <BurgerMenu
                             dominantColor={dominantColor}

@@ -1,0 +1,24 @@
+.home {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+    padding-bottom: 50px;
+    padding-left: 75px;
+
+    &__temp {
+        font-size: 80px;
+    }
+
+    &__add {
+        display: flex;
+        flex-direction: column;
+
+        &-city {
+            font-size: 36px;
+        }
+
+        &-date {
+        }
+    }
+}
