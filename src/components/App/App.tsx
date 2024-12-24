@@ -10,6 +10,7 @@ import background from "../../assets/images/louise_lake_mountains.jpg";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import Header from "../Header/Header";
 import Home from "../Content/Current/Home/Home";
+import Hour24 from "../Content/Current/Hour24/Hour24";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
@@ -64,6 +65,17 @@ const App: FC = () => {
                         <div className="weather__body-content">
                             <Header />
                             <Home weather={weather} currentLang={currentLang} />
+                            <Hour24
+                                weatherIn24Hour={[
+                                    {
+                                        temp: weather.current.temp_c,
+                                        iconPath: weather.current.condition.icon,
+                                        time: weather.current.last_updated,
+                                        windSpeed: weather.current.wind_kph,
+                                    },
+                                ]}
+                                currentLang={currentLang}
+                            />
                         </div>
                         <BurgerMenu
                             dominantColor={dominantColor}

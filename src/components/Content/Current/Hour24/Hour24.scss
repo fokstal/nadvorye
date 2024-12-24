@@ -1,0 +1,18 @@
+.hour-24 {
+    &__list {
+        display: flex;
+        flex-direction: row;
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+
+            &-temp {
+                margin-bottom: 40px;
+                font-size: 26px;
+            }
+        }
+    }
+}

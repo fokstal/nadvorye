@@ -1,5 +1,5 @@
 import { FC } from "react";
-import convertDateFrom_ISO8601 from "../../../../helpers/convertDateFrom_ISO8601";
+import convertDateFrom_ISO8601 from "../../../../helpers/convertFrom_ISO8601";
 import WeatherModel from "../../../../models/WeatherModel";
 import Language from "../../../../const/Language";
 import "./Home.scss";
