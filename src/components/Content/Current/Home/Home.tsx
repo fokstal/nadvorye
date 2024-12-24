@@ -1,5 +1,5 @@
 import { FC } from "react";
-import convertDateFrom_ISO8601 from "../../../../helpers/convertFrom_ISO8601";
+import { convertFullDateFrom_ISO8601 } from "../../../../helpers/convertFrom_ISO8601";
 import WeatherModel from "../../../../models/WeatherModel";
 import Language from "../../../../const/Language";
 import "./Home.scss";
@@ -17,7 +17,7 @@ const Home: FC<IHome> = ({ weather, currentLang }) => {
                 <div className="home__add">
                     <span className="home__add-city">{weather.location.name}</span>
                     <span className="home__add-date">
-                        {convertDateFrom_ISO8601(weather.current.last_updated, currentLang)}
+                        {convertFullDateFrom_ISO8601(weather.current.last_updated, currentLang)}
                     </span>
                 </div>
                 <img className="home__icon" src={weather.current.condition.icon} />
