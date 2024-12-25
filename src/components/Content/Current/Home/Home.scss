@@ -1,10 +1,11 @@
 .home {
     display: flex;
+    height: 85vh;
     flex-direction: row;
-    align-items: center;
+    align-items: end;
     gap: 25px;
-    padding-bottom: 50px;
-    padding-left: 75px;
+    padding-bottom: 5vh;
+    padding-left: 5vw;
 
     &__temp {
         font-size: 80px;
@@ -16,9 +17,6 @@
 
         &-city {
             font-size: 36px;
-        }
-
-        &-date {
         }
     }
 }

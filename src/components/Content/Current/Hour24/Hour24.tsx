@@ -14,11 +14,12 @@ const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
     return (
         <>
             <div className="hour-24">
+                <h2 className="hour-24__title">🕰️ 24-hour forecast</h2>
                 <ul className="hour-24__list">
                     {weatherIn24Hour &&
                         weatherIn24Hour.map((weatherInHour) => {
                             return (
-                                <li className="hour-24__list-item">
+                                <li className="hour-24__list-item" key={weatherInHour.time}>
                                     <span className="hour-24__list-item-temp">{weatherInHour.temp}&deg;C</span>
                                     <img src={weatherInHour.iconPath} alt="" className="hour-24__list-item-icon" />
                                     <span className="hour-24__list-item-wind-speed">
