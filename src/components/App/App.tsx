@@ -11,6 +11,7 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import Header from "../Header/Header";
 import Home from "../Content/Current/Home/Home";
 import Hour24 from "../Content/Current/Hour24/Hour24";
+import Wind from "../Content/Current/Wind/Wind";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
@@ -76,6 +77,7 @@ const App: FC = () => {
                                 ]}
                                 currentLang={currentLang}
                             />
+                            <Wind />
                         </div>
                         <BurgerMenu
                             dominantColor={dominantColor}
