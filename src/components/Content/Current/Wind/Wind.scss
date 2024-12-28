@@ -1,23 +1,4 @@
 .wind {
-    background: #ffffff10;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    margin-top: 5vh;
-    margin-left: 50px;
-    padding-left: 50px;
-
-    opacity: 0.7;
-    transition: opacity 0.2s;
-
-    &:hover {
-        opacity: 1;
-    }
-
-    &__title {
-        font-size: 40px;
-        font-weight: 100;
-    }
-
     &__content {
         display: flex;
         flex-direction: row;

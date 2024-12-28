@@ -11,8 +11,8 @@ const Wind: FC = () => {
 
     return (
         <>
-            <div className="wind">
-                <h2 className="wind__title">🍃 Wind</h2>
+            <div className="wind current-content-block">
+                <h2 className="wind__title current-content-block__title">🍃 Wind</h2>
                 <div className="wind__content">
                     <Compass scale={1.5} angle={angle} />
                     <div className="wind__content-text">
