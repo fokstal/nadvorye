@@ -3,6 +3,14 @@
         &-list {
             display: flex;
             flex-direction: row;
+            gap: 60px;
+            overflow-x: auto;
+            padding: 0;
+            padding-bottom: 20px;
+
+            background: #ffffff15;
+            border-radius: 10px;
+            padding: 20px;
 
             &-item {
                 display: flex;
@@ -14,6 +22,11 @@
                 &-temp {
                     margin-bottom: 40px;
                     font-size: 26px;
+                }
+
+                &-time {
+                    margin-top: 20px;
+                    font-size: 18px;
                 }
             }
         }

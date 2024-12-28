@@ -11,6 +11,8 @@ interface IHour24 {
 }
 
 const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
+    if (weatherIn24Hour.length != 24) throw new Error("weatherIn24Hour array length is not 24!");
+
     const [isContentVisible, setIsContentVisible] = useState(true);
 
     const contentElRef = useRef<HTMLDivElement | null>(null);

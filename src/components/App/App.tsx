@@ -17,6 +17,7 @@ const App: FC = () => {
     const [isUseApi, setIsUseApi] = useState(false);
 
     const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
+    const weatherIn24Hour = [];
 
     const searchCityInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -38,6 +39,17 @@ const App: FC = () => {
         fetchCurrentWeather();
     }, []);
 
+    if (weather) {
+        for (let i = 0; i < 24; i++) {
+            weatherIn24Hour.push({
+                temp: weather.current.temp_c,
+                iconPath: weather.current.condition.icon,
+                time: weather.current.last_updated,
+                windSpeed: weather.current.wind_kph,
+            });
+        }
+    }
+
     return (
         <>
             <div className="weather">
@@ -54,17 +66,7 @@ const App: FC = () => {
                                 setCurrentCity={setCurrentCity}
                                 fetchCurrentWeather={fetchCurrentWeather}
                             />
-                            <Hour24
-                                weatherIn24Hour={[
-                                    {
-                                        temp: weather.current.temp_c,
-                                        iconPath: weather.current.condition.icon,
-                                        time: weather.current.last_updated,
-                                        windSpeed: weather.current.wind_kph,
-                                    },
-                                ]}
-                                currentLang={currentLang}
-                            />
+                            <Hour24 weatherIn24Hour={weatherIn24Hour} currentLang={currentLang} />
                             <Wind />
                             <Another />
                         </div>
