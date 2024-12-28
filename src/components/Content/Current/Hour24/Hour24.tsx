@@ -14,7 +14,7 @@ const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
     return (
         <>
             <div className="hour-24">
-                <h2 className="hour-24__title">🕰️ 24-hour forecast</h2>
+                <h2 className="hour-24__title">⏰ 24-hour forecast</h2>
                 <ul className="hour-24__list">
                     {weatherIn24Hour &&
                         weatherIn24Hour.map((weatherInHour) => {
