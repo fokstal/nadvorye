@@ -1,8 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Compass from "../../../Compass/Compass";
 import speedSvgPath from "../../../../assets/icons/speed.svg";
-import mercurySvgPath from "../../../../assets/icons/mercury.svg";
-import humiditySvgPath from "../../../../assets/icons/humidity.svg";
 import conditionSvgPath from "../../../../assets/icons/condition.svg";
 import angleSvgPath from "../../../../assets/icons/angle.svg";
 import "./Wind.scss";
@@ -58,27 +56,19 @@ const Wind: FC = () => {
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
-                                <img src={speedSvgPath} />:
+                                <img src={speedSvgPath} />
                             </div>
-                            255 <small>km/h</small>
+                            Скорость:
+                            <strong>
+                                255 <small>km/h</small>
+                            </strong>
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
-                                <img src={mercurySvgPath} />:
+                                <img src={conditionSvgPath} />
                             </div>
-                            4 <small>mb</small>
-                        </span>
-                        <span className="wind__content-text-block">
-                            <div className="wind__content-text-block-icon">
-                                <img src={humiditySvgPath} />:
-                            </div>
-                            33 <small>%</small>
-                        </span>
-                        <span className="wind__content-text-block">
-                            <div className="wind__content-text-block-icon">
-                                <img src={conditionSvgPath} />:
-                            </div>
-                            hurricanes
+                            Тип ветра:
+                            <strong>hurricanes</strong>
                         </span>
                     </div>
                 </div>
