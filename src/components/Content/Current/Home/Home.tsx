@@ -3,7 +3,7 @@ import { convertFullDateFrom_ISO8601 } from "../../../../helpers/convertFrom_ISO
 import WeatherModel from "../../../../models/WeatherModel";
 import Language from "../../../../const/Language";
 import BurgerMenu from "../../../BurgerMenu/BurgerMenu";
-import background from "../../../../assets/images/louise_lake_mountains.jpg";
+import background from "../../../../assets/images/road_asphalt_rain.jpg";
 import getDominantColorInHex from "../../../../helpers/getDominantColor";
 import "./Home.scss";
 import Header from "../../../Header/Header";
