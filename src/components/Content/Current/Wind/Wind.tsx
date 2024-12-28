@@ -45,14 +45,14 @@ const Wind: FC = () => {
                     className="wind__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
-                    🍃 Wind
+                    🍃 Ветер
                     <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
                 </h2>
                 <div className="wind__content current-content-block__content" ref={contentElRef}>
                     <Compass scale={1.5} angle={angle} />
                     <div className="wind__content-text">
                         <span className="wind__content-text-block wind__content-text-block--direction">
-                            North-east <small>({angle}&deg;)</small>
+                            Северо-западный <small>({angle}&deg;)</small>
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
@@ -60,7 +60,7 @@ const Wind: FC = () => {
                             </div>
                             Скорость:
                             <strong>
-                                255 <small>km/h</small>
+                                255 <small>км/ч</small>
                             </strong>
                         </span>
                         <span className="wind__content-text-block">
@@ -68,7 +68,7 @@ const Wind: FC = () => {
                                 <img src={conditionSvgPath} />
                             </div>
                             Тип ветра:
-                            <strong>hurricanes</strong>
+                            <strong>ураган</strong>
                         </span>
                     </div>
                 </div>

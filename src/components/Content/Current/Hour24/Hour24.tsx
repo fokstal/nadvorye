@@ -48,7 +48,7 @@ const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
                     className="hour-24__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
-                    ⏰ 24-hour forecast
+                    ⏰ 24 часовой прогноз
                     <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
                 </h2>
                 <div className="hour-24__content current-content-block__content" ref={contentElRef}>
@@ -66,7 +66,7 @@ const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
                                             className="hour-24__content-list-item-icon"
                                         />
                                         <span className="hour-24__content-list-item-wind-speed">
-                                            {weatherInHour.windSpeed} km/h
+                                            {weatherInHour.windSpeed} км/ч
                                         </span>
                                         <span className="hour-24__content-list-item-time">
                                             {convertTimeFrom_ISO8601(weatherInHour.time, currentLang)}

@@ -12,8 +12,8 @@ import "./App.scss";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
-    const [currentCity, setCurrentCity] = useState("Minsk");
-    const [currentLang, setCurrentLang] = useState(Language.EN);
+    const [currentCity, setCurrentCity] = useState("Минск");
+    const [currentLang, setCurrentLang] = useState(Language.RU);
     const [isUseApi, setIsUseApi] = useState(false);
 
     const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
@@ -25,6 +25,7 @@ const App: FC = () => {
 
         if (isUseApi) {
             setWeather(await weatherApi.getCurrent(currentCity));
+
             return;
         }
 

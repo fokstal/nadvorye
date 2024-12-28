@@ -47,17 +47,17 @@ const Another: FC = () => {
                     className="another__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
-                    🌟 Another
+                    🌟 Другие данные
                     <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
                 </h2>
                 <div className="another__content current-content-block__content" ref={contentElRef}>
                     <div className="another__content-main">
                         <div className="another__content-main-sun-state">
                             <div className="another__content-main-sun-state-block another__content-main-sun-state-block--sunrise">
-                                <img src={sunriceSvgPath} /> sunrise: <strong>09:27</strong>
+                                <img src={sunriceSvgPath} /> рассвет: <strong>09:27</strong>
                             </div>
                             <div className="another__content-main-sun-state-block another__content-main-sun-state-block--sunset">
-                                <img src={sunsetSvgPath} /> sunset: <strong>16:51</strong>
+                                <img src={sunsetSvgPath} /> закат: <strong>16:51</strong>
                             </div>
                         </div>
                         <div className="another__content-main-data">
@@ -76,7 +76,7 @@ const Another: FC = () => {
                                 </div>
                                 Давление:
                                 <strong>
-                                    4 <small>mb</small>
+                                    4 <small>мб</small>
                                 </strong>
                             </span>
                             <span className="another__content-main-data-block">
@@ -101,8 +101,8 @@ const Another: FC = () => {
                                 d="M3.85 8.62a4 4 0 0 1 4.78-4.77a4 4 0 0 1 6.74 0a4 4 0 0 1 4.78 4.78a4 4 0 0 1 0 6.74a4 4 0 0 1-4.77 4.78a4 4 0 0 1-6.75 0a4 4 0 0 1-4.78-4.77a4 4 0 0 1 0-6.76Z"
                             />
                         </svg>
-                        AQI = <strong>43</strong>
-                        <small>air quality index</small>
+                        ИКВ = <strong>43</strong>
+                        <small>индекс качества воздуха</small>
                     </div>
                 </div>
             </div>
