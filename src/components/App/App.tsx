@@ -29,7 +29,7 @@ const App: FC = () => {
             return;
         }
 
-        setWeather(WeatherApi.convertJSONToWeatherModel(weatherData_Minsk.currentAt_211224));
+        setWeather(WeatherApi.convertJSONToWeatherModel(weatherData_Minsk.currentAt_281224));
 
         if (searchCityInput) searchCityInput.value = "";
     };
