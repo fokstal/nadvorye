@@ -45,7 +45,7 @@ const Home: FC<IHome> = ({
 
     return (
         <>
-            <div className="home">
+            <div className="home" id="sectionHome">
                 <Header isUseApi={isUseApi} setIsUseApi={setIsUseApi} />
                 <img className="home__background" src={background} ref={imgBackgroundRef} />
                 <div className="home__content">

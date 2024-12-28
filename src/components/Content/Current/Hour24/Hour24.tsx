@@ -45,7 +45,7 @@ const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
 
     return (
         <>
-            <div className="hour-24 current-content-block">
+            <div className="hour-24 current-content-block" id="sectionHour24">
                 <h2
                     className="hour-24__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}

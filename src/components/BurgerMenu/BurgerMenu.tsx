@@ -25,6 +25,9 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     const burgerBtnLineMiddleRef = useRef<HTMLHRElement | null>(null);
     const burgerBtnLineBottomRef = useRef<HTMLHRElement | null>(null);
     const burgerMenuSearchCityFormRef = useRef<HTMLFormElement | null>(null);
+    const linkHour24Ref = useRef<HTMLLinkElement | null>(null);
+    const linkWindRef = useRef<HTMLLinkElement | null>(null);
+    const linkAnotherRef = useRef<HTMLLinkElement | null>(null);
 
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
@@ -34,6 +37,9 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     const burgerBtnLineMiddle = burgerBtnLineMiddleRef.current;
     const burgerBtnLineBottom = burgerBtnLineBottomRef.current;
     const burgerMenuSearchCityForm = burgerMenuSearchCityFormRef.current;
+    const linkHour24 = linkHour24Ref.current;
+    const linkWind = linkWindRef.current;
+    const linkAnother = linkAnotherRef.current;
 
     const nextLanguage = () => {
         const currentIndex = languagesArray.indexOf(currentLang);
@@ -51,7 +57,21 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                 if (burgerBtnLineTop) burgerBtnLineTop.classList.add("burger-btn__icon-line-top--active");
                 if (burgerBtnLineMiddle) burgerBtnLineMiddle.classList.add("burger-btn__icon-line-middle--active");
                 if (burgerBtnLineBottom) burgerBtnLineBottom.classList.add("burger-btn__icon-line-bottom--active");
-                if (burgerMenuSearchCityForm) burgerMenuSearchCityForm.classList.add("burger-menu__search-city--active")
+                if (burgerMenuSearchCityForm)
+                    burgerMenuSearchCityForm.classList.add("burger-menu__search-city--active");
+
+                if (linkHour24) {
+                    linkHour24.style.fontSize = "28px";
+                    linkHour24.style.opacity = "1";
+                }
+                if (linkWind) {
+                    linkWind.style.fontSize = "28px";
+                    linkWind.style.opacity = "1";
+                }
+                if (linkAnother) {
+                    linkAnother.style.fontSize = "28px";
+                    linkAnother.style.opacity = "1";
+                }
             }
 
             if (!isBurgerMenuOpen) {
@@ -60,7 +80,21 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                 if (burgerBtnLineTop) burgerBtnLineTop.classList.remove("burger-btn__icon-line-top--active");
                 if (burgerBtnLineMiddle) burgerBtnLineMiddle.classList.remove("burger-btn__icon-line-middle--active");
                 if (burgerBtnLineBottom) burgerBtnLineBottom.classList.remove("burger-btn__icon-line-bottom--active");
-                if (burgerMenuSearchCityForm) burgerMenuSearchCityForm.classList.remove("burger-menu__search-city--active");
+                if (burgerMenuSearchCityForm)
+                    burgerMenuSearchCityForm.classList.remove("burger-menu__search-city--active");
+
+                if (linkHour24) {
+                    linkHour24.style.fontSize = "0";
+                    linkHour24.style.opacity = "0";
+                }
+                if (linkWind) {
+                    linkWind.style.fontSize = "0";
+                    linkWind.style.opacity = "0";
+                }
+                if (linkAnother) {
+                    linkAnother.style.fontSize = "0";
+                    linkAnother.style.opacity = "0";
+                }
             }
         }
     };
@@ -103,6 +137,25 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                         <img src={searchIcon} alt="🔍" />
                     </button>
                 </form>
+                <nav className="burger-menu__navbar">
+                    <ul className="burger-menu__navbar-link-list">
+                        <li className="burger-menu__navbar-link-list-item">
+                            <a href="#sectionHour24">
+                                ⏰ <span ref={linkHour24Ref}>24 часовой прогноз</span>
+                            </a>
+                        </li>
+                        <li className="burger-menu__navbar-link-list-item">
+                            <a href="#sectionWind">
+                                🍃 <span ref={linkWindRef}>Ветер</span>
+                            </a>
+                        </li>
+                        <li className="burger-menu__navbar-link-list-item">
+                            <a href="#sectionAnother">
+                                🌟 <span ref={linkAnotherRef}>Другие данные</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
                 <div className="burger-menu__control">
                     <div className="burger-menu__control-lang" onClick={() => nextLanguage()}>
                         {LanguageFlags[currentLang]}

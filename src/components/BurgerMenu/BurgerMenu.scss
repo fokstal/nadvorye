@@ -74,7 +74,7 @@
         justify-content: space-between;
         height: 50px;
         border-bottom: 1px whitesmoke solid;
-        transition: all .5s;
+        transition: all 0.5s;
 
         &-input {
             background: transparent;
@@ -115,6 +115,41 @@
         &--active {
             opacity: 1;
             visibility: visible;
+        }
+    }
+
+    &__navbar {
+        display: block;
+        margin: auto 0;
+
+        &-link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+
+            &-item {
+                a {
+                    color: whitesmoke;
+                    font-size: 28px;
+                    font-weight: 100;
+                    text-decoration: none;
+                    cursor: pointer;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+
+                    span {
+                        display: block;
+                        opacity: 0;
+                        font-size: 0;
+                        transition: all 0.5s;
+                    }
+                }
+            }
         }
     }
 

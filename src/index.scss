@@ -14,5 +14,27 @@ body {
         align-items: center;
         justify-content: center;
         overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    .home-link {
+        position: fixed;
+        background: none;
+        bottom: 20px;
+        right: 20px;
+        padding: 5px;
+        border: 1px solid #434343;
+        border-radius: 10px;
+        text-decoration: none;
+        z-index: 1;
+        transition: opacity 0.2s;
+
+        &:hover {
+            opacity: 0.7;
+        }
+
+        &__icon {
+            width: 20px;
+        }
     }
 }

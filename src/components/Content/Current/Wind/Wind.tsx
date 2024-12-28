@@ -40,7 +40,7 @@ const Wind: FC = () => {
 
     return (
         <>
-            <div className="wind current-content-block">
+            <div className="wind current-content-block" id="sectionWind">
                 <h2
                     className="wind__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}

@@ -42,7 +42,7 @@ const Another: FC = () => {
 
     return (
         <>
-            <div className="another current-content-block">
+            <div className="another current-content-block" id="sectionAnother">
                 <h2
                     className="another__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
