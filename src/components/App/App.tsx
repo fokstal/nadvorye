@@ -53,19 +53,12 @@ const App: FC = () => {
 
     return (
         <>
-            <input
-                type="checkbox"
-                name=""
-                id=""
-                checked={isUseApi}
-                onChange={() => setIsUseApi((prevChecked) => !prevChecked)}
-            />
             <div className="weather">
                 <img className="weather__background" src={background} ref={imgBackgroundRef} />
                 {weather && (
                     <div className="weather__body">
                         <div className="weather__body-content">
-                            <Header />
+                            <Header isUseApi={isUseApi} setIsUseApi={setIsUseApi} />
                             <Home weather={weather} currentLang={currentLang} />
                             <Hour24
                                 weatherIn24Hour={[

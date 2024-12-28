@@ -1,15 +1,18 @@
 @import "./fonts";
 
+html,
 body {
-    height: 2300px;
-    background-image: url("./assets/images/louise_lake_mountains.jpg");
-    backdrop-filter: blur(15px);
+    display: block;
     margin: 0;
     font-family: "Inter", sans-serif;
+    background-image: url("./assets/images/louise_lake_mountains.jpg");
 
     #root {
         display: flex;
+        backdrop-filter: blur(15px);
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        overflow-x: hidden;
     }
 }
