@@ -1,15 +1,11 @@
 .weather {
     width: 80%;
+    height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: start;
     color: whitesmoke;
-
-    &__background {
-        height: 100vh;
-        object-fit: cover;
-    }
 
     &__body {
         position: absolute;

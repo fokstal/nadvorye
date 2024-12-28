@@ -1,13 +1,13 @@
 .header {
+    position: absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 10vh;
+    width: 100%;
 
     &__logo {
-        position: absolute;
-        margin: 0;
-        left: 20px;
+        margin: 20px;
         font-size: 50px;
         opacity: .3;
         font-family: "Marck-Script", sans-serif;
