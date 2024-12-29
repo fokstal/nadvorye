@@ -73,8 +73,8 @@ class WeatherApi {
             },
             forecastday: {
                 astro: {
-                    sunrise: valueJSON.forecastday[0].astro.sunrise,
-                    sunset: valueJSON.forecastday[0].astro.sunset,
+                    sunrise: valueJSON.forecast.forecastday[0].astro.sunrise,
+                    sunset: valueJSON.forecast.forecastday[0].astro.sunset,
                 },
             },
         };
