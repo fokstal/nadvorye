@@ -9,28 +9,31 @@ import Hour24 from "../Content/Current/Hour24/Hour24";
 import Wind from "../Content/Current/Wind/Wind";
 import Another from "../Content/Current/Another/Another";
 import "./App.scss";
+import WeatherShortModel from "../../models/WeatherShortModel";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
+    const [weatherIn24Hour, setWeatherIn24Hour] = useState<WeatherShortModel[]>([]);
     const [currentCity, setCurrentCity] = useState("Минск");
     const [currentLang, setCurrentLang] = useState(Language.RU);
     const [isUseApi, setIsUseApi] = useState(false);
 
     const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
-    const weatherIn24Hour = [];
 
     const searchCityInputRef = useRef<HTMLInputElement | null>(null);
 
     const fetchCurrentWeather = async () => {
         const searchCityInput = searchCityInputRef.current;
+        let weatherFromResp: any = weatherData_Minsk.currentAt_291224_0915;
 
         if (isUseApi) {
-            setWeather(await weatherApi.getCurrent(currentCity));
+            weatherFromResp = await weatherApi.getCurrent(currentCity);
 
             return;
         }
 
-        setWeather(WeatherApi.convertJSONToWeatherModel(weatherData_Minsk.currentAt_281224));
+        setWeather(WeatherApi.convertJSONToWeatherModel(weatherFromResp));
+        setWeatherIn24Hour(WeatherApi.convertJSONToWeatherShortModelList(weatherFromResp));
 
         if (searchCityInput) searchCityInput.value = "";
     };
@@ -38,17 +41,6 @@ const App: FC = () => {
     useEffect(() => {
         fetchCurrentWeather();
     }, []);
-
-    if (weather) {
-        for (let i = 0; i < 24; i++) {
-            weatherIn24Hour.push({
-                temp: weather.current.temp_c,
-                iconPath: weather.current.condition.icon,
-                time: weather.current.last_updated,
-                windSpeed: weather.current.wind_kph,
-            });
-        }
-    }
 
     return (
         <>

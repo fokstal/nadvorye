@@ -60,15 +60,15 @@ const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
                                 return (
                                     <li className="hour-24__content-list-item" key={weatherInHour.time}>
                                         <span className="hour-24__content-list-item-temp">
-                                            {weatherInHour.temp}&deg;C
+                                            {weatherInHour.temp_c}&deg;C
                                         </span>
                                         <img
-                                            src={weatherInHour.iconPath}
+                                            src={weatherInHour.condition.icon}
                                             alt=""
                                             className="hour-24__content-list-item-icon"
                                         />
                                         <span className="hour-24__content-list-item-wind-speed">
-                                            {weatherInHour.windSpeed} км/ч
+                                            {weatherInHour.wind_kph} км/ч
                                         </span>
                                         <span className="hour-24__content-list-item-time">
                                             {convertTimeFrom_ISO8601(weatherInHour.time, currentLang)}
