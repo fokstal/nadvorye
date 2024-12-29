@@ -62,7 +62,19 @@ const App: FC = () => {
                             <Wind
                                 weatherWind={{ wind_kph: weather.current.wind_kph, wind_dir: weather.current.wind_dir }}
                             />
-                            <Another />
+                            <Another
+                                currentLang={currentLang}
+                                weatherAnother={{
+                                    sunrise: weather.forecastday.astro.sunrise,
+                                    sunset: weather.forecastday.astro.sunset,
+                                    humidity: weather.current.humidity,
+                                    cloud: weather.current.cloud,
+                                    pressure_mb: weather.current.pressure_mb,
+                                    precip_mm: weather.current.precip_mm,
+                                }}
+                                temp_c={weather.current.temp_c}
+                                wind_kph={weather.current.wind_kph}
+                            />
                         </div>
                     </div>
                 )}

@@ -1,5 +1,5 @@
 import { Dispatch, FC, MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
-import { convertFullDateFrom_ISO8601 } from "../../../../helpers/convertFrom_ISO8601";
+import { convertFullDateFrom_ISO8601 } from "../../../../helpers/dateConverter";
 import WeatherModel from "../../../../models/WeatherModel";
 import Language from "../../../../const/Language";
 import BurgerMenu from "../../../BurgerMenu/BurgerMenu";

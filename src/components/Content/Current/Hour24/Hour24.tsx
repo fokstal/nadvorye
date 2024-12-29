@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import WeatherShortModel from "../../../../models/WeatherShortModel";
 import Language from "../../../../const/Language";
-import { convertTimeFrom_ISO8601 } from "../../../../helpers/convertFrom_ISO8601";
+import { convertTimeFrom_ISO8601 } from "../../../../helpers/dateConverter";
 import angleSvgPath from "../../../../assets/icons/angle.svg";
 import "./Hour24.scss";
 
