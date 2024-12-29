@@ -35,8 +35,6 @@ const App: FC = () => {
         if (weatherFromSessionStorage) weatherFromResp = JSON.parse(weatherFromSessionStorage);
         if (isUseApi) weatherFromResp = await weatherApi.getForecast(currentCity);
 
-        console.log(weatherFromResp);
-
         sessionStorage.setItem("weather", JSON.stringify(weatherFromResp));
 
         setWeather(WeatherApi.convertJSONToWeatherModel(weatherFromResp));

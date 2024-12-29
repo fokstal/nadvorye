@@ -13,7 +13,6 @@ interface IHour24 {
 }
 
 const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => {
-    if (weatherIn24Hour.length !== 24) throw new Error("weatherIn24Hour array length is not 24!");
     const currentTime = convertTimeFrom_ISO8601(last_updated, currentLang, true);
     const currentTimeListItemStyle = {
         filter: "drop-shadow(0 0 1em gold)",

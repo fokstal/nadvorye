@@ -1,4 +1,5 @@
 import Language from "../const/Language";
+import weatherJSONClear from "../const/weatherJSONClear";
 import WeatherModel from "../models/WeatherModel";
 import WeatherShortModel from "../models/WeatherShortModel";
 
@@ -64,61 +65,69 @@ class WeatherApi {
     }
 
     public static convertJSONToWeatherModel(valueJSON: any): WeatherModel {
-        return {
-            location: {
-                name: valueJSON.location.name,
-                region: valueJSON.location.region,
-                country: valueJSON.location.country,
-                lat: valueJSON.location.lat,
-                lon: valueJSON.location.lon,
-            },
-            current: {
-                last_updated: valueJSON.current.last_updated,
-                temp_c: valueJSON.current.temp_c,
-                temp_f: valueJSON.current.temp_f,
-                is_day: valueJSON.current.is_day,
-                condition: {
-                    text: valueJSON.current.condition.text,
-                    icon: valueJSON.current.condition.icon,
+        try {
+            return {
+                location: {
+                    name: valueJSON.location.name,
+                    region: valueJSON.location.region,
+                    country: valueJSON.location.country,
+                    lat: valueJSON.location.lat,
+                    lon: valueJSON.location.lon,
                 },
-                wind_kph: valueJSON.current.wind_kph,
-                wind_dir: valueJSON.current.wind_dir,
-                pressure_mb: valueJSON.current.pressure_mb,
-                precip_mm: valueJSON.current.precip_mm,
-                feelslike_c: valueJSON.current.feelslike_c,
-                feelslike_f: valueJSON.current.feelslike_f,
-                humidity: valueJSON.current.humidity,
-                cloud: valueJSON.current.cloud,
-                windchill_c: valueJSON.current.windchill_c,
-                windchill_f: valueJSON.current.windchill_f,
-            },
-            forecastday: {
-                astro: {
-                    sunrise: valueJSON.forecast.forecastday[0].astro.sunrise,
-                    sunset: valueJSON.forecast.forecastday[0].astro.sunset,
+                current: {
+                    last_updated: valueJSON.current.last_updated,
+                    temp_c: valueJSON.current.temp_c,
+                    temp_f: valueJSON.current.temp_f,
+                    is_day: valueJSON.current.is_day,
+                    condition: {
+                        text: valueJSON.current.condition.text,
+                        icon: valueJSON.current.condition.icon,
+                    },
+                    wind_kph: valueJSON.current.wind_kph,
+                    wind_dir: valueJSON.current.wind_dir,
+                    pressure_mb: valueJSON.current.pressure_mb,
+                    precip_mm: valueJSON.current.precip_mm,
+                    feelslike_c: valueJSON.current.feelslike_c,
+                    feelslike_f: valueJSON.current.feelslike_f,
+                    humidity: valueJSON.current.humidity,
+                    cloud: valueJSON.current.cloud,
+                    windchill_c: valueJSON.current.windchill_c,
+                    windchill_f: valueJSON.current.windchill_f,
                 },
-            },
-        };
+                forecastday: {
+                    astro: {
+                        sunrise: valueJSON.forecast.forecastday[0].astro.sunrise,
+                        sunset: valueJSON.forecast.forecastday[0].astro.sunset,
+                    },
+                },
+            };
+        } catch {}
+
+        return this.convertJSONToWeatherModel(weatherJSONClear);
     }
 
     public static convertJSONToWeatherShortModelList(valueJSON: any): WeatherShortModel[] {
-        const result: WeatherShortModel[] = [];
+        try {
+            const result: WeatherShortModel[] = [];
 
-        for (let i = 0; i < valueJSON.forecast.forecastday[0].hour.length; i++) {
-            const currentHourData = valueJSON.forecast.forecastday[0].hour[i];
+            for (let i = 0; i < valueJSON.forecast.forecastday[0].hour.length; i++) {
+                const currentHourData = valueJSON.forecast.forecastday[0].hour[i];
 
-            result.push({
-                time: currentHourData.time,
-                temp_c: currentHourData.temp_c,
-                temp_f: currentHourData.temp_f,
-                wind_kph: currentHourData.wind_kph,
-                condition: {
-                    icon: currentHourData.condition.icon,
-                },
-            });
-        }
+                result.push({
+                    time: currentHourData.time,
+                    temp_c: currentHourData.temp_c,
+                    temp_f: currentHourData.temp_f,
+                    wind_kph: currentHourData.wind_kph,
+                    condition: {
+                        icon: currentHourData.condition.icon,
+                    },
+                });
+            }
 
-        return result;
+            return result;
+        } catch {}
+
+        return this.convertJSONToWeatherShortModelList(weatherJSONClear);
     }
 }
 
