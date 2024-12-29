@@ -12,33 +12,31 @@ interface IHour24 {
 }
 
 const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => {
-    if (weatherIn24Hour.length != 24) throw new Error("weatherIn24Hour array length is not 24!");
+    if (weatherIn24Hour.length !== 24) throw new Error("weatherIn24Hour array length is not 24!");
     const currentTime = convertTimeFrom_ISO8601(last_updated, currentLang, true);
     const currentTimeListItemStyle = {
         filter: "drop-shadow(0 0 1em gold)",
     };
 
     const [isContentVisible, setIsContentVisible] = useState(true);
-
     const contentElRef = useRef<HTMLDivElement | null>(null);
     const titleArrowElRef = useRef<HTMLImageElement | null>(null);
-
-    const contentEl = contentElRef.current;
-    const titleArrowEl = titleArrowElRef.current;
+    const currentTimeItemRef = useRef<HTMLLIElement | null>(null);
 
     const handleContentVisible = () => {
+        const contentEl = contentElRef.current;
+        const titleArrowEl = titleArrowElRef.current;
+
         if (contentEl && titleArrowEl) {
             if (isContentVisible) {
                 contentEl.style.height = `${contentEl.scrollHeight + 20}px`;
                 contentEl.style.opacity = "1";
                 contentEl.style.visibility = "visible";
-
                 titleArrowEl.style.transform = "rotate(180deg)";
             } else {
                 contentEl.style.height = "0";
                 contentEl.style.opacity = "0";
                 contentEl.style.visibility = "hidden";
-
                 titleArrowEl.style.transform = "rotate(0)";
             }
         }
@@ -46,7 +44,13 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
 
     useEffect(() => {
         handleContentVisible();
-    }, [isContentVisible, handleContentVisible]);
+    }, [isContentVisible]);
+
+    useEffect(() => {
+        if (currentTimeItemRef.current) {
+            currentTimeItemRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [currentTime]);
 
     return (
         <>
@@ -60,35 +64,34 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
                 </h2>
                 <div className="hour-24__content current-content-block__content" ref={contentElRef}>
                     <ul className="hour-24__content-list">
-                        {weatherIn24Hour &&
-                            weatherIn24Hour.map((weatherInHour) => {
-                                const weatherInHourTime = convertTimeFrom_ISO8601(weatherInHour.time, currentLang);
-                                const isCurrentTime = weatherInHourTime == currentTime;
+                        {weatherIn24Hour.map((weatherInHour) => {
+                            const weatherInHourTime = convertTimeFrom_ISO8601(weatherInHour.time, currentLang);
+                            const isCurrentTime = weatherInHourTime === currentTime;
 
-                                return (
-                                    <div className="hour-24__content-list-block">
-                                        <li
-                                            className="hour-24__content-list-item"
-                                            key={weatherInHourTime}
-                                            style={isCurrentTime ? currentTimeListItemStyle : {}}
-                                        >
-                                            <span className="hour-24__content-list-item-temp">
-                                                {weatherInHour.temp_c}&deg;C
-                                            </span>
-                                            <img
-                                                src={weatherInHour.condition.icon}
-                                                alt=""
-                                                className="hour-24__content-list-item-icon"
-                                            />
-                                            <span className="hour-24__content-list-item-wind-speed">
-                                                {weatherInHour.wind_kph} км/ч
-                                            </span>
-                                            <span className="hour-24__content-list-item-time">{weatherInHourTime}</span>
-                                        </li>
-                                        {isCurrentTime && <span>&bull;</span>}
-                                    </div>
-                                );
-                            })}
+                            return (
+                                <div className="hour-24__content-list-block" key={weatherInHourTime}>
+                                    <li
+                                        className="hour-24__content-list-item"
+                                        ref={isCurrentTime ? currentTimeItemRef : null}
+                                        style={isCurrentTime ? currentTimeListItemStyle : {}}
+                                    >
+                                        <span className="hour-24__content-list-item-temp">
+                                            {weatherInHour.temp_c}&deg;C
+                                        </span>
+                                        <img
+                                            src={weatherInHour.condition.icon}
+                                            alt=""
+                                            className="hour-24__content-list-item-icon"
+                                        />
+                                        <span className="hour-24__content-list-item-wind-speed">
+                                            {weatherInHour.wind_kph} км/ч
+                                        </span>
+                                        <span className="hour-24__content-list-item-time">{weatherInHourTime}</span>
+                                    </li>
+                                    {isCurrentTime && <span>&bull;</span>}
+                                </div>
+                            );
+                        })}
                     </ul>
                 </div>
             </div>
