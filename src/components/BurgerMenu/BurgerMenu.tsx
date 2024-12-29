@@ -20,6 +20,8 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     setCurrentCity,
     fetchCurrentWeather,
 }) => {
+    const pinnedCity = ["Минск", "Витебск"]; //"Minsk", "Vitebsk", "Minsk", "Vitebsk", "Minsk", "Vitebsk", "Minsk", "Vitebsk"];
+
     const burgerMenuRef = useRef<HTMLDivElement | null>(null);
     const burgerBtnLineTopRef = useRef<HTMLHRElement | null>(null);
     const burgerBtnLineMiddleRef = useRef<HTMLHRElement | null>(null);
@@ -28,6 +30,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     const linkHour24Ref = useRef<HTMLLinkElement | null>(null);
     const linkWindRef = useRef<HTMLLinkElement | null>(null);
     const linkAnotherRef = useRef<HTMLLinkElement | null>(null);
+    const pinnedCityListRef = useRef<HTMLUListElement | null>(null);
 
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
@@ -40,6 +43,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     const linkHour24 = linkHour24Ref.current;
     const linkWind = linkWindRef.current;
     const linkAnother = linkAnotherRef.current;
+    const pinnedCityList = pinnedCityListRef.current;
 
     const nextLanguage = () => {
         const currentIndex = languagesArray.indexOf(currentLang);
@@ -72,6 +76,11 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                     linkAnother.style.fontSize = "28px";
                     linkAnother.style.opacity = "1";
                 }
+
+                if (pinnedCityList) {
+                    pinnedCityList.style.visibility = "visible";
+                    pinnedCityList.style.opacity = "1";
+                }
             }
 
             if (!isBurgerMenuOpen) {
@@ -95,8 +104,19 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                     linkAnother.style.fontSize = "0";
                     linkAnother.style.opacity = "0";
                 }
+
+                if (pinnedCityList) {
+                    pinnedCityList.style.visibility = "hidden";
+                    pinnedCityList.style.opacity = "0";
+                }
             }
         }
+    };
+
+    const handlePinnedCity = (city: string) => {
+        setCurrentCity(city);
+
+        fetchCurrentWeather();
     };
 
     useEffect(() => {
@@ -137,6 +157,20 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                         <img src={searchIcon} alt="🔍" />
                     </button>
                 </form>
+                <ul className="burger-menu__pinned-city-list" ref={pinnedCityListRef}>
+                    {pinnedCity &&
+                        pinnedCity.map((city) => {
+                            return (
+                                <li
+                                    className="burger-menu__pinned-city-list-item"
+                                    key={city}
+                                    onClick={(ev) => handlePinnedCity(ev.currentTarget.innerHTML)}
+                                >
+                                    {city}
+                                </li>
+                            );
+                        })}
+                </ul>
                 <nav className="burger-menu__navbar">
                     <ul className="burger-menu__navbar-link-list">
                         <li className="burger-menu__navbar-link-list-item">
