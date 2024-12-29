@@ -62,6 +62,7 @@ class WeatherApi {
                     icon: valueJSON.current.condition.icon,
                 },
                 wind_kph: valueJSON.current.wind_kph,
+                wind_dir: valueJSON.current.wind_dir,
                 pressure_mb: valueJSON.current.pressure_mb,
                 precip_mm: valueJSON.current.precip_mm,
                 feelslike_c: valueJSON.current.feelslike_c,

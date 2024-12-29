@@ -4,9 +4,16 @@ import speedSvgPath from "../../../../assets/icons/speed.svg";
 import conditionSvgPath from "../../../../assets/icons/condition.svg";
 import angleSvgPath from "../../../../assets/icons/angle.svg";
 import "./Wind.scss";
+import WeatherWindModel from "../../../../models/WeatherWindModel";
+import getWindDirectionInfo from "../../../../helpers/getWindDirectionInfo";
+import getWindType from "../../../../helpers/getWindType";
 
-const Wind: FC = () => {
-    const angle = -45;
+interface IWind {
+    weatherWind: WeatherWindModel;
+}
+
+const Wind: FC<IWind> = ({ weatherWind }) => {
+    const weatherWindDirectionInfo = getWindDirectionInfo(weatherWind.wind_dir);
 
     const [isContentVisible, setIsContentVisible] = useState(true);
 
@@ -49,10 +56,10 @@ const Wind: FC = () => {
                     <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
                 </h2>
                 <div className="wind__content current-content-block__content" ref={contentElRef}>
-                    <Compass scale={1.5} angle={angle} />
+                    <Compass scale={1.5} angle={weatherWindDirectionInfo.angle} />
                     <div className="wind__content-text">
                         <span className="wind__content-text-block wind__content-text-block--direction">
-                            Северо-западный <small>({angle}&deg;)</small>
+                            {weatherWindDirectionInfo.translated} <small>({weatherWindDirectionInfo.angle}&deg;)</small>
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
@@ -60,7 +67,7 @@ const Wind: FC = () => {
                             </div>
                             Скорость:
                             <strong>
-                                255 <small>км/ч</small>
+                                {weatherWind.wind_kph} <small>км/ч</small>
                             </strong>
                         </span>
                         <span className="wind__content-text-block">
@@ -68,7 +75,7 @@ const Wind: FC = () => {
                                 <img src={conditionSvgPath} />
                             </div>
                             Тип ветра:
-                            <strong>ураган</strong>
+                            <strong>{getWindType(weatherWind.wind_kph)}</strong>
                         </span>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ type WeatherModel = {
             icon: string;
         };
         wind_kph: number;
+        wind_dir: string;
         pressure_mb: number;
         precip_mm: number;
         feelslike_c: number;
