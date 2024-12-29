@@ -1,7 +1,9 @@
 import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import Language, { LanguageFlags } from "../../const/Language";
 import searchIcon from "../../assets/icons/search.svg";
+import pinSvhPath from "../../assets/icons/pin.svg";
 import "./BurgerMenu.scss";
+import SessionStorageWorker from "../../helpers/SessionStorageWorker";
 
 interface IBurgerMenu {
     dominantColor: string;
@@ -20,7 +22,10 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     setCurrentCity,
     fetchCurrentWeather,
 }) => {
-    const pinnedCity = ["Минск", "Витебск"];
+    let pinnedCityArr = SessionStorageWorker.getPinnedCityArr();
+
+    const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+    const [isPinInSearch, setIsPinInSearch] = useState(false);
 
     const burgerMenuRef = useRef<HTMLDivElement | null>(null);
     const burgerBtnLineTopRef = useRef<HTMLHRElement | null>(null);
@@ -31,8 +36,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     const linkWindRef = useRef<HTMLLinkElement | null>(null);
     const linkAnotherRef = useRef<HTMLLinkElement | null>(null);
     const pinnedCityListRef = useRef<HTMLUListElement | null>(null);
-
-    const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+    const pinInSearchRef = useRef<HTMLImageElement | null>(null);
 
     const languagesArray = Object.values(Language);
     const burgerMenu = burgerMenuRef.current;
@@ -44,6 +48,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     const linkWind = linkWindRef.current;
     const linkAnother = linkAnotherRef.current;
     const pinnedCityList = pinnedCityListRef.current;
+    const pinInSearch = pinInSearchRef.current;
 
     const nextLanguage = () => {
         const currentIndex = languagesArray.indexOf(currentLang);
@@ -113,13 +118,44 @@ const BurgerMenu: FC<IBurgerMenu> = ({
         }
     };
 
-    const handlePinnedCity = (city: string) => {
+    const fetchCurrentWeatherByCity = (city: string) => {
         setCurrentCity(city);
 
         fetchCurrentWeather();
     };
 
+    const handleSearchCity = () => {
+        const searchCityInput = searchCityInputRef.current;
+
+        if (searchCityInput) {
+            if (!isPinInSearch && searchCityInput.value != "") {
+                pinnedCityArr.push(searchCityInput.value);
+                SessionStorageWorker.setPinnedCityArr(pinnedCityArr);
+
+                togglePinInSearch();
+            }
+        }
+
+        fetchCurrentWeather();
+    };
+
+    const togglePinInSearch = () => {
+        setIsPinInSearch(!isPinInSearch);
+
+        if (pinInSearch) {
+            if (isPinInSearch) pinInSearch.classList.add("burger-menu__search-city-pin--rotate");
+            else pinInSearch.classList.remove("burger-menu__search-city-pin--rotate");
+        }
+    };
+
+    const removeCityFromPinned = (city: string) => {
+        pinnedCityArr = pinnedCityArr.filter((pinnedCity) => pinnedCity !== city);
+
+        SessionStorageWorker.setPinnedCityArr(pinnedCityArr);
+    };
+
     useEffect(() => {
+        togglePinInSearch();
         toggleBurgerMenu();
     }, []);
 
@@ -140,6 +176,13 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                     </div>
                 </button>
                 <form className="burger-menu__search-city" ref={burgerMenuSearchCityFormRef}>
+                    <img
+                        src={pinSvhPath}
+                        className="burger-menu__search-city-pin"
+                        ref={pinInSearchRef}
+                        onClick={togglePinInSearch}
+                    />
+
                     <input
                         className="burger-menu__search-city-input"
                         type="text"
@@ -152,20 +195,26 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                         className="burger-menu__search-city-btn"
                         type="button"
                         style={{ background: dominantColor + 80 }}
-                        onClick={() => fetchCurrentWeather()}
+                        onClick={handleSearchCity}
                     >
                         <img src={searchIcon} alt="🔍" />
                     </button>
                 </form>
                 <ul className="burger-menu__pinned-city-list" ref={pinnedCityListRef}>
-                    {pinnedCity &&
-                        pinnedCity.map((city) => {
+                    {pinnedCityArr &&
+                        pinnedCityArr.map((city) => {
                             return (
                                 <li
                                     className="burger-menu__pinned-city-list-item"
                                     key={city}
-                                    onClick={(ev) => handlePinnedCity(ev.currentTarget.innerHTML)}
+                                    onClick={() => fetchCurrentWeatherByCity(city)}
                                 >
+                                    <span
+                                        className="burger-menu__pinned-city-list-item-remover"
+                                        onClick={() => removeCityFromPinned(city)}
+                                    >
+                                        +
+                                    </span>{" "}
                                     {city}
                                 </li>
                             );
