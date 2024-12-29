@@ -43,7 +43,7 @@ const Wind: FC<IWind> = ({ weatherWind }) => {
 
     useEffect(() => {
         handleContentVisible();
-    }, [isContentVisible, handleContentVisible]);
+    }, [isContentVisible]);
 
     return (
         <>
