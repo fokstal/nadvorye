@@ -15,19 +15,26 @@ import getUserCoordinates from "../../helpers/getUserCoordinates";
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
     const [weatherIn24Hour, setWeatherIn24Hour] = useState<WeatherShortModel[]>([]);
-    const [currentCity, setCurrentCity] = useState("Minsk");
+    const [currentCity, setCurrentCity] = useState("Минск");
     const [currentLang, setCurrentLang] = useState(Language.RU);
     const [isUseApi, setIsUseApi] = useState(false);
+    const [isUserCoordinatesSet, setIsUserCoordinatesSet] = useState(false);
 
     const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
 
     const searchCityInputRef = useRef<HTMLInputElement | null>(null);
 
-    const fetchCurrentWeather = async () => {
+    const setCurrentCityByUserCoordinates = async () => {
         const userCoordinates = await getUserCoordinates();
-        const weatherFromSessionStorage = sessionStorage.getItem("weather");
 
-        if (userCoordinates) setCurrentCity(`${userCoordinates.latitude}, ${userCoordinates.longitude}`);
+        if (userCoordinates) {
+            setCurrentCity(`${userCoordinates.latitude}, ${userCoordinates.longitude}`);
+            setIsUserCoordinatesSet(true);
+        }
+    };
+
+    const fetchCurrentWeather = async () => {
+        const weatherFromSessionStorage = sessionStorage.getItem("weather");
 
         const searchCityInput = searchCityInputRef.current;
         let weatherFromResp: any = weatherData_Minsk.currentAt_291224_0915;
@@ -44,8 +51,12 @@ const App: FC = () => {
     };
 
     useEffect(() => {
+        if (!isUserCoordinatesSet) {
+            setCurrentCityByUserCoordinates();
+        }
+
         fetchCurrentWeather();
-    }, []);
+    }, [isUserCoordinatesSet, currentCity]);
 
     return (
         <>

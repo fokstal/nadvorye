@@ -20,7 +20,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     setCurrentCity,
     fetchCurrentWeather,
 }) => {
-    const pinnedCity = ["Минск", "Витебск"]; //"Minsk", "Vitebsk", "Minsk", "Vitebsk", "Minsk", "Vitebsk", "Minsk", "Vitebsk"];
+    const pinnedCity = ["Минск", "Витебск"];
 
     const burgerMenuRef = useRef<HTMLDivElement | null>(null);
     const burgerBtnLineTopRef = useRef<HTMLHRElement | null>(null);
