@@ -6,6 +6,7 @@ import BurgerMenu from "../../../BurgerMenu/BurgerMenu";
 import getDominantColorInHex from "../../../../helpers/getDominantColor";
 import Header from "../../../Header/Header";
 import getTempForLocale from "../../../../helpers/getTempForLocale";
+import BackgroundWorker from "../../../../service/BackgroundWorker";
 import "./Home.scss";
 
 interface IHome {
@@ -33,6 +34,10 @@ const Home: FC<IHome> = ({
 
     const imgBackgroundRef = useRef<HTMLImageElement | null>(null);
 
+    let backgroundWorker: BackgroundWorker | null;
+
+    if (imgBackgroundRef.current) backgroundWorker = new BackgroundWorker(".home__background");
+
     useEffect(() => {
         const imgBackground = imgBackgroundRef.current;
 
@@ -42,6 +47,12 @@ const Home: FC<IHome> = ({
             };
         }
     }, []);
+
+    useEffect(() => {
+        if (weather && backgroundWorker) {
+            backgroundWorker.changeByWeatherType(weather.current.condition.code, weather.current.is_day === 1);
+        }
+    }, [weather]);
 
     return (
         <>

@@ -8,10 +8,9 @@ import Home from "../Content/Current/Home/Home";
 import Hour24 from "../Content/Current/Hour24/Hour24";
 import Wind from "../Content/Current/Wind/Wind";
 import Another from "../Content/Current/Another/Another";
-import "./App.scss";
 import WeatherShortModel from "../../models/WeatherShortModel";
 import getUserCoordinates from "../../helpers/getUserCoordinates";
-import BackgroundWorker from "../../service/BackgroundWorker";
+import "./App.scss";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
@@ -22,7 +21,6 @@ const App: FC = () => {
     const [isUserCoordinatesSet, setIsUserCoordinatesSet] = useState(false);
 
     const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
-    const backgroundWorker = new BackgroundWorker(".home__background");
 
     const searchCityInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -50,10 +48,6 @@ const App: FC = () => {
         setWeatherIn24Hour(WeatherApi.convertJSONToWeatherShortModelList(weatherFromResp));
 
         if (searchCityInput) searchCityInput.value = "";
-
-        if (weather) {
-            backgroundWorker.changeByWeatherType(weather.current.condition.code, weather.current.is_day === 1);
-        }
     };
 
     useEffect(() => {
