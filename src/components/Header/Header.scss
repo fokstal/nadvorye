@@ -9,7 +9,14 @@
     &__logo {
         margin: 20px;
         font-size: 50px;
-        opacity: .3;
+        opacity: 0.3;
         font-family: "Marck-Script", sans-serif;
+    }
+
+    input {
+        position: absolute;
+        left: 60px;
+        opacity: 0.1;
+        cursor: grab;
     }
 }
