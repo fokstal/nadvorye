@@ -56,7 +56,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
 
     useEffect(() => {
         handleContentVisible();
-    }, [isContentVisible, handleContentVisible]);
+    }, [isContentVisible]);
 
     return (
         <>
