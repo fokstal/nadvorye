@@ -56,7 +56,7 @@ const App: FC = () => {
         }
 
         fetchCurrentWeather();
-    }, [isUserCoordinatesSet, currentCity]);
+    }, [isUserCoordinatesSet]);
 
     return (
         <>
