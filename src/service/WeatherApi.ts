@@ -80,6 +80,7 @@ class WeatherApi {
                     temp_f: valueJSON.current.temp_f,
                     is_day: valueJSON.current.is_day,
                     condition: {
+                        code: valueJSON.current.condition.code,
                         text: valueJSON.current.condition.text,
                         icon: valueJSON.current.condition.icon,
                     },

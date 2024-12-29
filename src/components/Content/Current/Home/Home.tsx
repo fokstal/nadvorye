@@ -3,7 +3,6 @@ import { convertFullDateFrom_ISO8601 } from "../../../../helpers/dateConverter";
 import WeatherModel from "../../../../models/WeatherModel";
 import Language from "../../../../const/Language";
 import BurgerMenu from "../../../BurgerMenu/BurgerMenu";
-import background from "../../../../assets/images/tree_shore_grass.jpg";
 import getDominantColorInHex from "../../../../helpers/getDominantColor";
 import Header from "../../../Header/Header";
 import getTempForLocale from "../../../../helpers/getTempForLocale";
@@ -48,7 +47,7 @@ const Home: FC<IHome> = ({
         <>
             <div className="home" id="sectionHome">
                 <Header isUseApi={isUseApi} setIsUseApi={setIsUseApi} />
-                <img className="home__background" src={background} ref={imgBackgroundRef} />
+                <img className="home__background" ref={imgBackgroundRef} />
                 <div className="home__content">
                     <span className="home__content-temp">{getTempForLocale(weather.current.temp_c, currentLang)}</span>
                     <div className="home__content-add">

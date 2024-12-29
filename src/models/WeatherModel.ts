@@ -12,6 +12,7 @@ type WeatherModel = {
         temp_f: number;
         is_day: number;
         condition: {
+            code: number;
             text: string;
             icon: string;
         };
