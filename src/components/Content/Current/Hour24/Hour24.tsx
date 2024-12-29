@@ -4,6 +4,7 @@ import Language from "../../../../const/Language";
 import { convertTimeFrom_ISO8601 } from "../../../../helpers/dateConverter";
 import angleSvgPath from "../../../../assets/icons/angle.svg";
 import "./Hour24.scss";
+import getTempForLocale from "../../../../helpers/getTempForLocale";
 
 interface IHour24 {
     currentLang: Language;
@@ -70,7 +71,7 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
                                         style={isCurrentTime ? currentTimeListItemStyle : {}}
                                     >
                                         <span className="hour-24__content-list-item-temp">
-                                            {weatherInHour.temp_c}&deg;C
+                                            {getTempForLocale(weatherInHour.temp_c, currentLang)}
                                         </span>
                                         <img
                                             src={weatherInHour.condition.icon}

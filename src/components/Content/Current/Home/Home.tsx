@@ -7,6 +7,7 @@ import background from "../../../../assets/images/road_asphalt_rain.jpg";
 import getDominantColorInHex from "../../../../helpers/getDominantColor";
 import "./Home.scss";
 import Header from "../../../Header/Header";
+import getTempForLocale from "../../../../helpers/getTempForLocale";
 
 interface IHome {
     isUseApi: boolean;
@@ -49,7 +50,7 @@ const Home: FC<IHome> = ({
                 <Header isUseApi={isUseApi} setIsUseApi={setIsUseApi} />
                 <img className="home__background" src={background} ref={imgBackgroundRef} />
                 <div className="home__content">
-                    <span className="home__content-temp">{weather.current.temp_c}&deg;C</span>
+                    <span className="home__content-temp">{getTempForLocale(weather.current.temp_c, currentLang)}</span>
                     <div className="home__content-add">
                         <span className="home__content-add-city">{weather.location.name}</span>
                         <span className="home__content-add-date">
