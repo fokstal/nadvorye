@@ -3,7 +3,16 @@ import Language from "../const/Language";
 const convertFullDateFrom_ISO8601 = (isoDate: string, lang = Language.RU): string => {
     const date = new Date(isoDate);
 
-    const formattedDate = date.toLocaleString(lang);
+    const options: Intl.DateTimeFormatOptions = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: lang === Language.EN,
+    };
+
+    const formattedDate = date.toLocaleString(lang, options);
 
     return formattedDate;
 };
@@ -11,7 +20,13 @@ const convertFullDateFrom_ISO8601 = (isoDate: string, lang = Language.RU): strin
 const convertTimeFrom_ISO8601 = (isoDate: string, lang = Language.RU): string => {
     const date = new Date(isoDate);
 
-    const formattedDate = date.toLocaleTimeString(lang);
+    const options: Intl.DateTimeFormatOptions = {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: lang === Language.EN,
+    };
+
+    const formattedDate = date.toLocaleTimeString(lang, options);
 
     return formattedDate;
 };
