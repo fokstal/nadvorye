@@ -9,6 +9,7 @@ import getWindType from "../../../../helpers/getWindType";
 import translationsRecord from "../../../../const/translationsRecord";
 import Language from "../../../../const/Language";
 import "./Wind.scss";
+import transcribe from "../../../../helpers/transcribeToEnglish";
 
 interface IWind {
     currentLang: Language;
@@ -62,7 +63,8 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                     <Compass scale={1.5} angle={weatherWindDirectionInfo.angle} />
                     <div className="wind__content-text">
                         <span className="wind__content-text-block wind__content-text-block--direction">
-                            {weatherWindDirectionInfo.translated} <small>({weatherWindDirectionInfo.angle}&deg;)</small>
+                            {transcribe(weatherWindDirectionInfo.translated, currentLang)}{" "}
+                            <small>({weatherWindDirectionInfo.angle}&deg;)</small>
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
@@ -78,7 +80,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                                 <img src={conditionSvgPath} />
                             </div>
                             {translationsRecord.windTypeText[currentLang]}:
-                            <strong>{getWindType(weatherWind.wind_kph)}</strong>
+                            <strong>{transcribe(getWindType(weatherWind.wind_kph), currentLang)}</strong>
                         </span>
                     </div>
                 </div>

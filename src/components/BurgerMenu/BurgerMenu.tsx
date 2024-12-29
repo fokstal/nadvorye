@@ -5,6 +5,7 @@ import pinSvhPath from "../../assets/icons/pin.svg";
 import "./BurgerMenu.scss";
 import SessionStorageWorker from "../../helpers/SessionStorageWorker";
 import translationsRecord from "../../const/translationsRecord";
+import transcribe from "../../helpers/transcribeToEnglish";
 
 interface IBurgerMenu {
     dominantColor: string;
@@ -216,7 +217,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                                     >
                                         +
                                     </span>{" "}
-                                    {city}
+                                    {transcribe(city, currentLang)}
                                 </li>
                             );
                         })}

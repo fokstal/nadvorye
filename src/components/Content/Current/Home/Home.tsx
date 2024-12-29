@@ -8,6 +8,7 @@ import Header from "../../../Header/Header";
 import getTempForLocale from "../../../../helpers/getTempForLocale";
 import BackgroundWorker from "../../../../service/BackgroundWorker";
 import "./Home.scss";
+import transcribe from "../../../../helpers/transcribeToEnglish";
 
 interface IHome {
     isUseApi: boolean;
@@ -62,7 +63,7 @@ const Home: FC<IHome> = ({
                 <div className="home__content">
                     <span className="home__content-temp">{getTempForLocale(weather.current.temp_c, currentLang)}</span>
                     <div className="home__content-add">
-                        <span className="home__content-add-city">{weather.location.name}</span>
+                        <span className="home__content-add-city">{transcribe(weather.location.name, currentLang)}</span>
                         <span className="home__content-add-date">
                             {convertFullDateFrom_ISO8601(weather.current.last_updated, currentLang)}
                         </span>
