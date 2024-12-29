@@ -6,12 +6,17 @@ import angleSvgPath from "../../../../assets/icons/angle.svg";
 import "./Hour24.scss";
 
 interface IHour24 {
-    weatherIn24Hour: WeatherShortModel[];
     currentLang: Language;
+    last_updated: string;
+    weatherIn24Hour: WeatherShortModel[];
 }
 
-const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
+const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => {
     if (weatherIn24Hour.length != 24) throw new Error("weatherIn24Hour array length is not 24!");
+    const currentTime = convertTimeFrom_ISO8601(last_updated, currentLang, true);
+    const currentTimeListItemStyle = {
+        filter: "drop-shadow(0 0 1em gold)",
+    };
 
     const [isContentVisible, setIsContentVisible] = useState(true);
 
@@ -57,23 +62,31 @@ const Hour24: FC<IHour24> = ({ weatherIn24Hour, currentLang }) => {
                     <ul className="hour-24__content-list">
                         {weatherIn24Hour &&
                             weatherIn24Hour.map((weatherInHour) => {
+                                const weatherInHourTime = convertTimeFrom_ISO8601(weatherInHour.time, currentLang);
+                                const isCurrentTime = weatherInHourTime == currentTime;
+
                                 return (
-                                    <li className="hour-24__content-list-item" key={weatherInHour.time}>
-                                        <span className="hour-24__content-list-item-temp">
-                                            {weatherInHour.temp_c}&deg;C
-                                        </span>
-                                        <img
-                                            src={weatherInHour.condition.icon}
-                                            alt=""
-                                            className="hour-24__content-list-item-icon"
-                                        />
-                                        <span className="hour-24__content-list-item-wind-speed">
-                                            {weatherInHour.wind_kph} км/ч
-                                        </span>
-                                        <span className="hour-24__content-list-item-time">
-                                            {convertTimeFrom_ISO8601(weatherInHour.time, currentLang)}
-                                        </span>
-                                    </li>
+                                    <div className="hour-24__content-list-block">
+                                        <li
+                                            className="hour-24__content-list-item"
+                                            key={weatherInHourTime}
+                                            style={isCurrentTime ? currentTimeListItemStyle : {}}
+                                        >
+                                            <span className="hour-24__content-list-item-temp">
+                                                {weatherInHour.temp_c}&deg;C
+                                            </span>
+                                            <img
+                                                src={weatherInHour.condition.icon}
+                                                alt=""
+                                                className="hour-24__content-list-item-icon"
+                                            />
+                                            <span className="hour-24__content-list-item-wind-speed">
+                                                {weatherInHour.wind_kph} км/ч
+                                            </span>
+                                            <span className="hour-24__content-list-item-time">{weatherInHourTime}</span>
+                                        </li>
+                                        {isCurrentTime && <span>&bull;</span>}
+                                    </div>
                                 );
                             })}
                     </ul>

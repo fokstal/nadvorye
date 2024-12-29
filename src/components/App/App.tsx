@@ -54,7 +54,11 @@ const App: FC = () => {
                                 setCurrentCity={setCurrentCity}
                                 fetchCurrentWeather={fetchCurrentWeather}
                             />
-                            <Hour24 weatherIn24Hour={weatherIn24Hour} currentLang={currentLang} />
+                            <Hour24
+                                currentLang={currentLang}
+                                last_updated={weather.current.last_updated}
+                                weatherIn24Hour={weatherIn24Hour}
+                            />
                             <Wind
                                 weatherWind={{ wind_kph: weather.current.wind_kph, wind_dir: weather.current.wind_dir }}
                             />
