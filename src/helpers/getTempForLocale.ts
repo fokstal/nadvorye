@@ -2,8 +2,8 @@ import Language from "../const/Language";
 import celsiusToFahrenheit from "./celsiusToFahrenheit";
 
 const getTempForLocale = (temp_c: number, lang = Language.RU): string => {
-    if ((lang = Language.EN)) return `${celsiusToFahrenheit(temp_c)}&deg;F`;
+    if (lang === Language.EN) return `${Math.round(celsiusToFahrenheit(temp_c))}°F`;
 
-    return `${temp_c}&deg;C`;
+    return `${Math.round(temp_c)}°C`;
 };
 export default getTempForLocale;
