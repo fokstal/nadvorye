@@ -3,11 +3,11 @@ import { convertFullDateFrom_ISO8601 } from "../../../../helpers/dateConverter";
 import WeatherModel from "../../../../models/WeatherModel";
 import Language from "../../../../const/Language";
 import BurgerMenu from "../../../BurgerMenu/BurgerMenu";
-import background from "../../../../assets/images/road_asphalt_rain.jpg";
+import background from "../../../../assets/images/tree_shore_grass.jpg";
 import getDominantColorInHex from "../../../../helpers/getDominantColor";
-import "./Home.scss";
 import Header from "../../../Header/Header";
 import getTempForLocale from "../../../../helpers/getTempForLocale";
+import "./Home.scss";
 
 interface IHome {
     isUseApi: boolean;
