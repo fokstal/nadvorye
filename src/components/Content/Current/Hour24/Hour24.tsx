@@ -46,12 +46,6 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
         handleContentVisible();
     }, [isContentVisible]);
 
-    useEffect(() => {
-        if (currentTimeItemRef.current) {
-            currentTimeItemRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [currentTime]);
-
     return (
         <>
             <div className="hour-24 current-content-block" id="sectionHour24">
