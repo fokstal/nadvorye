@@ -111,8 +111,14 @@ class BackgroundWorker {
     public changeByWeatherType(weatherCode: number, is_day: boolean) {
         const imagePath = this.getImageByKey(weatherCode, is_day ? "day" : "night");
 
-        this._homeBackground.src = imagePath;
-        this._body.style.backgroundImage = `url(${imagePath})`;
+        this._homeBackground.classList.add("out");
+
+        setTimeout(() => {
+            this._homeBackground.src = imagePath;
+            this._body.style.backgroundImage = `url(${imagePath})`;
+
+            this._homeBackground.classList.remove("out");
+        }, 500);
     }
 
     private getImageByKey(key: number, timeOfDay: "day" | "night"): string {

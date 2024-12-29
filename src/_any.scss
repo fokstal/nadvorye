@@ -31,3 +31,12 @@
         transition: height 0.5s ease, opacity 0.5s ease;
     }
 }
+
+.change-img-fade {
+    transition: opacity .5s ease-in-out;
+    opacity: 1;
+}
+
+.change-img-fade.out {
+    opacity: 0;
+}
