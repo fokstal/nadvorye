@@ -3,16 +3,19 @@ import Compass from "../../../Compass/Compass";
 import speedSvgPath from "../../../../assets/icons/speed.svg";
 import conditionSvgPath from "../../../../assets/icons/condition.svg";
 import angleSvgPath from "../../../../assets/icons/angle.svg";
-import "./Wind.scss";
 import WeatherWindModel from "../../../../models/WeatherWindModel";
 import getWindDirectionInfo from "../../../../helpers/getWindDirectionInfo";
 import getWindType from "../../../../helpers/getWindType";
+import translationsRecord from "../../../../const/translationsRecord";
+import Language from "../../../../const/Language";
+import "./Wind.scss";
 
 interface IWind {
+    currentLang: Language;
     weatherWind: WeatherWindModel;
 }
 
-const Wind: FC<IWind> = ({ weatherWind }) => {
+const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
     const weatherWindDirectionInfo = getWindDirectionInfo(weatherWind.wind_dir);
 
     const [isContentVisible, setIsContentVisible] = useState(true);
@@ -52,7 +55,7 @@ const Wind: FC<IWind> = ({ weatherWind }) => {
                     className="wind__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
-                    🍃 Ветер
+                    🍃 {translationsRecord.windTitle[currentLang]}
                     <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
                 </h2>
                 <div className="wind__content current-content-block__content" ref={contentElRef}>
@@ -65,16 +68,16 @@ const Wind: FC<IWind> = ({ weatherWind }) => {
                             <div className="wind__content-text-block-icon">
                                 <img src={speedSvgPath} />
                             </div>
-                            Скорость:
+                            {translationsRecord.windSpeedText[currentLang]}:
                             <strong>
-                                {weatherWind.wind_kph} <small>км/ч</small>
+                                {weatherWind.wind_kph} <small>{translationsRecord.kph[currentLang]}</small>
                             </strong>
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
                                 <img src={conditionSvgPath} />
                             </div>
-                            Тип ветра:
+                            {translationsRecord.windTypeText[currentLang]}:
                             <strong>{getWindType(weatherWind.wind_kph)}</strong>
                         </span>
                     </div>

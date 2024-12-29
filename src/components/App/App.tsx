@@ -17,7 +17,7 @@ const App: FC = () => {
     const [weatherIn24Hour, setWeatherIn24Hour] = useState<WeatherShortModel[]>([]);
     const [currentCity, setCurrentCity] = useState("Минск");
     const [currentLang, setCurrentLang] = useState(Language.RU);
-    const [isUseApi, setIsUseApi] = useState(!false);
+    const [isUseApi, setIsUseApi] = useState(false);
     const [isUserCoordinatesSet, setIsUserCoordinatesSet] = useState(false);
 
     const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
@@ -80,6 +80,7 @@ const App: FC = () => {
                                 weatherIn24Hour={weatherIn24Hour}
                             />
                             <Wind
+                                currentLang={currentLang}
                                 weatherWind={{ wind_kph: weather.current.wind_kph, wind_dir: weather.current.wind_dir }}
                             />
                             <Another

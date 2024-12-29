@@ -57,7 +57,7 @@ const Home: FC<IHome> = ({
     return (
         <>
             <div className="home" id="sectionHome">
-                <Header isUseApi={isUseApi} setIsUseApi={setIsUseApi} />
+                <Header currentLang={currentLang} isUseApi={isUseApi} setIsUseApi={setIsUseApi} />
                 <img className="home__background change-img-fade" ref={imgBackgroundRef} />
                 <div className="home__content">
                     <span className="home__content-temp">{getTempForLocale(weather.current.temp_c, currentLang)}</span>

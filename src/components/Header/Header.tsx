@@ -1,16 +1,19 @@
 import { Dispatch, FC, SetStateAction } from "react";
+import translationsRecord from "../../const/translationsRecord";
+import Language from "../../const/Language";
 import "./Header.scss";
 
 interface IHeader {
+    currentLang: Language
     isUseApi: boolean;
     setIsUseApi: Dispatch<SetStateAction<boolean>>;
 }
 
-const Header: FC<IHeader> = ({ isUseApi, setIsUseApi }) => {
+const Header: FC<IHeader> = ({ currentLang, isUseApi, setIsUseApi }) => {
     return (
         <>
             <header className="header">
-                <h1 className="header__logo">Nadvorye</h1>
+                <h1 className="header__logo">{translationsRecord.headerTitle[currentLang]}</h1>
                 <input
                     type="checkbox"
                     name=""

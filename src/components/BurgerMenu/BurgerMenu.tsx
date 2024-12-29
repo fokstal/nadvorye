@@ -4,6 +4,7 @@ import searchIcon from "../../assets/icons/search.svg";
 import pinSvhPath from "../../assets/icons/pin.svg";
 import "./BurgerMenu.scss";
 import SessionStorageWorker from "../../helpers/SessionStorageWorker";
+import translationsRecord from "../../const/translationsRecord";
 
 interface IBurgerMenu {
     dominantColor: string;
@@ -224,17 +225,17 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                     <ul className="burger-menu__navbar-link-list">
                         <li className="burger-menu__navbar-link-list-item">
                             <a href="#sectionHour24">
-                                ⏰ <span ref={linkHour24Ref}>24 часовой прогноз</span>
+                                ⏰ <span ref={linkHour24Ref}>{translationsRecord.hour24Title[currentLang]}</span>
                             </a>
                         </li>
                         <li className="burger-menu__navbar-link-list-item">
                             <a href="#sectionWind">
-                                🍃 <span ref={linkWindRef}>Ветер</span>
+                                🍃 <span ref={linkWindRef}>{translationsRecord.windTitle[currentLang]}</span>
                             </a>
                         </li>
                         <li className="burger-menu__navbar-link-list-item">
                             <a href="#sectionAnother">
-                                🌟 <span ref={linkAnotherRef}>Другие данные</span>
+                                🌟 <span ref={linkAnotherRef}>{translationsRecord.anotherTitle[currentLang]}</span>
                             </a>
                         </li>
                     </ul>

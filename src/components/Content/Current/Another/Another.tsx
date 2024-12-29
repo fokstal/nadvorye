@@ -11,6 +11,7 @@ import cloudSvgPath from "../../../../assets/icons/cloud.svg";
 import "./Another.scss";
 import calculateWeatherQualityIndex from "../../../../helpers/calculateWeatherQualityIndex";
 import { formatTimeForLocale } from "../../../../helpers/dateConverter";
+import translationsRecord from "../../../../const/translationsRecord";
 
 interface IAnother {
     currentLang: Language;
@@ -65,18 +66,18 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                     className="another__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
-                    🌟 Другие данные
+                    🌟 {translationsRecord.anotherTitle[currentLang]}
                     <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
                 </h2>
                 <div className="another__content current-content-block__content" ref={contentElRef}>
                     <div className="another__content-main">
                         <div className="another__content-main-sun-state">
                             <div className="another__content-main-sun-state-block another__content-main-sun-state-block--sunrise">
-                                <img src={sunriseSvgPath} /> рассвет:{" "}
+                                <img src={sunriseSvgPath} /> {translationsRecord.anotherSunriseText[currentLang]}:{" "}
                                 <strong>{formatTimeForLocale(weatherAnother.sunrise, currentLang)}</strong>
                             </div>
                             <div className="another__content-main-sun-state-block another__content-main-sun-state-block--sunset">
-                                <img src={sunsetSvgPath} /> закат:{" "}
+                                <img src={sunsetSvgPath} /> {translationsRecord.anotherSunsetText[currentLang]}:{" "}
                                 <strong>{formatTimeForLocale(weatherAnother.sunset, currentLang)}</strong>
                             </div>
                         </div>
@@ -85,7 +86,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                                 <div className="another__content-main-data-block-icon">
                                     <img src={humiditySvgPath} />
                                 </div>
-                                Влажность:
+                                {translationsRecord.anotherHumidityText[currentLang]}:
                                 <strong>
                                     {weatherAnother.humidity} <small>%</small>
                                 </strong>
@@ -94,25 +95,25 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                                 <div className="another__content-main-data-block-icon">
                                     <img src={mercurySvgPath} />
                                 </div>
-                                Давление:
+                                {translationsRecord.anotherPressureText[currentLang]}:
                                 <strong>
-                                    {weatherAnother.pressure_mb} <small>мб</small>
+                                    {weatherAnother.pressure_mb} <small>{translationsRecord.mb[currentLang]}</small>
                                 </strong>
                             </span>
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
                                     <img src={rainSvgPath} />
                                 </div>
-                                Осадки:
+                                {translationsRecord.anotherPrecipText[currentLang]}:
                                 <strong>
-                                    {weatherAnother.precip_mm} <small>мм</small>
+                                    {weatherAnother.precip_mm} <small>{translationsRecord.mm[currentLang]}</small>
                                 </strong>
                             </span>
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
                                     <img src={cloudSvgPath} />
                                 </div>
-                                Облачность:
+                                {translationsRecord.anotherCloudText[currentLang]}:
                                 <strong>
                                     {weatherAnother.cloud} <small>%</small>
                                 </strong>
@@ -130,8 +131,9 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                                 d="M3.85 8.62a4 4 0 0 1 4.78-4.77a4 4 0 0 1 6.74 0a4 4 0 0 1 4.78 4.78a4 4 0 0 1 0 6.74a4 4 0 0 1-4.77 4.78a4 4 0 0 1-6.75 0a4 4 0 0 1-4.78-4.77a4 4 0 0 1 0-6.76Z"
                             />
                         </svg>
-                        ИКП = <strong>{weatherQualityIndex.indexValue}</strong>
-                        <small>индекс качества погоды</small>
+                        {translationsRecord.anotherWQIShortText[currentLang]} ={" "}
+                        <strong>{weatherQualityIndex.indexValue}</strong>
+                        <small>{translationsRecord.anotherWQIText[currentLang]}</small>
                     </div>
                 </div>
             </div>

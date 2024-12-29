@@ -2,9 +2,10 @@ import { FC, useEffect, useRef, useState } from "react";
 import WeatherShortModel from "../../../../models/WeatherShortModel";
 import Language from "../../../../const/Language";
 import { convertTimeFrom_ISO8601 } from "../../../../helpers/dateConverter";
+import getTempForLocale from "../../../../helpers/getTempForLocale";
+import translationsRecord from "../../../../const/translationsRecord";
 import angleSvgPath from "../../../../assets/icons/angle.svg";
 import "./Hour24.scss";
-import getTempForLocale from "../../../../helpers/getTempForLocale";
 
 interface IHour24 {
     currentLang: Language;
@@ -53,7 +54,7 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
                     className="hour-24__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
-                    ⏰ 24 часовой прогноз
+                    ⏰ {translationsRecord.hour24Title[currentLang]}
                     <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
                 </h2>
                 <div className="hour-24__content current-content-block__content" ref={contentElRef}>
@@ -78,7 +79,7 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
                                             className="hour-24__content-list-item-icon"
                                         />
                                         <span className="hour-24__content-list-item-wind-speed">
-                                            {weatherInHour.wind_kph} км/ч
+                                            {weatherInHour.wind_kph} {translationsRecord.kph[currentLang]}
                                         </span>
                                         <span className="hour-24__content-list-item-time">{weatherInHourTime}</span>
                                     </li>
