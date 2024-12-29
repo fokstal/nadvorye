@@ -17,8 +17,10 @@ const convertFullDateFrom_ISO8601 = (isoDate: string, lang = Language.RU): strin
     return formattedDate;
 };
 
-const convertTimeFrom_ISO8601 = (isoDate: string, lang = Language.RU): string => {
+const convertTimeFrom_ISO8601 = (isoDate: string, lang = Language.RU, isResetMinutes = false): string => {
     const date = new Date(isoDate);
+
+    isResetMinutes && date.setMinutes(0);
 
     const options: Intl.DateTimeFormatOptions = {
         hour: "numeric",
