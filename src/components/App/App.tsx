@@ -10,11 +10,12 @@ import Wind from "../Content/Current/Wind/Wind";
 import Another from "../Content/Current/Another/Another";
 import "./App.scss";
 import WeatherShortModel from "../../models/WeatherShortModel";
+import getUserCoordinates from "../../helpers/getUserCoordinates";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
     const [weatherIn24Hour, setWeatherIn24Hour] = useState<WeatherShortModel[]>([]);
-    const [currentCity, setCurrentCity] = useState("Минск");
+    const [currentCity, setCurrentCity] = useState("Minsk");
     const [currentLang, setCurrentLang] = useState(Language.RU);
     const [isUseApi, setIsUseApi] = useState(false);
 
@@ -23,6 +24,10 @@ const App: FC = () => {
     const searchCityInputRef = useRef<HTMLInputElement | null>(null);
 
     const fetchCurrentWeather = async () => {
+        const userCoordinates = await getUserCoordinates();
+
+        if (userCoordinates) setCurrentCity(`${userCoordinates.latitude}, ${userCoordinates.longitude}`);
+
         const searchCityInput = searchCityInputRef.current;
         let weatherFromResp: any = weatherData_Pekin.currentAt_291224_1545;
 
