@@ -23,8 +23,28 @@ class WeatherApi {
         this._lang = lang;
     }
 
-    public async getCurrent(city: string): Promise<WeatherModel> {
-        const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${city}&lang=${this._lang}`;
+    // public async getCurrent(city: string): Promise<WeatherModel> {
+    //     const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${city}&lang=${this._lang}`;
+    //     const options = {
+    //         method: "GET",
+    //         headers: {
+    //             "x-rapidapi-key": this._key,
+    //             "x-rapidapi-host": this._host,
+    //         },
+    //     };
+
+    //     try {
+    //         const weatherResp = await fetch(url, options);
+    //         const weatherJSON = await weatherResp.json();
+
+    //         return WeatherApi.convertJSONToWeatherModel(weatherJSON);
+    //     } catch (error) {
+    //         throw new Error(`Error on WeatherApi (getCurrent): ${error}`);
+    //     }
+    // }
+
+    public async getForecast(city: string): Promise<any> {
+        const url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${city}&lang=${this._lang}`;
         const options = {
             method: "GET",
             headers: {
@@ -37,7 +57,7 @@ class WeatherApi {
             const weatherResp = await fetch(url, options);
             const weatherJSON = await weatherResp.json();
 
-            return WeatherApi.convertJSONToWeatherModel(weatherJSON);
+            return weatherJSON;
         } catch (error) {
             throw new Error(`Error on WeatherApi (getCurrent): ${error}`);
         }

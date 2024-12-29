@@ -1,6 +1,6 @@
 import { FC, useState, useEffect, useRef } from "react";
 import WeatherModel from "../../models/WeatherModel";
-import { weatherData_Minsk } from "../../assets/weatherData";
+import { weatherData_Pekin } from "../../assets/weatherData";
 import WeatherApi from "../../service/WeatherApi";
 import { WeatherApiConfig } from "../../app.config";
 import Language from "../../const/Language";
@@ -24,13 +24,9 @@ const App: FC = () => {
 
     const fetchCurrentWeather = async () => {
         const searchCityInput = searchCityInputRef.current;
-        let weatherFromResp: any = weatherData_Minsk.currentAt_291224_0915;
+        let weatherFromResp: any = weatherData_Pekin.currentAt_291224_1545;
 
-        if (isUseApi) {
-            weatherFromResp = await weatherApi.getCurrent(currentCity);
-
-            return;
-        }
+        if (isUseApi) weatherFromResp = await weatherApi.getForecast(currentCity);
 
         setWeather(WeatherApi.convertJSONToWeatherModel(weatherFromResp));
         setWeatherIn24Hour(WeatherApi.convertJSONToWeatherShortModelList(weatherFromResp));
