@@ -68,7 +68,12 @@ const Home: FC<IHome> = ({
                             {convertFullDateFrom_ISO8601(weather.current.last_updated, currentLang)}
                         </span>
                     </div>
-                    <img className="home__content-icon" src={weather.current.condition.icon} />
+                    <img
+                        className="home__content-icon"
+                        src={weather.current.condition.icon}
+                        alt={transcribe(weather.current.condition.text, currentLang)}
+                        title={transcribe(weather.current.condition.text, currentLang)}
+                    />
                 </div>
                 <BurgerMenu
                     dominantColor={dominantColor}
