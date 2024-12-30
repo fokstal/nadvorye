@@ -156,11 +156,6 @@ const BurgerMenu: FC<IBurgerMenu> = ({
         SessionStorageWorker.setPinnedCityArr(pinnedCityArr);
     };
 
-    useEffect(() => {
-        togglePinInSearch();
-        toggleBurgerMenu();
-    }, []);
-
     return (
         <>
             <div className="burger-menu" ref={burgerMenuRef}>
