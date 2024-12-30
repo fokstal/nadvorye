@@ -1,4 +1,4 @@
-import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
+import { FC, MutableRefObject, useRef, useState } from "react";
 import Language, { LanguageFlags } from "../../const/Language";
 import searchIcon from "../../assets/icons/search.svg";
 import pinSvhPath from "../../assets/icons/pin.svg";
