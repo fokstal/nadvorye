@@ -1,6 +1,5 @@
 import { FC, useState, useEffect, useRef } from "react";
 import WeatherModel from "../../models/WeatherModel";
-import { weatherData_Minsk } from "../../assets/weatherData";
 import WeatherApi from "../../service/WeatherApi";
 import { WeatherApiConfig } from "../../app.config";
 import Language from "../../const/Language";
@@ -10,6 +9,7 @@ import Wind from "../Content/Current/Wind/Wind";
 import Another from "../Content/Current/Another/Another";
 import WeatherShortModel from "../../models/WeatherShortModel";
 import getUserCoordinates from "../../helpers/getUserCoordinates";
+import weatherJSONClear from "../../const/weatherJSONClear";
 import "./App.scss";
 
 const App: FC = () => {
@@ -37,7 +37,7 @@ const App: FC = () => {
         const weatherFromSessionStorage = sessionStorage.getItem("weather");
 
         const searchCityInput = searchCityInputRef.current;
-        let weatherFromResp: any = weatherData_Minsk.currentAt_291224_0915;
+        let weatherFromResp: any = weatherJSONClear;
 
         if (weatherFromSessionStorage) weatherFromResp = JSON.parse(weatherFromSessionStorage);
         if (isUseApi) weatherFromResp = await weatherApi.getForecast(currentCity);
