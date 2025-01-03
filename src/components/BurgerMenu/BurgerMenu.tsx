@@ -1,11 +1,11 @@
 import { FC, MutableRefObject, useRef, useState } from "react";
-import Language, { LanguageFlags } from "../../const/Language";
-import searchIcon from "../../assets/icons/search.svg";
-import pinSvhPath from "../../assets/icons/pin.svg";
+import searchIcon from "@assets/icons/search.svg";
+import pinSvhPath from "@assets/icons/pin.svg";
+import Language, { LanguageFlags } from "@const/Language";
+import translationsRecord from "@const/translationsRecord";
+import transcribe from "@helpers/transcribeToEnglish";
+import SessionStorageWorker from "@helpers/SessionStorageWorker";
 import "./BurgerMenu.scss";
-import SessionStorageWorker from "../../helpers/SessionStorageWorker";
-import translationsRecord from "../../const/translationsRecord";
-import transcribe from "../../helpers/transcribeToEnglish";
 
 interface IBurgerMenu {
     dominantColor: string;

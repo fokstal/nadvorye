@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from "react";
-import translationsRecord from "../../const/translationsRecord";
-import Language from "../../const/Language";
+import translationsRecord from "@const/translationsRecord";
+import Language from "@const/Language";
 import "./Header.scss";
 
 interface IHeader {

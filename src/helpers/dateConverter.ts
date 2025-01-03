@@ -1,4 +1,4 @@
-import Language from "../const/Language";
+import Language from "@const/Language";
 
 const convertFullDateFrom_ISO8601 = (isoDate: string, lang = Language.RU): string => {
     const date = new Date(isoDate);

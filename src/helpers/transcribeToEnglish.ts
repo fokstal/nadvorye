@@ -1,4 +1,4 @@
-import Language from "../const/Language";
+import Language from "@const/Language";
 
 const transcriptionMapRUtoEN: { [key: string]: string } = {
     а: "a",

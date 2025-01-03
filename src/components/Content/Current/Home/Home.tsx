@@ -1,14 +1,14 @@
 import { Dispatch, FC, MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
-import { convertFullDateFrom_ISO8601 } from "../../../../helpers/dateConverter";
-import WeatherModel from "../../../../models/WeatherModel";
-import Language from "../../../../const/Language";
-import BurgerMenu from "../../../BurgerMenu/BurgerMenu";
-import getDominantColorInHex from "../../../../helpers/getDominantColor";
-import Header from "../../../Header/Header";
-import getTempForLocale from "../../../../helpers/getTempForLocale";
-import BackgroundWorker from "../../../../service/BackgroundWorker";
+import Header from "@components/Header/Header";
+import BurgerMenu from "@components/BurgerMenu/BurgerMenu";
+import Language from "@const/Language";
+import { convertFullDateFrom_ISO8601 } from "@helpers/dateConverter";
+import getDominantColorInHex from "@helpers/getDominantColor";
+import getTempForLocale from "@helpers/getTempForLocale";
+import transcribe from "@helpers/transcribeToEnglish";
+import WeatherModel from "@models/WeatherModel";
+import BackgroundWorker from "@service/BackgroundWorker";
 import "./Home.scss";
-import transcribe from "../../../../helpers/transcribeToEnglish";
 
 interface IHome {
     isUseApi: boolean;

@@ -1,15 +1,15 @@
 import { FC, useState, useEffect, useRef } from "react";
-import WeatherModel from "../../models/WeatherModel";
-import WeatherApi from "../../service/WeatherApi";
-import { WeatherApiConfig } from "../../app.config";
-import Language from "../../const/Language";
-import Home from "../Content/Current/Home/Home";
-import Hour24 from "../Content/Current/Hour24/Hour24";
-import Wind from "../Content/Current/Wind/Wind";
-import Another from "../Content/Current/Another/Another";
-import WeatherShortModel from "../../models/WeatherShortModel";
-import getUserCoordinates from "../../helpers/getUserCoordinates";
-import weatherJSONClear from "../../const/weatherJSONClear";
+import { WeatherApiConfig } from "@src/app.config";
+import Home from "@components/Content/Current/Home/Home";
+import Hour24 from "@components/Content/Current/Hour24/Hour24";
+import Wind from "@components/Content/Current/Wind/Wind";
+import Another from "@components/Content/Current/Another/Another";
+import Language from "@const/Language";
+import weatherJSONClear from "@const/weatherJSONClear";
+import getUserCoordinates from "@helpers/getUserCoordinates";
+import WeatherModel from "@models/WeatherModel";
+import WeatherShortModel from "@models/WeatherShortModel";
+import WeatherApi from "@service/WeatherApi";
 import "./App.scss";
 
 const App: FC = () => {

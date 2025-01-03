@@ -1,20 +1,20 @@
-import baseImgPath from "../assets/images/base.jpg";
-import sunnyDayImgPath from "../assets/images/sunny-day.jpg";
-import sunnyNightImgPath from "../assets/images/sunny-night.jpg";
-import cloudDayImgPath from "../assets/images/cloud-day.jpg";
-import cloudNightImgPath from "../assets/images/cloud-night.jpg";
-import mistDayImgPath from "../assets/images/mist-day.jpg";
-import mistNightImgPath from "../assets/images/mist-night.jpg";
-import rainDayImgPath from "../assets/images/rain-day.jpg";
-import rainNightImgPath from "../assets/images/rain-night.jpg";
-import someRainDayImgPath from "../assets/images/some-rain-day.jpg";
-import someRainNightImgPath from "../assets/images/some-rain-night.jpg";
-import snowDayImgPath from "../assets/images/snow-day.jpg";
-import snowNightImgPath from "../assets/images/snow-night.jpg";
-import someSnowDayImgPath from "../assets/images/some-snow-day.jpg";
-import someSnowNightImgPath from "../assets/images/some-snow-night.jpg";
-import thunderDayImgPath from "../assets/images/thunder-day.jpg";
-import thunderNightImgPath from "../assets/images/thunder-night.jpg";
+import baseImgPath from "@assets/images/base.jpg";
+import sunnyDayImgPath from "@assets/images/sunny-day.jpg";
+import sunnyNightImgPath from "@assets/images/sunny-night.jpg";
+import cloudDayImgPath from "@assets/images/cloud-day.jpg";
+import cloudNightImgPath from "@assets/images/cloud-night.jpg";
+import mistDayImgPath from "@assets/images/mist-day.jpg";
+import mistNightImgPath from "@assets/images/mist-night.jpg";
+import rainDayImgPath from "@assets/images/rain-day.jpg";
+import rainNightImgPath from "@assets/images/rain-night.jpg";
+import someRainDayImgPath from "@assets/images/some-rain-day.jpg";
+import someRainNightImgPath from "@assets/images/some-rain-night.jpg";
+import snowDayImgPath from "@assets/images/snow-day.jpg";
+import snowNightImgPath from "@assets/images/snow-night.jpg";
+import someSnowDayImgPath from "@assets/images/some-snow-day.jpg";
+import someSnowNightImgPath from "@assets/images/some-snow-night.jpg";
+import thunderDayImgPath from "@assets/images/thunder-day.jpg";
+import thunderNightImgPath from "@assets/images/thunder-night.jpg";
 
 interface ImagePaths {
     day: string;

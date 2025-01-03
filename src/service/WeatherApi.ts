@@ -1,7 +1,7 @@
-import Language from "../const/Language";
-import weatherJSONClear from "../const/weatherJSONClear";
-import WeatherModel from "../models/WeatherModel";
-import WeatherShortModel from "../models/WeatherShortModel";
+import Language from "@const/Language";
+import weatherJSONClear from "@const/weatherJSONClear";
+import WeatherModel from "@models/WeatherModel";
+import WeatherShortModel from "@models/WeatherShortModel";
 
 class WeatherApi {
     private _key: string;

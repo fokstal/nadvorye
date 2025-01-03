@@ -1,17 +1,17 @@
 import { FC, useEffect, useRef, useState } from "react";
-import Language from "../../../../const/Language";
-import WeatherAnotherModel from "../../../../models/WeatherAnotherModel";
-import mercurySvgPath from "../../../../assets/icons/mercury.svg";
-import humiditySvgPath from "../../../../assets/icons/humidity.svg";
-import rainSvgPath from "../../../../assets/icons/rain.svg";
-import angleSvgPath from "../../../../assets/icons/angle.svg";
-import sunsetSvgPath from "../../../../assets/icons/sunset.svg";
-import sunriseSvgPath from "../../../../assets/icons/sunrise.svg";
-import cloudSvgPath from "../../../../assets/icons/cloud.svg";
+import mercurySvgPath from "@assets/icons/mercury.svg";
+import humiditySvgPath from "@assets/icons/humidity.svg";
+import rainSvgPath from "@assets/icons/rain.svg";
+import angleSvgPath from "@assets/icons/angle.svg";
+import sunsetSvgPath from "@assets/icons/sunset.svg";
+import sunriseSvgPath from "@assets/icons/sunrise.svg";
+import cloudSvgPath from "@assets/icons/cloud.svg";
+import Language from "@const/Language";
+import translationsRecord from "@const/translationsRecord";
+import calculateWeatherQualityIndex from "@helpers/calculateWeatherQualityIndex";
+import { formatTimeForLocale } from "@helpers/dateConverter";
+import WeatherAnotherModel from "@models/WeatherAnotherModel";
 import "./Another.scss";
-import calculateWeatherQualityIndex from "../../../../helpers/calculateWeatherQualityIndex";
-import { formatTimeForLocale } from "../../../../helpers/dateConverter";
-import translationsRecord from "../../../../const/translationsRecord";
 
 interface IAnother {
     currentLang: Language;

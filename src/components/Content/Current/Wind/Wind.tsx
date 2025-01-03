@@ -1,15 +1,15 @@
 import { FC, useEffect, useRef, useState } from "react";
-import Compass from "../../../Compass/Compass";
-import speedSvgPath from "../../../../assets/icons/speed.svg";
-import conditionSvgPath from "../../../../assets/icons/condition.svg";
-import angleSvgPath from "../../../../assets/icons/angle.svg";
-import WeatherWindModel from "../../../../models/WeatherWindModel";
-import getWindDirectionInfo from "../../../../helpers/getWindDirectionInfo";
-import getWindType from "../../../../helpers/getWindType";
-import translationsRecord from "../../../../const/translationsRecord";
-import Language from "../../../../const/Language";
+import speedSvgPath from "@assets/icons/speed.svg";
+import conditionSvgPath from "@assets/icons/condition.svg";
+import angleSvgPath from "@assets/icons/angle.svg";
+import Compass from "@components/Compass/Compass";
+import translationsRecord from "@const/translationsRecord";
+import Language from "@const/Language";
+import getWindDirectionInfo from "@helpers/getWindDirectionInfo";
+import getWindType from "@helpers/getWindType";
+import transcribe from "@helpers/transcribeToEnglish";
+import WeatherWindModel from "@models/WeatherWindModel";
 import "./Wind.scss";
-import transcribe from "../../../../helpers/transcribeToEnglish";
 
 interface IWind {
     currentLang: Language;

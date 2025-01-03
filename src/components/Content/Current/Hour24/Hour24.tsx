@@ -1,10 +1,10 @@
 import { FC, useEffect, useRef, useState } from "react";
-import WeatherShortModel from "../../../../models/WeatherShortModel";
-import Language from "../../../../const/Language";
-import { convertTimeFrom_ISO8601 } from "../../../../helpers/dateConverter";
-import getTempForLocale from "../../../../helpers/getTempForLocale";
-import translationsRecord from "../../../../const/translationsRecord";
-import angleSvgPath from "../../../../assets/icons/angle.svg";
+import angleSvgPath from "@assets/icons/angle.svg";
+import Language from "@const/Language";
+import translationsRecord from "@const/translationsRecord";
+import { convertTimeFrom_ISO8601 } from "@helpers/dateConverter";
+import getTempForLocale from "@helpers/getTempForLocale";
+import WeatherShortModel from "@models/WeatherShortModel";
 import "./Hour24.scss";
 
 interface IHour24 {

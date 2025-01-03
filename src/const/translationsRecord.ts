@@ -1,4 +1,4 @@
-import Language from "./Language";
+import Language from "@const/Language";
 
 type Translations = {
     [key in Language]: string;
