@@ -18,7 +18,7 @@ interface IHome {
     searchCityInputRef: MutableRefObject<HTMLInputElement | null>;
     setCurrentLang: (lang: Language) => void;
     setCurrentCity: (city: string) => void;
-    fetchCurrentWeather: () => void;
+    fetchCurrentWeather: (city?: string) => void;
 }
 
 const Home: FC<IHome> = ({

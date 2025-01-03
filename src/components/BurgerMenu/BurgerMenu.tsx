@@ -13,7 +13,7 @@ interface IBurgerMenu {
     searchCityInputRef: MutableRefObject<HTMLInputElement | null>;
     setCurrentLang: (lang: Language) => void;
     setCurrentCity: (city: string) => void;
-    fetchCurrentWeather: () => void;
+    fetchCurrentWeather: (city?: string) => void;
 }
 
 const BurgerMenu: FC<IBurgerMenu> = ({
@@ -120,12 +120,6 @@ const BurgerMenu: FC<IBurgerMenu> = ({
         }
     };
 
-    const fetchCurrentWeatherByCity = (city: string) => {
-        setCurrentCity(city);
-
-        fetchCurrentWeather();
-    };
-
     const handleSearchCity = () => {
         const searchCityInput = searchCityInputRef.current;
 
@@ -204,7 +198,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                                 <li
                                     className="burger-menu__pinned-city-list-item"
                                     key={city}
-                                    onClick={() => fetchCurrentWeatherByCity(city)}
+                                    onClick={() => fetchCurrentWeather(city)}
                                 >
                                     <span
                                         className="burger-menu__pinned-city-list-item-remover"

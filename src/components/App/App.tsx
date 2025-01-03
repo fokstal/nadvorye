@@ -33,14 +33,16 @@ const App: FC = () => {
         }
     };
 
-    const fetchCurrentWeather = async () => {
+    const fetchCurrentWeather = async (city: string = currentCity) => {
+        const cityToFetch = city === currentCity ? currentCity : city;
+
         const weatherFromSessionStorage = sessionStorage.getItem("weather");
 
         const searchCityInput = searchCityInputRef.current;
         let weatherFromResp: any = weatherJSONClear;
 
         if (weatherFromSessionStorage) weatherFromResp = JSON.parse(weatherFromSessionStorage);
-        if (isUseApi) weatherFromResp = await weatherApi.getForecast(currentCity);
+        if (isUseApi) weatherFromResp = await weatherApi.getForecast(cityToFetch);
 
         sessionStorage.setItem("weather", JSON.stringify(weatherFromResp));
 
