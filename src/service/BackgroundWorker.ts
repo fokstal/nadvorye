@@ -106,6 +106,8 @@ class BackgroundWorker {
     public constructor(homeBackgroundSelector: string) {
         this._homeBackground = document.querySelector(homeBackgroundSelector) as HTMLImageElement;
         this._body = document.querySelector("body") as HTMLBodyElement;
+
+        this.preloadImages();
     }
 
     public changeByWeatherType(weatherCode: number, is_day: boolean) {
@@ -118,7 +120,7 @@ class BackgroundWorker {
             this._body.style.backgroundImage = `url(${imagePath})`;
 
             this._homeBackground.classList.remove("out");
-        }, 500);
+        }, 1000);
     }
 
     private getImageByKey(key: number, timeOfDay: "day" | "night"): string {
@@ -133,6 +135,27 @@ class BackgroundWorker {
         }
 
         return baseImgPath;
+    }
+
+    private preloadImages() {
+        const imagePaths: string[] = [];
+
+        for (const key in this._images) {
+            const value = this._images[key];
+            if (typeof value === "object") {
+                imagePaths.push(value.day, value.night);
+            } else if (typeof value === "number") {
+                const nestedValue = this._images[value];
+                if (typeof nestedValue === "object") {
+                    imagePaths.push(nestedValue.day, nestedValue.night);
+                }
+            }
+        }
+
+        imagePaths.forEach((path) => {
+            const img = new Image();
+            img.src = path;
+        });
     }
 }
 
