@@ -27,7 +27,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     let pinnedCityArr = SessionStorageWorker.getPinnedCityArr();
 
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(true);
-    const [isPinInSearch, setIsPinInSearch] = useState(false);
+    const [isPinInSearch, setIsPinInSearch] = useState(true);
 
     const burgerMenuRef = useRef<HTMLDivElement | null>(null);
     const burgerBtnLineTopRef = useRef<HTMLHRElement | null>(null);
