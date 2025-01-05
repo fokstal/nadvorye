@@ -20,44 +20,34 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
     };
 
     const [isContentVisible, setIsContentVisible] = useState(true);
-    const contentElRef = useRef<HTMLDivElement | null>(null);
-    const titleArrowElRef = useRef<HTMLImageElement | null>(null);
+    const hour24Ref = useRef<HTMLDivElement | null>(null);
     const currentTimeItemRef = useRef<HTMLLIElement | null>(null);
 
-    const handleContentVisible = () => {
-        const contentEl = contentElRef.current;
-        const titleArrowEl = titleArrowElRef.current;
+    const hour24El = hour24Ref.current;
 
-        if (contentEl && titleArrowEl) {
-            if (isContentVisible) {
-                contentEl.style.height = `${contentEl.scrollHeight + 20}px`;
-                contentEl.style.opacity = "1";
-                contentEl.style.visibility = "visible";
-                titleArrowEl.style.transform = "rotate(180deg)";
-            } else {
-                contentEl.style.height = "0";
-                contentEl.style.opacity = "0";
-                contentEl.style.visibility = "hidden";
-                titleArrowEl.style.transform = "rotate(0)";
-            }
+    const handleComponentVisible = () => {
+        if (hour24El) {
+            isContentVisible
+                ? hour24El.classList.add("hour-24--visible")
+                : hour24El.classList.remove("hour-24--visible");
         }
     };
 
     useEffect(() => {
-        handleContentVisible();
+        handleComponentVisible();
     }, [isContentVisible]);
 
     return (
         <>
-            <div className="hour-24 current-content-block" id="sectionHour24">
+            <div className="hour-24 hour-24--visible current-content-block" id="sectionHour24" ref={hour24Ref}>
                 <h2
                     className="hour-24__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     ⏰ {translationsRecord.hour24Title[currentLang]}
-                    <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
+                    <img className="hour-24__title-arrow current-content-block__title-arrow" src={angleSvgPath} />
                 </h2>
-                <div className="hour-24__content current-content-block__content" ref={contentElRef}>
+                <div className="hour-24__content current-content-block__content">
                     <ul className="hour-24__content-list">
                         {weatherIn24Hour.map((weatherInHour) => {
                             const weatherInHourTime = convertTimeFrom_ISO8601(weatherInHour.time, currentLang);

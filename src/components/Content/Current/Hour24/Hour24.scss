@@ -34,4 +34,18 @@
             }
         }
     }
+
+    &--visible {
+        .hour-24__title {
+            &-arrow {
+                transform: rotate(180deg);
+            }
+        }
+
+        .hour-24__content {
+            height: 350px;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }
