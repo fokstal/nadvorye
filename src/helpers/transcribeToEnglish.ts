@@ -30,7 +30,7 @@ const transcriptionMapRUtoEN: { [key: string]: string } = {
     щ: "shch",
     ъ: "",
     ы: "y",
-    ь: "",
+    ь: "'",
     э: "e",
     ю: "yu",
     я: "ya",
