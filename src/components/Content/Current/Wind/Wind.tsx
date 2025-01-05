@@ -20,45 +20,31 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
 
     const [isContentVisible, setIsContentVisible] = useState(true);
 
-    const contentElRef = useRef<HTMLDivElement | null>(null);
-    const titleArrowElRef = useRef<HTMLImageElement | null>(null);
+    const windRef = useRef<HTMLDivElement | null>(null);
 
-    const contentEl = contentElRef.current;
-    const titleArrowEl = titleArrowElRef.current;
+    const windEl = windRef.current;
 
-    const handleContentVisible = () => {
-        if (contentEl && titleArrowEl) {
-            if (isContentVisible) {
-                contentEl.style.height = `${contentEl.scrollHeight + 180}px`;
-                contentEl.style.opacity = "1";
-                contentEl.style.visibility = "visible";
-
-                titleArrowEl.style.transform = "rotate(180deg)";
-            } else {
-                contentEl.style.height = "0";
-                contentEl.style.opacity = "0";
-                contentEl.style.visibility = "hidden";
-
-                titleArrowEl.style.transform = "rotate(0)";
-            }
+    const handleComponentVisible = () => {
+        if (windEl) {
+            isContentVisible ? windEl.classList.add("wind--visible") : windEl.classList.remove("wind--visible");
         }
     };
 
     useEffect(() => {
-        handleContentVisible();
+        handleComponentVisible();
     }, [isContentVisible]);
 
     return (
         <>
-            <div className="wind current-content-block" id="sectionWind">
+            <div className="wind wind--visible current-content-block" id="sectionWind" ref={windRef}>
                 <h2
                     className="wind__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     🍃 {translationsRecord.windTitle[currentLang]}
-                    <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
+                    <img className="wind__title-arrow current-content-block__title-arrow" src={angleSvgPath} />
                 </h2>
-                <div className="wind__content current-content-block__content" ref={contentElRef}>
+                <div className="wind__content current-content-block__content">
                     <Compass scale={1.5} angle={weatherWindDirectionInfo.angle} />
                     <div className="wind__content-text">
                         <span className="wind__content-text-block wind__content-text-block--direction">

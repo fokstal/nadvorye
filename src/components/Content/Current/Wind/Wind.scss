@@ -57,4 +57,18 @@
             }
         }
     }
+
+    &--visible {
+        .wind__title {
+            &-arrow {
+                transform: rotate(180deg);
+            }
+        }
+
+        .wind__content {
+            height: 350px;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }
