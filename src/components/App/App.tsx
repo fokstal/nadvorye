@@ -11,6 +11,7 @@ import WeatherModel from "@models/WeatherModel";
 import WeatherShortModel from "@models/WeatherShortModel";
 import WeatherApi from "@service/WeatherApi";
 import "./App.scss";
+import translationsRecord from "@root/src/const/translationsRecord";
 
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>();
@@ -59,6 +60,10 @@ const App: FC = () => {
 
         fetchCurrentWeather();
     }, [isUserCoordinatesSet]);
+
+    useEffect(() => {
+        document.title = translationsRecord.headerTitle[currentLang];
+    }, [currentLang]);
 
     return (
         <>
