@@ -17,7 +17,7 @@ interface IWind {
 }
 
 const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
-    const weatherWindDirectionInfo = getWindDirectionInfo(weatherWind.wind_dir);
+    const weatherWindDirectionInfo = getWindDirectionInfo(weatherWind.wind_dir, currentLang);
 
     const [isContentVisible, setIsContentVisible] = useState(true);
 
@@ -63,8 +63,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                     <Compass scale={1.5} angle={weatherWindDirectionInfo.angle} />
                     <div className="wind__content-text">
                         <span className="wind__content-text-block wind__content-text-block--direction">
-                            {transcribe(weatherWindDirectionInfo.translated, currentLang)}{" "}
-                            <small>({weatherWindDirectionInfo.angle}&deg;)</small>
+                            {weatherWindDirectionInfo.translated} <small>({weatherWindDirectionInfo.angle}&deg;)</small>
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">

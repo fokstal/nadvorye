@@ -71,12 +71,80 @@ const translationsRecord: Record<string, Translations> = {
     },
     anotherWQIShortText: {
         "ru-RU": "ИКП",
-        "en-US": "WQI"
+        "en-US": "WQI",
     },
     anotherWQIText: {
         "ru-RU": "индекс качества погоды",
-        "en-US": "weather quality index"
-    }
+        "en-US": "weather quality index",
+    },
+};
+
+const translationsRecordForWindDirection: Record<string, Translations> = {
+    N: {
+        "ru-RU": "Север",
+        "en-US": "North",
+    },
+    NNE: {
+        "ru-RU": "Северо-северо-восток",
+        "en-US": "North-North-East",
+    },
+    NE: {
+        "ru-RU": "Северо-восток",
+        "en-US": "North-East",
+    },
+    ENE: {
+        "ru-RU": "Восточно-северо-восток",
+        "en-US": "East-North-East",
+    },
+    E: {
+        "ru-RU": "Восток",
+        "en-US": "East",
+    },
+    ESE: {
+        "ru-RU": "Восточно-юго-восток",
+        "en-US": "East-South-East",
+    },
+    SE: {
+        "ru-RU": "Юго-восток",
+        "en-US": "South-East",
+    },
+    SSE: {
+        "ru-RU": "Южно-юго-восток",
+        "en-US": "South-South-East",
+    },
+    S: {
+        "ru-RU": "Юг",
+        "en-US": "South",
+    },
+    SSW: {
+        "ru-RU": "Южно-юго-запад",
+        "en-US": "South-South-West",
+    },
+    SW: {
+        "ru-RU": "Юго-запад",
+        "en-US": "South-West",
+    },
+    WSW: {
+        "ru-RU": "Западно-юго-запад",
+        "en-US": "West-South-West",
+    },
+    W: {
+        "ru-RU": "Запад",
+        "en-US": "West",
+    },
+    WNW: {
+        "ru-RU": "Западно-северо-запад",
+        "en-US": "West-North-West",
+    },
+    NW: {
+        "ru-RU": "Северо-запад",
+        "en-US": "North-West",
+    },
+    NNW: {
+        "ru-RU": "Северо-северо-запад",
+        "en-US": "North-North-West",
+    },
 };
 
 export default translationsRecord;
+export { translationsRecordForWindDirection };
