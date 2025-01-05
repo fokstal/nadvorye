@@ -1,0 +1,103 @@
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    transition: width 0.5s;
+
+    &__button {
+        display: flex;
+        width: 50px;
+        height: 50px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        margin-right: auto;
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+        &-icon {
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            gap: 8px;
+            padding: 3px 0;
+
+            &-line {
+                border: 2px #434343 solid;
+                border-radius: 10px;
+                margin: 0;
+
+                &--top {
+                    transform-origin: 0% 0%;
+                    transition: transform 0.3s ease-in-out;
+                }
+
+                &--middle {
+                    transition: transform 0.1s ease-in-out;
+                }
+
+                &--bottom {
+                    transform-origin: 0% 100%;
+                    transition: transform 0.3s ease-in-out;
+                }
+            }
+        }
+    }
+
+    &--expanded {
+        width: 30%;
+
+        .burger-menu {
+            &__button {
+                &-icon {
+                    &-line {
+                        &--top {
+                            transform: translateY(1px) rotate(45deg);
+                        }
+
+                        &--middle {
+                            transform: scaleY(0);
+                        }
+
+                        &--bottom {
+                            transform: translateY(-2px) rotate(-45deg);
+                        }
+                    }
+                }
+            }
+
+            &__search-city {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            &__pinned-city-list {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            &__navbar {
+                &-link-list {
+                    &-item {
+                        a {
+                            span {
+                                font-size: 28px;
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
