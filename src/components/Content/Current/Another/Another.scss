@@ -119,4 +119,20 @@
             }
         }
     }
+
+    &--visible {
+        margin-bottom: 50px;
+
+        .another__title {
+            &-arrow {
+                transform: rotate(180deg);
+            }
+        }
+
+        .another__content {
+            height: 400px;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }

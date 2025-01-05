@@ -31,45 +31,31 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
 
     const [isContentVisible, setIsContentVisible] = useState(true);
 
-    const contentElRef = useRef<HTMLDivElement | null>(null);
-    const titleArrowElRef = useRef<HTMLImageElement | null>(null);
+    const anotherRef = useRef<HTMLDivElement | null>(null);
 
-    const contentEl = contentElRef.current;
-    const titleArrowEl = titleArrowElRef.current;
+    const anotherEl = anotherRef.current;
 
-    const handleContentVisible = () => {
-        if (contentEl && titleArrowEl) {
-            if (isContentVisible) {
-                contentEl.style.height = `${contentEl.scrollHeight + 20}px`;
-                contentEl.style.opacity = "1";
-                contentEl.style.visibility = "visible";
-
-                titleArrowEl.style.transform = "rotate(180deg)";
-            } else {
-                contentEl.style.height = "0";
-                contentEl.style.opacity = "0";
-                contentEl.style.visibility = "hidden";
-
-                titleArrowEl.style.transform = "rotate(0)";
-            }
+    const handleComponentVisible = () => {
+        if (anotherEl) {
+            isContentVisible ? anotherEl.classList.add("another--visible") : anotherEl.classList.remove("another--visible");
         }
     };
 
     useEffect(() => {
-        handleContentVisible();
+        handleComponentVisible();
     }, [isContentVisible]);
 
     return (
         <>
-            <div className="another current-content-block" id="sectionAnother">
+            <div className="another another--visible current-content-block" id="sectionAnother" ref={anotherRef}>
                 <h2
                     className="another__title current-content-block__title"
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     🌟 {translationsRecord.anotherTitle[currentLang]}
-                    <img className="current-content-block__title-arrow" src={angleSvgPath} ref={titleArrowElRef} />
+                    <img className="another__title-arrow current-content-block__title-arrow" src={angleSvgPath} />
                 </h2>
-                <div className="another__content current-content-block__content" ref={contentElRef}>
+                <div className="another__content current-content-block__content">
                     <div className="another__content-main">
                         <div className="another__content-main-sun-state">
                             <div className="another__content-main-sun-state-block another__content-main-sun-state-block--sunrise">
