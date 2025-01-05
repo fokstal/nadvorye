@@ -7,7 +7,6 @@ import translationsRecord from "@const/translationsRecord";
 import Language from "@const/Language";
 import getWindDirectionInfo from "@helpers/getWindDirectionInfo";
 import getWindType from "@helpers/getWindType";
-import transcribe from "@helpers/transcribeToEnglish";
 import WeatherWindModel from "@models/WeatherWindModel";
 import "./Wind.scss";
 
@@ -79,7 +78,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                                 <img src={conditionSvgPath} />
                             </div>
                             {translationsRecord.windTypeText[currentLang]}:
-                            <strong>{transcribe(getWindType(weatherWind.wind_kph), currentLang)}</strong>
+                            <strong>{getWindType(weatherWind.wind_kph, currentLang)}</strong>
                         </span>
                     </div>
                 </div>

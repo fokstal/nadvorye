@@ -146,5 +146,24 @@ const translationsRecordForWindDirection: Record<string, Translations> = {
     },
 };
 
+const translationsRecordForWindTypes: Record<string, Translations> = {
+    light: {
+        "ru-RU": "Лёгкий",
+        "en-US": "Light",
+    },
+    moderate: {
+        "ru-RU": "Умеренный",
+        "en-US": "Moderate",
+    },
+    strong: {
+        "ru-RU": "Сильный",
+        "en-US": "Strong",
+    },
+    storm: {
+        "ru-RU": "Штормовой",
+        "en-US": "Storm",
+    },
+};
+
 export default translationsRecord;
-export { translationsRecordForWindDirection };
+export { translationsRecordForWindDirection, translationsRecordForWindTypes };

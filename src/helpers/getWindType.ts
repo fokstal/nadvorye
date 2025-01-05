@@ -1,12 +1,15 @@
-const getWindType = (windSpeedKph: number): string => {
+import Language from "@const/Language";
+import { translationsRecordForWindTypes } from "@const/translationsRecord";
+
+const getWindType = (windSpeedKph: number, lang = Language.RU): string => {
     if (windSpeedKph <= 5) {
-        return "Лёгкий";
+        return translationsRecordForWindTypes.light[lang];
     } else if (windSpeedKph <= 20) {
-        return "Умеренный";
+        return translationsRecordForWindTypes.moderate[lang];
     } else if (windSpeedKph <= 40) {
-        return "Сильный";
+        return translationsRecordForWindTypes.strong[lang];
     } else {
-        return "Штормовой";
+        return translationsRecordForWindTypes.storm[lang];
     }
 };
 
