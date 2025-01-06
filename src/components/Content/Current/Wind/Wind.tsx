@@ -13,9 +13,10 @@ import "./Wind.scss";
 interface IWind {
     currentLang: Language;
     weatherWind: WeatherWindModel;
+    mainColor: string;
 }
 
-const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
+const Wind: FC<IWind> = ({ currentLang, weatherWind, mainColor }) => {
     const weatherWindDirectionInfo = getWindDirectionInfo(weatherWind.wind_dir, currentLang);
 
     const [isContentVisible, setIsContentVisible] = useState(true);
@@ -42,7 +43,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     🍃 {translationsRecord.windTitle[currentLang]}
-                    <AngleSVG className="wind__title-arrow current-content-block__title-arrow" />
+                    <AngleSVG className="wind__title-arrow current-content-block__title-arrow" stroke={mainColor} />
                 </h2>
                 <div className="wind__content current-content-block__content">
                     <Compass scale={1.5} angle={weatherWindDirectionInfo.angle} />
@@ -52,7 +53,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
-                                <SpeedSVG />
+                                <SpeedSVG stroke={mainColor} />
                             </div>
                             {translationsRecord.windSpeedText[currentLang]}:
                             <strong>
@@ -61,7 +62,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
-                                <ConditionSVG />
+                                <ConditionSVG stroke={mainColor} />
                             </div>
                             {translationsRecord.windTypeText[currentLang]}:
                             <strong>{getWindType(weatherWind.wind_kph, currentLang)}</strong>

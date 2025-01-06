@@ -20,6 +20,7 @@ const App: FC = () => {
     const [currentLang, setCurrentLang] = useState(Language.RU);
     const [isUseApi, setIsUseApi] = useState(false);
     const [isUserCoordinatesSet, setIsUserCoordinatesSet] = useState(false);
+    const [mainColor, setMainColor] = useState("white");
 
     const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
 
@@ -79,15 +80,18 @@ const App: FC = () => {
                                 searchCityInputRef={searchCityInputRef}
                                 setCurrentLang={setCurrentLang}
                                 fetchCurrentWeather={fetchCurrentWeather}
+                                setMainColor={setMainColor}
                             />
                             <Hour24
                                 currentLang={currentLang}
                                 last_updated={weather.current.last_updated}
                                 weatherIn24Hour={weatherIn24Hour}
+                                mainColor={mainColor}
                             />
                             <Wind
                                 currentLang={currentLang}
                                 weatherWind={{ wind_kph: weather.current.wind_kph, wind_dir: weather.current.wind_dir }}
+                                mainColor={mainColor}
                             />
                             <Another
                                 currentLang={currentLang}
@@ -101,6 +105,7 @@ const App: FC = () => {
                                 }}
                                 temp_c={weather.current.temp_c}
                                 wind_kph={weather.current.wind_kph}
+                                mainColor={mainColor}
                             />
                         </div>
                     </div>

@@ -19,9 +19,10 @@ interface IAnother {
     weatherAnother: WeatherAnotherModel;
     temp_c: number;
     wind_kph: number;
+    mainColor: string
 }
 
-const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }) => {
+const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph, mainColor }) => {
     const weatherQualityIndex = calculateWeatherQualityIndex(
         temp_c,
         weatherAnother.humidity,
@@ -56,7 +57,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     🌟 {translationsRecord.anotherTitle[currentLang]}
-                    <AngleSVG className="another__title-arrow current-content-block__title-arrow" />
+                    <AngleSVG className="another__title-arrow current-content-block__title-arrow" stroke={mainColor}/>
                 </h2>
                 <div className="another__content current-content-block__content">
                     <div className="another__content-main">
@@ -73,7 +74,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                         <div className="another__content-main-data">
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
-                                    <HumiditySVG />
+                                    <HumiditySVG stroke={mainColor}/>
                                 </div>
                                 {translationsRecord.anotherHumidityText[currentLang]}:
                                 <strong>
@@ -82,7 +83,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                             </span>
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
-                                    <MercurySVG />
+                                    <MercurySVG stroke={mainColor}/>
                                 </div>
                                 {translationsRecord.anotherPressureText[currentLang]}:
                                 <strong>
@@ -91,7 +92,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                             </span>
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
-                                    <RainSVG />
+                                    <RainSVG stroke={mainColor}/>
                                 </div>
                                 {translationsRecord.anotherPrecipText[currentLang]}:
                                 <strong>
@@ -100,7 +101,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                             </span>
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
-                                    <CloudSVG />
+                                    <CloudSVG stroke={mainColor}/>
                                 </div>
                                 {translationsRecord.anotherCloudText[currentLang]}:
                                 <strong>
@@ -110,7 +111,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                         </div>
                     </div>
                     <div className="another__content-second">
-                        <WeatherQualityIcon levelColor={weatherQualityIndex.levelColor} />
+                        <WeatherQualityIcon levelColor={weatherQualityIndex.levelColor} stroke={mainColor}/>
                         {translationsRecord.anotherWQIShortText[currentLang]} ={" "}
                         <strong>{weatherQualityIndex.indexValue}</strong>
                         <small>{translationsRecord.anotherWQIText[currentLang]}</small>

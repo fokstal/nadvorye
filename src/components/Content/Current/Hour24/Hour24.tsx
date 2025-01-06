@@ -11,9 +11,10 @@ interface IHour24 {
     currentLang: Language;
     last_updated: string;
     weatherIn24Hour: WeatherShortModel[];
+    mainColor: string;
 }
 
-const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => {
+const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour, mainColor }) => {
     const currentTime = convertTimeFrom_ISO8601(last_updated, currentLang, true);
     const currentTimeListItemStyle = {
         filter: "drop-shadow(0 0 1em gold)",
@@ -37,6 +38,8 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
         handleComponentVisible();
     }, [isContentVisible]);
 
+    console.log(mainColor);
+
     return (
         <>
             <div className="hour-24 hour-24--visible current-content-block" id="sectionHour24" ref={hour24Ref}>
@@ -45,7 +48,7 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     ⏰ {translationsRecord.hour24Title[currentLang]}
-                    <AngleSVG className="hour-24__title-arrow current-content-block__title-arrow" />
+                    <AngleSVG className="hour-24__title-arrow current-content-block__title-arrow" stroke={mainColor} />
                 </h2>
                 <div className="hour-24__content current-content-block__content">
                     <ul className="hour-24__content-list">

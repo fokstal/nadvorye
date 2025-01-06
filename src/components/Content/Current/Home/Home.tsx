@@ -3,7 +3,7 @@ import Header from "@components/Header/Header";
 import BurgerMenu from "@components/BurgerMenu/BurgerMenu";
 import Language from "@const/Language";
 import { convertFullDateFrom_ISO8601 } from "@helpers/dateConverter";
-import getDominantColorInHex from "@helpers/getDominantColor";
+import { getDominantColorInHex, getTextColor } from "@root/src/helpers/color";
 import getTempForLocale from "@helpers/getTempForLocale";
 import transcribe from "@helpers/transcribeToEnglish";
 import WeatherModel from "@models/WeatherModel";
@@ -18,6 +18,7 @@ interface IHome {
     searchCityInputRef: MutableRefObject<HTMLInputElement | null>;
     setCurrentLang: (lang: Language) => void;
     fetchCurrentWeather: (city?: string) => void;
+    setMainColor: (color: string) => void;
 }
 
 const Home: FC<IHome> = ({
@@ -28,6 +29,7 @@ const Home: FC<IHome> = ({
     searchCityInputRef,
     setCurrentLang,
     fetchCurrentWeather,
+    setMainColor,
 }) => {
     const [dominantColor, setDominantColor] = useState("transparent");
 
@@ -42,7 +44,10 @@ const Home: FC<IHome> = ({
 
         if (imgBackground) {
             imgBackground.onload = () => {
-                setDominantColor(getDominantColorInHex(imgBackground) + 30);
+                const dominantColor = getDominantColorInHex(imgBackground) + 30
+
+                setDominantColor(dominantColor);
+                setMainColor(getTextColor(dominantColor));
             };
         }
     }, []);
