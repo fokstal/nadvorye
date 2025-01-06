@@ -17,7 +17,6 @@ interface IHome {
     currentLang: Language;
     searchCityInputRef: MutableRefObject<HTMLInputElement | null>;
     setCurrentLang: (lang: Language) => void;
-    setCurrentCity: (city: string) => void;
     fetchCurrentWeather: (city?: string) => void;
 }
 
@@ -28,7 +27,6 @@ const Home: FC<IHome> = ({
     currentLang,
     searchCityInputRef,
     setCurrentLang,
-    setCurrentCity,
     fetchCurrentWeather,
 }) => {
     const [dominantColor, setDominantColor] = useState("transparent");
@@ -80,7 +78,6 @@ const Home: FC<IHome> = ({
                     currentLang={currentLang}
                     searchCityInputRef={searchCityInputRef}
                     setCurrentLang={setCurrentLang}
-                    setCurrentCity={setCurrentCity}
                     fetchCurrentWeather={fetchCurrentWeather}
                 />
             </div>

@@ -78,7 +78,6 @@ const App: FC = () => {
                                 currentLang={currentLang}
                                 searchCityInputRef={searchCityInputRef}
                                 setCurrentLang={setCurrentLang}
-                                setCurrentCity={setCurrentCity}
                                 fetchCurrentWeather={fetchCurrentWeather}
                             />
                             <Hour24
