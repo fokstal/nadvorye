@@ -29,7 +29,7 @@ const getTextColor = (dominantColor: string): string => {
     const { r, g, b } = hexToRgb(dominantColor);
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
 
-    return brightness > 128 ? "#434343" : "#f5f5f5";
+    return brightness > 128 ? "#434343" : "#F8F8F8";
 };
 
 const getDominantColorInHex = (image: HTMLImageElement): string => {
