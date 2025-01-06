@@ -46,7 +46,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind, mainColor }) => {
                     <AngleSVG className="wind__title-arrow current-content-block__title-arrow" stroke={mainColor} />
                 </h2>
                 <div className="wind__content current-content-block__content">
-                    <Compass scale={1.5} angle={weatherWindDirectionInfo.angle} />
+                    <Compass scale={1.5} angle={weatherWindDirectionInfo.angle}/>
                     <div className="wind__content-text">
                         <span className="wind__content-text-block wind__content-text-block--direction">
                             {weatherWindDirectionInfo.translated} <small>({weatherWindDirectionInfo.angle}&deg;)</small>
