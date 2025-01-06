@@ -1,11 +1,11 @@
 import { forwardRef, SVGProps } from "react";
 
-interface WeatherQualityIconProps extends SVGProps<SVGSVGElement> {
+interface IWeatherQualityIcon extends SVGProps<SVGSVGElement> {
     levelColor: string;
     stroke?: string;
 }
 
-const WeatherQualityIcon = forwardRef<SVGSVGElement, WeatherQualityIconProps>(
+const WeatherQualityIcon = forwardRef<SVGSVGElement, IWeatherQualityIcon>(
     ({ levelColor, stroke = "currentColor", ...props }, ref) => {
         return (
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ref={ref} {...props}>
