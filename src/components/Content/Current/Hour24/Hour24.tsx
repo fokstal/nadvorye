@@ -38,8 +38,6 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour, mainC
         handleComponentVisible();
     }, [isContentVisible]);
 
-    console.log(mainColor);
-
     return (
         <>
             <div className="hour-24 hour-24--visible current-content-block" id="sectionHour24" ref={hour24Ref}>

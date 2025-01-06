@@ -29,8 +29,6 @@ const getTextColor = (dominantColor: string): string => {
     const { r, g, b } = hexToRgb(dominantColor);
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
 
-    console.log(brightness)
-
     return brightness > 128 ? "#434343" : "#f5f5f5";
 };
 
