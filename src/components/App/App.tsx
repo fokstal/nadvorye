@@ -10,11 +10,11 @@ import getUserCoordinates from "@helpers/getUserCoordinates";
 import WeatherModel from "@models/WeatherModel";
 import WeatherShortModel from "@models/WeatherShortModel";
 import WeatherApi from "@service/WeatherApi";
-import "./App.scss";
 import translationsRecord from "@root/src/const/translationsRecord";
+import "./App.scss";
 
 const App: FC = () => {
-    const [weather, setWeather] = useState<WeatherModel>();
+    const [weather, setWeather] = useState<WeatherModel>(WeatherApi.convertJSONToWeatherModel(weatherJSONClear));
     const [weatherIn24Hour, setWeatherIn24Hour] = useState<WeatherShortModel[]>([]);
     const [currentCity, setCurrentCity] = useState("Минск");
     const [currentLang, setCurrentLang] = useState(Language.RU);
