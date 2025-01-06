@@ -1,14 +1,13 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 import IComponentSVG, { defaultComponentSVGProps } from "@root/src/models/IComponentSVG";
 
-const CloudSVG: FC<IComponentSVG> = (props) => {
-    const { strokeColor, fillColor } = { ...defaultComponentSVGProps, ...props };
+const CloudSVG = forwardRef<SVGSVGElement, IComponentSVG>(({ customProps, ...props }, ref) => {
+    const customDefaultProps = { ...defaultComponentSVGProps, ...customProps };
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ref={ref} {...props}>
             <path
-                fill={fillColor}
-                stroke={strokeColor}
+                {...customDefaultProps}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="1.5"
@@ -16,6 +15,6 @@ const CloudSVG: FC<IComponentSVG> = (props) => {
             />
         </svg>
     );
-};
+});
 
 export default CloudSVG;

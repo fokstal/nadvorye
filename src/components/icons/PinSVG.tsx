@@ -1,14 +1,13 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 import IComponentSVG, { defaultComponentSVGProps } from "@root/src/models/IComponentSVG";
 
-const PinSVG: FC<IComponentSVG> = (props) => {
-    const { strokeColor, fillColor } = { ...defaultComponentSVGProps, ...props };
+const PinSVG = forwardRef<SVGSVGElement, IComponentSVG>(({ customProps, ...props }, ref) => {
+    const customDefaultProps = { ...defaultComponentSVGProps, ...customProps };
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" ref={ref} {...props}>
             <path
-                fill={fillColor}
-                stroke={strokeColor}
+                {...customDefaultProps}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="1.5"
@@ -16,6 +15,6 @@ const PinSVG: FC<IComponentSVG> = (props) => {
             />
         </svg>
     );
-};
+});
 
 export default PinSVG;

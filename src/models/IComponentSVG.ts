@@ -1,12 +1,18 @@
-interface IComponentSVG {
-    strokeColor?: string;
-    fillColor?: string;
+import { SVGProps } from "react";
+
+interface IComponentSVG extends SVGProps<SVGSVGElement> {
+    customProps?: IComponentSVGCustom;
 }
 
-const defaultComponentSVGProps: IComponentSVG = {
-    strokeColor: "currentColor",
-    fillColor: "none",
+interface IComponentSVGCustom {
+    stroke?: string;
+    fill?: string;
+}
+
+const defaultComponentSVGCustomProps: IComponentSVGCustom = {
+    stroke: "currentColor",
+    fill: "none",
 };
 
 export default IComponentSVG;
-export { defaultComponentSVGProps };
+export { defaultComponentSVGCustomProps as defaultComponentSVGProps };

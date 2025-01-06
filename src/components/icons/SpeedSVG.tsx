@@ -1,12 +1,12 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 import IComponentSVG, { defaultComponentSVGProps } from "@root/src/models/IComponentSVG";
 
-const SpeedSVG: FC<IComponentSVG> = (props) => {
-    const { strokeColor, fillColor } = { ...defaultComponentSVGProps, ...props };
+const SpeedSVG = forwardRef<SVGSVGElement, IComponentSVG>(({ customProps, ...props }, ref) => {
+    const customDefaultProps = { ...defaultComponentSVGProps, ...customProps };
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 48 48">
-            <g fill={fillColor} stroke={strokeColor} strokeLinejoin="round" strokeWidth="4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 48 48" ref={ref} {...props}>
+            <g {...customDefaultProps} strokeLinejoin="round" strokeWidth="4">
                 <path
                     strokeLinecap="round"
                     d="M34.023 6.69A19.908 19.908 0 0 0 24 4C12.954 4 4 12.954 4 24s8.954 20 20 20s20-8.954 20-20c0-3.627-.966-7.03-2.654-9.962"
@@ -15,6 +15,6 @@ const SpeedSVG: FC<IComponentSVG> = (props) => {
             </g>
         </svg>
     );
-};
+});
 
 export default SpeedSVG;

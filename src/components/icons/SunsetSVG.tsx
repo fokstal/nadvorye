@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 
-const SunsetSVG: FC = () => {
+const SunsetSVG = forwardRef<SVGSVGElement>(({ ...props }, ref) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 128 128">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" ref={ref} {...props}>
             <radialGradient
                 id="notoSunset0"
                 cx="88.195"
@@ -112,6 +112,6 @@ const SunsetSVG: FC = () => {
             <ellipse cx="92.29" cy="49.46" fill="url(#notoSunset4)" opacity=".63" rx="28.37" ry="30.07" />
         </svg>
     );
-};
+});
 
 export default SunsetSVG;

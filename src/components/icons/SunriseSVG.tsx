@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 
-const SunriseSVG: FC = () => {
+const SunriseSVG = forwardRef<SVGSVGElement>(({ ...props }, ref) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 128 128">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" ref={ref} {...props}>
             <radialGradient id="notoSunrise0" cx="63.542" cy="78.723" r="88.912" gradientUnits="userSpaceOnUse">
                 <stop offset=".275" stop-color="#FFD0AF" />
                 <stop offset=".372" stop-color="#FFC7AB" />
@@ -242,6 +242,6 @@ const SunriseSVG: FC = () => {
             />
         </svg>
     );
-};
+});
 
 export default SunriseSVG;
