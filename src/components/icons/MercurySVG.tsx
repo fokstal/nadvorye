@@ -10,6 +10,7 @@ const MercurySVG = forwardRef<SVGSVGElement, IComponentSVG>(
                     stroke={stroke}
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    strokeWidth="0.8"
                     d="M8.5 9V2A1.5 1.5 0 0 0 7 .5h0A1.5 1.5 0 0 0 5.5 2v7a2.5 2.5 0 1 0 3 0Z"
                 />
             </svg>

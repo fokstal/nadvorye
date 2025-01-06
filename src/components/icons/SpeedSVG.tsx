@@ -5,7 +5,7 @@ const SpeedSVG = forwardRef<SVGSVGElement, IComponentSVG>(
     ({ stroke = defaultComponentSVGProps.stroke, fill = defaultComponentSVGProps.fill, ...props }, ref) => {
         return (
             <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 48 48" ref={ref} {...props}>
-                <g fill={fill} stroke={stroke} strokeLinejoin="round" strokeWidth="4">
+                <g fill={fill} stroke={stroke} strokeLinejoin="round" strokeWidth="3.2">
                     <path
                         strokeLinecap="round"
                         d="M34.023 6.69A19.908 19.908 0 0 0 24 4C12.954 4 4 12.954 4 24s8.954 20 20 20s20-8.954 20-20c0-3.627-.966-7.03-2.654-9.962"
