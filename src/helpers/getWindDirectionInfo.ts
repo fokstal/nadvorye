@@ -31,4 +31,44 @@ const getWindDirectionInfo = (wind_dir: string, lang = Language.RU): { angle: nu
     }
 };
 
+const convertWindDirToText = (wind_dir: number, lang = Language.RU): string => {
+    const normalizedWindDir = ((wind_dir % 360) + 360) % 360;
+
+    const directions = [
+        { angle: 0, label: translationsRecordForWindDirection.N[lang] },
+        { angle: 22.5, label: translationsRecordForWindDirection.NNE[lang] },
+        { angle: 45, label: translationsRecordForWindDirection.NE[lang] },
+        { angle: 67.5, label: translationsRecordForWindDirection.ENE[lang] },
+        { angle: 90, label: translationsRecordForWindDirection.E[lang] },
+        { angle: 112.5, label: translationsRecordForWindDirection.ESE[lang] },
+        { angle: 135, label: translationsRecordForWindDirection.SE[lang] },
+        { angle: 157.5, label: translationsRecordForWindDirection.SSE[lang] },
+        { angle: 180, label: translationsRecordForWindDirection.S[lang] },
+        { angle: 202.5, label: translationsRecordForWindDirection.SSW[lang] },
+        { angle: 225, label: translationsRecordForWindDirection.SW[lang] },
+        { angle: 247.5, label: translationsRecordForWindDirection.WSW[lang] },
+        { angle: 270, label: translationsRecordForWindDirection.W[lang] },
+        { angle: 292.5, label: translationsRecordForWindDirection.WNW[lang] },
+        { angle: 315, label: translationsRecordForWindDirection.NW[lang] },
+        { angle: 337.5, label: translationsRecordForWindDirection.NNW[lang] },
+        { angle: 360, label: translationsRecordForWindDirection.N[lang] },
+    ];
+
+    for (let i = 0; i < directions.length; i++) {
+        const currentDirection = directions[i];
+        const nextDirection = directions[(i + 1) % directions.length];
+
+        if (
+            (normalizedWindDir >= currentDirection.angle - 11.25 &&
+                normalizedWindDir < currentDirection.angle + 11.25) ||
+            (normalizedWindDir >= nextDirection.angle - 11.25 && normalizedWindDir < nextDirection.angle + 11.25)
+        ) {
+            return currentDirection.label;
+        }
+    }
+
+    return "Неизвестно";
+};
+
 export default getWindDirectionInfo;
+export { convertWindDirToText };
