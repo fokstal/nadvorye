@@ -42,7 +42,7 @@ const Home: FC<IHome> = ({
 
         if (imgBackground) {
             imgBackground.onload = () => {
-                setDominantColor(getDominantColorInHex(imgBackground));
+                setDominantColor(getDominantColorInHex(imgBackground) + 30);
             };
         }
     }, []);
