@@ -3,6 +3,8 @@ import IComponentSVG, { defaultComponentSVGProps } from "@root/src/models/ICompo
 
 const ConditionSVG = forwardRef<SVGSVGElement, IComponentSVG>(
     ({ stroke = defaultComponentSVGProps.stroke, fill = defaultComponentSVGProps.fill, ...props }, ref) => {
+        fill = stroke;
+
         return (
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" ref={ref} {...props}>
                 <path fill={fill} stroke={stroke} d="m8 16l8-8l8 8l-8 8z" />
