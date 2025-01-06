@@ -4,11 +4,13 @@ import Home from "@components/Content/Current/Home/Home";
 import Hour24 from "@components/Content/Current/Hour24/Hour24";
 import Wind from "@components/Content/Current/Wind/Wind";
 import Another from "@components/Content/Current/Another/Another";
+import Daily16 from "../Content/Daily16/Daily16";
 import Language from "@const/Language";
 import weatherJSONClear from "@const/weatherJSONClear";
 import getUserCoordinates from "@helpers/getUserCoordinates";
 import WeatherModel from "@models/WeatherModel";
 import WeatherShortModel from "@models/WeatherShortModel";
+import WeatherDailyModel from "@root/src/models/WeatherDailyModel";
 import WeatherApi from "@service/WeatherApi";
 import translationsRecord from "@root/src/const/translationsRecord";
 import "./App.scss";
@@ -16,6 +18,8 @@ import "./App.scss";
 const App: FC = () => {
     const [weather, setWeather] = useState<WeatherModel>(WeatherApi.convertJSONToWeatherModel(weatherJSONClear));
     const [weatherIn24Hour, setWeatherIn24Hour] = useState<WeatherShortModel[]>([]);
+    const [weatherDailyList, setWeatherDaily] = useState<WeatherDailyModel[]>([]);
+
     const [currentCity, setCurrentCity] = useState("Минск");
     const [currentLang, setCurrentLang] = useState(Language.RU);
     const [isUseApi, setIsUseApi] = useState(false);
@@ -44,7 +48,12 @@ const App: FC = () => {
         let weatherFromResp: any = weatherJSONClear;
 
         if (weatherFromSessionStorage) weatherFromResp = JSON.parse(weatherFromSessionStorage);
-        if (isUseApi) weatherFromResp = await weatherApi.getForecast(cityToFetch);
+        if (isUseApi) {
+            weatherFromResp = await weatherApi.getForecast(cityToFetch);
+            const weatherDailyListJSON = await weatherApi.getFuture(city, 16);
+
+            setWeatherDaily(WeatherApi.convertJSONToWeatherDailyModelList(weatherDailyListJSON));
+        }
 
         sessionStorage.setItem("weather", JSON.stringify(weatherFromResp));
 
@@ -108,6 +117,7 @@ const App: FC = () => {
                                 wind_kph={weather.current.wind_kph}
                                 mainColor={mainColor}
                             />
+                            <Daily16 weatherDailyList={weatherDailyList} />
                         </div>
                     </div>
                 )}
