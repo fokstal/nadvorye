@@ -29,9 +29,9 @@ const Compass: FC<ICompass> = ({ scale, angle }) => {
                             y2="380.7"
                             gradientUnits="userSpaceOnUse"
                         >
-                            <stop offset="0" stopColor="#6b7280" />
-                            <stop offset=".5" stopColor="#6b7280" />
-                            <stop offset="1" stopColor="#374151" />
+                            <stop offset="0" stopColor="#6b728050" />
+                            <stop offset=".5" stopColor="#6b728050" />
+                            <stop offset="1" stopColor="#37415150" />
                         </linearGradient>
                     </defs>
                     <circle
@@ -50,8 +50,9 @@ const Compass: FC<ICompass> = ({ scale, angle }) => {
                     />
 
                     <g transform={`rotate(${angle},  256, 256) translate(256, 256) scale(1.8) translate(-256, -256)`}>
-                        <path fill="#ef4444" d="m256 172l-24 84h48l-24-84z" />
-                        <path fill="#fff" d="m232 256l24 84l24-84h-48z" />
+                        <path fill="#ff000099" d="m256 172l-24 84h48l-24-84z" />
+                        <path fill="#ffffff" d="m232 256l24 84l24-84h-48z" />
+                        <circle cx="256" cy="256" r="5" fill="#434343" />
                         <animateTransform
                             additive="sum"
                             attributeName="transform"
