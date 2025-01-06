@@ -18,6 +18,7 @@ interface IHome {
     searchCityInputRef: MutableRefObject<HTMLInputElement | null>;
     setCurrentLang: (lang: Language) => void;
     fetchCurrentWeather: (city?: string) => void;
+    mainColor: string;
     setMainColor: (color: string) => void;
 }
 
@@ -29,6 +30,7 @@ const Home: FC<IHome> = ({
     searchCityInputRef,
     setCurrentLang,
     fetchCurrentWeather,
+    mainColor,
     setMainColor,
 }) => {
     const [dominantColor, setDominantColor] = useState("transparent");
@@ -44,7 +46,7 @@ const Home: FC<IHome> = ({
 
         if (imgBackground) {
             imgBackground.onload = () => {
-                const dominantColor = getDominantColorInHex(imgBackground) + 30
+                const dominantColor = getDominantColorInHex(imgBackground) + 30;
 
                 setDominantColor(dominantColor);
                 setMainColor(getTextColor(dominantColor));
@@ -84,6 +86,7 @@ const Home: FC<IHome> = ({
                     searchCityInputRef={searchCityInputRef}
                     setCurrentLang={setCurrentLang}
                     fetchCurrentWeather={fetchCurrentWeather}
+                    mainColor={mainColor}
                 />
             </div>
         </>

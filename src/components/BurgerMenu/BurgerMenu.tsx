@@ -13,6 +13,7 @@ interface IBurgerMenu {
     searchCityInputRef: MutableRefObject<HTMLInputElement | null>;
     setCurrentLang: (lang: Language) => void;
     fetchCurrentWeather: (city?: string) => void;
+    mainColor: string;
 }
 
 const BurgerMenu: FC<IBurgerMenu> = ({
@@ -21,6 +22,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
     searchCityInputRef,
     setCurrentLang,
     fetchCurrentWeather,
+    mainColor,
 }) => {
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(true);
     const [isPinCityInSearch, setIsPinCityInSearch] = useState(true);
@@ -60,9 +62,18 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                     onClick={() => burgerMenuHandler?.toggleBurgerMenu(isBurgerMenuOpen, setIsBurgerMenuOpen)}
                 >
                     <div className="burger-menu__button-icon">
-                        <hr className="burger-menu__button-icon-line burger-menu__button-icon-line--top" />
-                        <hr className="burger-menu__button-icon-line burger-menu__button-icon-line--middle" />
-                        <hr className="burger-menu__button-icon-line burger-menu__button-icon-line--bottom" />
+                        <hr
+                            style={{ borderColor: mainColor }}
+                            className="burger-menu__button-icon-line burger-menu__button-icon-line--top"
+                        />
+                        <hr
+                            style={{ borderColor: mainColor }}
+                            className="burger-menu__button-icon-line burger-menu__button-icon-line--middle"
+                        />
+                        <hr
+                            style={{ borderColor: mainColor }}
+                            className="burger-menu__button-icon-line burger-menu__button-icon-line--bottom"
+                        />
                     </div>
                 </button>
                 <form className="burger-menu__search-city">
@@ -72,6 +83,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                         onClick={() =>
                             burgerMenuHandler?.togglePinCityInSearch(isPinCityInSearch, setIsPinCityInSearch)
                         }
+                        stroke={mainColor}
                     />
 
                     <input
@@ -94,7 +106,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                             )
                         }
                     >
-                        <SearchSVG />
+                        <SearchSVG stroke={mainColor} />
                     </button>
                 </form>
                 <ul className="burger-menu__pinned-city-list">
@@ -109,6 +121,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                                     <span
                                         className="burger-menu__pinned-city-list-item-remover"
                                         onClick={() => burgerMenuHandler.removeCityFromPinned(city)}
+                                        style={{ color: mainColor === "#434343" ? "#F8F8F8" : "#434343" }}
                                     >
                                         +
                                     </span>{" "}
