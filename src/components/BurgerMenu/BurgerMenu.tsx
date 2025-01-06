@@ -1,6 +1,6 @@
 import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
-import searchSvgPath from "@assets/icons/search.svg";
-import pinSvgPath from "@assets/icons/pin.svg";
+import PinSVG from "@components/icons/PinSVG";
+import SearchSVG from "../icons/SearchSVG";
 import Language, { LanguageFlags } from "@const/Language";
 import translationsRecord from "@const/translationsRecord";
 import transcribe from "@helpers/transcribeToEnglish";
@@ -27,7 +27,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
 
     const burgerMenuRef = useRef<HTMLDivElement | null>(null);
     const searchCityBtnRef = useRef<HTMLButtonElement | null>(null);
-    const pinInSearchRef = useRef<HTMLImageElement | null>(null);
+    const pinInSearchRef = useRef<SVGSVGElement | null>(null);
 
     const [burgerMenuHandler, setBurgerMenuHandler] = useState<BurgerMenuHandler | null>(null);
     useEffect(() => {
@@ -66,8 +66,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                     </div>
                 </button>
                 <form className="burger-menu__search-city">
-                    <img
-                        src={pinSvgPath}
+                    <PinSVG
                         className="burger-menu__search-city-pin"
                         ref={pinInSearchRef}
                         onClick={() =>
@@ -95,7 +94,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                             )
                         }
                     >
-                        <img src={searchSvgPath} alt="🔍" />
+                        <SearchSVG />
                     </button>
                 </form>
                 <ul className="burger-menu__pinned-city-list">

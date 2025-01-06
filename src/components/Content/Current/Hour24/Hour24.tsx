@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
-import angleSvgPath from "@assets/icons/angle.svg";
+import AngleSVG from "@root/src/components/icons/AngleSVG";
 import Language from "@const/Language";
 import translationsRecord from "@const/translationsRecord";
 import { convertTimeFrom_ISO8601 } from "@helpers/dateConverter";
@@ -45,7 +45,7 @@ const Hour24: FC<IHour24> = ({ currentLang, last_updated, weatherIn24Hour }) => 
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     ⏰ {translationsRecord.hour24Title[currentLang]}
-                    <img className="hour-24__title-arrow current-content-block__title-arrow" src={angleSvgPath} />
+                    <AngleSVG className="hour-24__title-arrow current-content-block__title-arrow" />
                 </h2>
                 <div className="hour-24__content current-content-block__content">
                     <ul className="hour-24__content-list">

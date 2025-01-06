@@ -1,8 +1,8 @@
 import { FC, useEffect, useRef, useState } from "react";
-import speedSvgPath from "@assets/icons/speed.svg";
-import conditionSvgPath from "@assets/icons/condition.svg";
-import angleSvgPath from "@assets/icons/angle.svg";
 import Compass from "@components/Compass/Compass";
+import AngleSVG from "@root/src/components/icons/AngleSVG";
+import ConditionSVG from "@root/src/components/icons/ConditionSVG";
+import SpeedSVG from "@root/src/components/icons/SpeedSVG";
 import translationsRecord from "@const/translationsRecord";
 import Language from "@const/Language";
 import getWindDirectionInfo from "@helpers/getWindDirectionInfo";
@@ -42,7 +42,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     🍃 {translationsRecord.windTitle[currentLang]}
-                    <img className="wind__title-arrow current-content-block__title-arrow" src={angleSvgPath} />
+                    <AngleSVG className="wind__title-arrow current-content-block__title-arrow" />
                 </h2>
                 <div className="wind__content current-content-block__content">
                     <Compass scale={1.5} angle={weatherWindDirectionInfo.angle} />
@@ -52,7 +52,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
-                                <img src={speedSvgPath} />
+                                <SpeedSVG />
                             </div>
                             {translationsRecord.windSpeedText[currentLang]}:
                             <strong>
@@ -61,7 +61,7 @@ const Wind: FC<IWind> = ({ currentLang, weatherWind }) => {
                         </span>
                         <span className="wind__content-text-block">
                             <div className="wind__content-text-block-icon">
-                                <img src={conditionSvgPath} />
+                                <ConditionSVG />
                             </div>
                             {translationsRecord.windTypeText[currentLang]}:
                             <strong>{getWindType(weatherWind.wind_kph, currentLang)}</strong>

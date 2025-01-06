@@ -4,13 +4,13 @@ import SessionStorageWorker from "@root/src/helpers/SessionStorageWorker";
 interface IBurgerMenuHandler {
     burgerMenu: HTMLDivElement;
     searchCityInput: HTMLInputElement;
-    pinInSearch: HTMLImageElement;
+    pinInSearch: SVGSVGElement;
 }
 
 class BurgerMenuHandler {
     private _burgerMenu: HTMLDivElement;
     private _searchCityInput: HTMLInputElement;
-    private _pinInSearch: HTMLImageElement;
+    private _pinInSearch: SVGSVGElement;
 
     private _languageArr = Object.values(Language);
     private _pinnedCityArr = SessionStorageWorker.getPinnedCityArr();

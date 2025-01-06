@@ -1,11 +1,12 @@
 import { FC, useEffect, useRef, useState } from "react";
-import mercurySvgPath from "@assets/icons/mercury.svg";
-import humiditySvgPath from "@assets/icons/humidity.svg";
-import rainSvgPath from "@assets/icons/rain.svg";
-import angleSvgPath from "@assets/icons/angle.svg";
-import sunsetSvgPath from "@assets/icons/sunset.svg";
-import sunriseSvgPath from "@assets/icons/sunrise.svg";
-import cloudSvgPath from "@assets/icons/cloud.svg";
+import AngleSVG from "@root/src/components/icons/AngleSVG";
+import SunriseSVG from "@root/src/components/icons/SunriseSVG";
+import SunsetSVG from "@root/src/components/icons/SunsetSVG";
+import HumiditySVG from "@root/src/components/icons/HumiditySVG";
+import MercurySVG from "@root/src/components/icons/MercurySVG";
+import RainSVG from "@root/src/components/icons/RainSVG";
+import CloudSVG from "@root/src/components/icons/CloudSVG";
+import WeatherQualityIcon from "@root/src/components/WeatherQualityIcon/WeatherQualityIcon";
 import Language from "@const/Language";
 import translationsRecord from "@const/translationsRecord";
 import calculateWeatherQualityIndex from "@helpers/calculateWeatherQualityIndex";
@@ -37,7 +38,9 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
 
     const handleComponentVisible = () => {
         if (anotherEl) {
-            isContentVisible ? anotherEl.classList.add("another--visible") : anotherEl.classList.remove("another--visible");
+            isContentVisible
+                ? anotherEl.classList.add("another--visible")
+                : anotherEl.classList.remove("another--visible");
         }
     };
 
@@ -53,24 +56,24 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                     onClick={() => setIsContentVisible(!isContentVisible)}
                 >
                     🌟 {translationsRecord.anotherTitle[currentLang]}
-                    <img className="another__title-arrow current-content-block__title-arrow" src={angleSvgPath} />
+                    <AngleSVG className="another__title-arrow current-content-block__title-arrow" />
                 </h2>
                 <div className="another__content current-content-block__content">
                     <div className="another__content-main">
                         <div className="another__content-main-sun-state">
                             <div className="another__content-main-sun-state-block another__content-main-sun-state-block--sunrise">
-                                <img src={sunriseSvgPath} /> {translationsRecord.anotherSunriseText[currentLang]}:{" "}
+                                <SunriseSVG /> {translationsRecord.anotherSunriseText[currentLang]}:{" "}
                                 <strong>{formatTimeForLocale(weatherAnother.sunrise, currentLang)}</strong>
                             </div>
                             <div className="another__content-main-sun-state-block another__content-main-sun-state-block--sunset">
-                                <img src={sunsetSvgPath} /> {translationsRecord.anotherSunsetText[currentLang]}:{" "}
+                                <SunsetSVG /> {translationsRecord.anotherSunsetText[currentLang]}:{" "}
                                 <strong>{formatTimeForLocale(weatherAnother.sunset, currentLang)}</strong>
                             </div>
                         </div>
                         <div className="another__content-main-data">
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
-                                    <img src={humiditySvgPath} />
+                                    <HumiditySVG />
                                 </div>
                                 {translationsRecord.anotherHumidityText[currentLang]}:
                                 <strong>
@@ -79,7 +82,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                             </span>
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
-                                    <img src={mercurySvgPath} />
+                                    <MercurySVG />
                                 </div>
                                 {translationsRecord.anotherPressureText[currentLang]}:
                                 <strong>
@@ -88,7 +91,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                             </span>
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
-                                    <img src={rainSvgPath} />
+                                    <RainSVG />
                                 </div>
                                 {translationsRecord.anotherPrecipText[currentLang]}:
                                 <strong>
@@ -97,7 +100,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                             </span>
                             <span className="another__content-main-data-block">
                                 <div className="another__content-main-data-block-icon">
-                                    <img src={cloudSvgPath} />
+                                    <CloudSVG />
                                 </div>
                                 {translationsRecord.anotherCloudText[currentLang]}:
                                 <strong>
@@ -107,16 +110,7 @@ const Another: FC<IAnother> = ({ currentLang, weatherAnother, temp_c, wind_kph }
                         </div>
                     </div>
                     <div className="another__content-second">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
-                            <path
-                                fill={weatherQualityIndex.levelColor}
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77a4 4 0 0 1 6.74 0a4 4 0 0 1 4.78 4.78a4 4 0 0 1 0 6.74a4 4 0 0 1-4.77 4.78a4 4 0 0 1-6.75 0a4 4 0 0 1-4.78-4.77a4 4 0 0 1 0-6.76Z"
-                            />
-                        </svg>
+                        <WeatherQualityIcon levelColor={weatherQualityIndex.levelColor} />
                         {translationsRecord.anotherWQIShortText[currentLang]} ={" "}
                         <strong>{weatherQualityIndex.indexValue}</strong>
                         <small>{translationsRecord.anotherWQIText[currentLang]}</small>
