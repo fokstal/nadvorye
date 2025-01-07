@@ -12,6 +12,7 @@ import { convertWindDirToText } from "@helpers/getWindDirectionInfo";
 import getTempForLocale from "@helpers/getTempForLocale";
 import WeatherDailyModel from "@models/WeatherDailyModel";
 import "./Daily16.scss";
+import getIconByWmoCode from "@root/src/helpers/WMOWorker";
 
 interface IDaily16 {
     currentLang: Language;
@@ -54,7 +55,6 @@ const Daily16: FC<IDaily16> = ({ currentLang, mainColor, weatherDailyList }) => 
 
                         return (
                             <li className="daily-16__content-list-item" key={weatherDaily.date}>
-                                {/* {weatherDaily.weather_code} <br /> */}
                                 <h3
                                     className="daily-16__content-list-item-title"
                                     style={{ borderBottom: `0.1px ${mainColor + 30} solid` }}
@@ -65,7 +65,9 @@ const Daily16: FC<IDaily16> = ({ currentLang, mainColor, weatherDailyList }) => 
                                     <div className="daily-16__content-list-item-body-main">
                                         <img
                                             className="daily-16__content-list-item-body-main-icon"
-                                            src="//cdn.weatherapi.com/weather/64x64/day/113.png"
+                                            src={`src/assets/icons/weatherIcons/${getIconByWmoCode(
+                                                weatherDaily.weather_code
+                                            )}.webp`}
                                             alt=""
                                             title=""
                                         />
