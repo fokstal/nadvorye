@@ -43,28 +43,50 @@ const App: FC = () => {
         const cityToFetch = city === currentCity ? currentCity : city;
 
         const weatherFromSessionStorage = sessionStorage.getItem("weather");
-        const weatherDailyFromSessionStorage = sessionStorage.getItem("weatherDaily");
 
         const searchCityInput = searchCityInputRef.current;
         let weatherJSON: any = weatherJSONClear;
-        let weatherDailyJSON: any = [];
 
         if (weatherFromSessionStorage) weatherJSON = JSON.parse(weatherFromSessionStorage);
-        if (weatherDailyFromSessionStorage) weatherDailyJSON = JSON.parse(weatherDailyFromSessionStorage);
 
         if (isUseApi) {
             weatherJSON = await weatherApi.getForecast(cityToFetch);
-            weatherDailyJSON = await weatherApi.getFuture(city, 16);
         }
 
         sessionStorage.setItem("weather", JSON.stringify(weatherJSON));
-        sessionStorage.setItem("weatherDaily", JSON.stringify(weatherDailyJSON));
 
         setWeather(WeatherApi.convertJSONToWeatherModel(weatherJSON));
         setWeatherIn24Hour(WeatherApi.convertJSONToWeatherShortModelList(weatherJSON));
-        setWeatherDaily(WeatherApi.convertJSONToWeatherDailyModelList(weatherDailyJSON));
 
         if (searchCityInput) searchCityInput.value = "";
+    };
+
+    const fetchFutureWeather = async (city: string = currentCity) => {
+        const weatherDailyFromSessionStorage = sessionStorage.getItem("weatherDaily");
+        let weatherDailyJSON: any = [];
+
+        if (weatherDailyFromSessionStorage) weatherDailyJSON = JSON.parse(weatherDailyFromSessionStorage);
+
+        if (isUseApi) {
+            try {
+                weatherDailyJSON = await weatherApi.getFuture(city, 16);
+            } catch (err) {
+                console.log("Fetch 'weatherDaily' with error: ", err);
+                weatherDailyJSON = "[]";
+            }
+        }
+
+        sessionStorage.setItem("weatherDaily", JSON.stringify(weatherDailyJSON));
+
+        setWeatherDaily(WeatherApi.convertJSONToWeatherDailyModelList(weatherDailyJSON));
+    };
+
+    const fetchWeather = async (city: string = currentCity) => {
+        await fetchCurrentWeather(city);
+
+        setWeatherDaily([]);
+
+        await fetchFutureWeather(city);
     };
 
     useEffect(() => {
@@ -72,7 +94,7 @@ const App: FC = () => {
             setCurrentCityByUserCoordinates();
         }
 
-        fetchCurrentWeather();
+        fetchWeather();
     }, [isUserCoordinatesSet]);
 
     useEffect(() => {
@@ -92,7 +114,7 @@ const App: FC = () => {
                                 currentLang={currentLang}
                                 searchCityInputRef={searchCityInputRef}
                                 setCurrentLang={setCurrentLang}
-                                fetchCurrentWeather={fetchCurrentWeather}
+                                fetchCurrentWeather={fetchWeather}
                                 mainColor={mainColor}
                                 setMainColor={setMainColor}
                             />
