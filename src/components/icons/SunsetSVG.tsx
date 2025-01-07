@@ -11,32 +11,32 @@ const SunsetSVG = forwardRef<SVGSVGElement>(({ ...props }, ref) => {
                 gradientTransform="matrix(0 -1 1.8259 0 -5.84 139.696)"
                 gradientUnits="userSpaceOnUse"
             >
-                <stop offset=".158" stop-color="#FEBC45" />
-                <stop offset=".201" stop-color="#F8AE44" />
-                <stop offset=".328" stop-color="#E98B40" />
-                <stop offset=".432" stop-color="#E0763E" />
-                <stop offset=".5" stop-color="#DD6E3D" />
-                <stop offset=".76" stop-color="#C05E5D" />
-                <stop offset=".99" stop-color="#A95E75" />
+                <stop offset=".158" stopColor="#FEBC45" />
+                <stop offset=".201" stopColor="#F8AE44" />
+                <stop offset=".328" stopColor="#E98B40" />
+                <stop offset=".432" stopColor="#E0763E" />
+                <stop offset=".5" stopColor="#DD6E3D" />
+                <stop offset=".76" stopColor="#C05E5D" />
+                <stop offset=".99" stopColor="#A95E75" />
             </radialGradient>
             <path
                 fill="url(#notoSunset0)"
                 d="M116.62 124.26H11.32c-4.15 0-7.52-3.37-7.52-7.52V11.44c0-4.15 3.37-7.52 7.52-7.52h105.3c4.15 0 7.52 3.37 7.52 7.52v105.3c.01 4.15-3.36 7.52-7.52 7.52z"
             />
             <radialGradient id="notoSunset1" cx="25.529" cy="113.093" r="140.58" gradientUnits="userSpaceOnUse">
-                <stop offset=".817" stop-color="#DD6E3D" stop-opacity="0" />
-                <stop offset=".936" stop-color="#B86365" stop-opacity=".651" />
-                <stop offset="1" stop-color="#A95E75" />
+                <stop offset=".817" stopColor="#DD6E3D" stopOpacity="0" />
+                <stop offset=".936" stopColor="#B86365" stopOpacity=".651" />
+                <stop offset="1" stopColor="#A95E75" />
             </radialGradient>
             <path
                 fill="url(#notoSunset1)"
                 d="M116.62 124.26H11.32c-4.15 0-7.52-3.37-7.52-7.52V11.44c0-4.15 3.37-7.52 7.52-7.52h105.3c4.15 0 7.52 3.37 7.52 7.52v105.3c.01 4.15-3.36 7.52-7.52 7.52z"
             />
             <radialGradient id="notoSunset2" cx="87.87" cy="113.71" r="112.193" gradientUnits="userSpaceOnUse">
-                <stop offset=".411" stop-color="#FD960C" />
-                <stop offset=".61" stop-color="#F2811B" stop-opacity=".662" />
-                <stop offset=".833" stop-color="#EA7028" stop-opacity=".283" />
-                <stop offset="1" stop-color="#E76A2C" stop-opacity="0" />
+                <stop offset=".411" stopColor="#FD960C" />
+                <stop offset=".61" stopColor="#F2811B" stopOpacity=".662" />
+                <stop offset=".833" stopColor="#EA7028" stopOpacity=".283" />
+                <stop offset="1" stopColor="#E76A2C" stopOpacity="0" />
             </radialGradient>
             <path
                 fill="url(#notoSunset2)"
@@ -59,8 +59,8 @@ const SunsetSVG = forwardRef<SVGSVGElement>(({ ...props }, ref) => {
             <path fill="#FFC55C" d="M105.55 73.83h2.88v3.94h-2.88zm5.75 0h2.88v3.94h-2.88z" />
             <path fill="#FFD360" d="M105.55 66.83h2.88v3.94h-2.88zm5.75 0h2.88v3.94h-2.88z" />
             <radialGradient id="notoSunset3" cx="56.989" cy="23.279" r="100.394" gradientUnits="userSpaceOnUse">
-                <stop offset=".51" stop-color="#911F4E" />
-                <stop offset=".934" stop-color="#6D0C36" />
+                <stop offset=".51" stopColor="#911F4E" />
+                <stop offset=".934" stopColor="#6D0C36" />
             </radialGradient>
             <path
                 fill="url(#notoSunset3)"
@@ -106,8 +106,8 @@ const SunsetSVG = forwardRef<SVGSVGElement>(({ ...props }, ref) => {
                 gradientTransform="matrix(.0364 -1.3108 1.1462 .0376 31.606 168.045)"
                 gradientUnits="userSpaceOnUse"
             >
-                <stop offset=".198" stop-color="#FFF6B2" />
-                <stop offset=".767" stop-color="#FFF6B2" stop-opacity="0" />
+                <stop offset=".198" stopColor="#FFF6B2" />
+                <stop offset=".767" stopColor="#FFF6B2" stopOpacity="0" />
             </radialGradient>
             <ellipse cx="92.29" cy="49.46" fill="url(#notoSunset4)" opacity=".63" rx="28.37" ry="30.07" />
         </svg>
