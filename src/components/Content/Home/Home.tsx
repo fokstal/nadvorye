@@ -76,8 +76,8 @@ const Home: FC<IHome> = ({
                     <img
                         className="home__content-icon"
                         src={weather.current.condition.icon}
-                        alt={transcribe(weather.current.condition.text, currentLang)}
-                        title={transcribe(weather.current.condition.text, currentLang)}
+                        alt={weather.current.condition.text}
+                        title={weather.current.condition.text}
                     />
                 </div>
                 <BurgerMenu
