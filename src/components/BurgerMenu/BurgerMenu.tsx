@@ -147,6 +147,11 @@ const BurgerMenu: FC<IBurgerMenu> = ({
                                 🌟 <span>{translationsRecord.anotherTitle[currentLang]}</span>
                             </a>
                         </li>
+                        <li className="burger-menu__navbar-link-list-item">
+                            <a href="#sectionDaily16">
+                                🗓️ <span>{translationsRecord.daily16Title[currentLang]}</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <div className="burger-menu__control">

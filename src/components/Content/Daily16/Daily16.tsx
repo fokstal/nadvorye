@@ -38,7 +38,7 @@ const Daily16: FC<IDaily16> = ({ currentLang, mainColor, weatherDailyList }) => 
     }, [isContentVisible]);
 
     return (
-        <div className="daily-16 daily-16--visible current-content-block" ref={daily16Ref}>
+        <div id="sectionDaily16" className="daily-16 daily-16--visible current-content-block" ref={daily16Ref}>
             <h2
                 className="daily-16__title current-content-block__title"
                 onClick={() => setIsContentVisible(!isContentVisible)}
