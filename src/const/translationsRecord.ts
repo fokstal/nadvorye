@@ -17,6 +17,14 @@ const translationsRecord: Record<string, Translations> = {
         "ru-RU": "мб",
         "en-US": "mb",
     },
+    max: {
+        "ru-RU": "макс",
+        "en-US": "max",
+    },
+    min: {
+        "ru-RU": "мин",
+        "en-US": "min",
+    },
 
     headerTitle: {
         "ru-RU": "Надвор'е",
@@ -76,6 +84,11 @@ const translationsRecord: Record<string, Translations> = {
     anotherWQIText: {
         "ru-RU": "индекс качества погоды",
         "en-US": "weather quality index",
+    },
+
+    daily16Title: {
+        "ru-RU": "Прогноз на 16 дней",
+        "en-US": "Forecast for 16 days",
     },
 };
 

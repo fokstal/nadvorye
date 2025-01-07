@@ -43,7 +43,7 @@ const Daily16: FC<IDaily16> = ({ currentLang, mainColor, weatherDailyList }) => 
                 className="daily-16__title current-content-block__title"
                 onClick={() => setIsContentVisible(!isContentVisible)}
             >
-                🗓️ Daily 16
+                🗓️ {translationsRecord.daily16Title[currentLang]}
                 <AngleSVG className="daily-16__title-arrow current-content-block__title-arrow" stroke={mainColor} />
             </h2>
             <div className="daily-16__content current-content-block__content">
@@ -71,11 +71,11 @@ const Daily16: FC<IDaily16> = ({ currentLang, mainColor, weatherDailyList }) => 
                                         />
                                         <span className="daily-16__content-list-item-body-main-value">
                                             <div>
-                                                <small>max:</small>
+                                                <small>{translationsRecord.max[currentLang]}:</small>
                                                 {getTempForLocale(Math.round(weatherDaily.temp_c_max), currentLang)}
                                             </div>
                                             <div>
-                                                <small>min:</small>
+                                                <small>{translationsRecord.min[currentLang]}:</small>
                                                 {getTempForLocale(Math.round(weatherDaily.temp_c_min), currentLang)}
                                             </div>
                                         </span>
