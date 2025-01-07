@@ -117,7 +117,11 @@ const App: FC = () => {
                                 wind_kph={weather.current.wind_kph}
                                 mainColor={mainColor}
                             />
-                            <Daily16 weatherDailyList={weatherDailyList} />
+                            <Daily16
+                                currentLang={currentLang}
+                                mainColor={mainColor}
+                                weatherDailyList={weatherDailyList}
+                            />
                         </div>
                     </div>
                 )}
