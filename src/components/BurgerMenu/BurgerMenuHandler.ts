@@ -60,8 +60,10 @@ class BurgerMenuHandler {
         fetchCurrentWeather: (city?: string) => void
     ) => {
         if (!isPinCityInSearch && this._searchCityInput.value != "") {
-            this._pinnedCityArr.push(this._searchCityInput.value);
-            SessionStorageWorker.setPinnedCityArr(this._pinnedCityArr);
+            if (!this._pinnedCityArr.includes(this._searchCityInput.value)) {
+                this._pinnedCityArr.push(this._searchCityInput.value);
+                SessionStorageWorker.setPinnedCityArr(this._pinnedCityArr);
+            }
 
             this.togglePinCityInSearch(isPinCityInSearch, setIsPinCityInSearch);
         }
