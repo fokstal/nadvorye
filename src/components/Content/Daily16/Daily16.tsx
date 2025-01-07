@@ -18,9 +18,10 @@ interface IDaily16 {
     currentLang: Language;
     mainColor: string;
     weatherDailyList: WeatherDailyModel[];
+    isWeatherDailyLoaded: boolean;
 }
 
-const Daily16: FC<IDaily16> = ({ currentLang, mainColor, weatherDailyList }) => {
+const Daily16: FC<IDaily16> = ({ currentLang, mainColor, weatherDailyList, isWeatherDailyLoaded }) => {
     const [isContentVisible, setIsContentVisible] = useState(true);
     const daily16Ref = useRef<HTMLDivElement | null>(null);
 
@@ -47,83 +48,90 @@ const Daily16: FC<IDaily16> = ({ currentLang, mainColor, weatherDailyList }) => 
                 🗓️ {translationsRecord.daily16Title[currentLang]}
                 <AngleSVG className="daily-16__title-arrow current-content-block__title-arrow" stroke={mainColor} />
             </h2>
-            <div className="daily-16__content current-content-block__content">
-                <ul className="daily-16__content-list">
-                    {weatherDailyList.map((weatherDaily) => {
-                        const windDirAngle = Math.round(weatherDaily.wind_dir);
-                        const windSpeed = Math.round(weatherDaily.wind_kph_max);
+            <div
+                className="daily-16__content current-content-block__content"
+                style={{ height: isWeatherDailyLoaded ? "auto" : "" }}
+            >
+                {isWeatherDailyLoaded ? (
+                    <div className="daily-16__content-loader"></div>
+                ) : (
+                    <ul className="daily-16__content-list">
+                        {weatherDailyList.map((weatherDaily) => {
+                            const windDirAngle = Math.round(weatherDaily.wind_dir);
+                            const windSpeed = Math.round(weatherDaily.wind_kph_max);
 
-                        return (
-                            <li className="daily-16__content-list-item" key={weatherDaily.date}>
-                                <h3
-                                    className="daily-16__content-list-item-title"
-                                    style={{ borderBottom: `0.1px ${mainColor + 30} solid` }}
-                                >
-                                    {convertDateFrom_ISO8601(weatherDaily.date, currentLang)}
-                                </h3>
-                                <div className="daily-16__content-list-item-body">
-                                    <div className="daily-16__content-list-item-body-main">
-                                        <img
-                                            className="daily-16__content-list-item-body-main-icon"
-                                            src={`src/assets/icons/weatherIcons/${getIconByWmoCode(
-                                                weatherDaily.weather_code
-                                            )}.webp`}
-                                            alt=""
-                                            title=""
-                                        />
-                                        <span className="daily-16__content-list-item-body-main-value">
-                                            <div>
-                                                <small>{translationsRecord.max[currentLang]}:</small>
-                                                {getTempForLocale(Math.round(weatherDaily.temp_c_max), currentLang)}
-                                            </div>
-                                            <div>
-                                                <small>{translationsRecord.min[currentLang]}:</small>
-                                                {getTempForLocale(Math.round(weatherDaily.temp_c_min), currentLang)}
-                                            </div>
-                                        </span>
+                            return (
+                                <li className="daily-16__content-list-item" key={weatherDaily.date}>
+                                    <h3
+                                        className="daily-16__content-list-item-title"
+                                        style={{ borderBottom: `0.1px ${mainColor + 30} solid` }}
+                                    >
+                                        {convertDateFrom_ISO8601(weatherDaily.date, currentLang)}
+                                    </h3>
+                                    <div className="daily-16__content-list-item-body">
+                                        <div className="daily-16__content-list-item-body-main">
+                                            <img
+                                                className="daily-16__content-list-item-body-main-icon"
+                                                src={`src/assets/icons/weatherIcons/${getIconByWmoCode(
+                                                    weatherDaily.weather_code
+                                                )}.webp`}
+                                                alt=""
+                                                title=""
+                                            />
+                                            <span className="daily-16__content-list-item-body-main-value">
+                                                <div>
+                                                    <small>{translationsRecord.max[currentLang]}:</small>
+                                                    {getTempForLocale(Math.round(weatherDaily.temp_c_max), currentLang)}
+                                                </div>
+                                                <div>
+                                                    <small>{translationsRecord.min[currentLang]}:</small>
+                                                    {getTempForLocale(Math.round(weatherDaily.temp_c_min), currentLang)}
+                                                </div>
+                                            </span>
+                                        </div>
+                                        <div className="daily-16__content-list-item-body-second">
+                                            <span className="daily-16__content-list-item-body-second-block daily-16__content-list-item-body-second-block--direction">
+                                                <Compass scale={0.5} angle={windDirAngle} />
+                                                <div className="daily-16__content-list-item-body-second-block-value">
+                                                    {convertWindDirToText(windDirAngle, currentLang)}{" "}
+                                                    <small>({windDirAngle}&deg;)</small>
+                                                </div>
+                                            </span>
+                                            <span className="daily-16__content-list-item-body-second-block">
+                                                <div className="daily-16__content-list-item-body-second-block-label">
+                                                    <SpeedSVG stroke={mainColor} />
+                                                    {translationsRecord.windSpeedText[currentLang]}:
+                                                </div>
+                                                <div className="daily-16__content-list-item-body-second-block-value">
+                                                    {windSpeed} <small>{translationsRecord.kph[currentLang]}</small>
+                                                </div>
+                                            </span>
+                                            <span className="daily-16__content-list-item-body-second-block">
+                                                <div className="daily-16__content-list-item-body-second-block-label">
+                                                    <ConditionSVG stroke={mainColor} />
+                                                    {translationsRecord.windTypeText[currentLang]}:
+                                                </div>
+                                                <div className="daily-16__content-list-item-body-second-block-value">
+                                                    {getWindType(windSpeed, currentLang)}
+                                                </div>
+                                            </span>
+                                            <span className="daily-16__content-list-item-body-second-block">
+                                                <div className="daily-16__content-list-item-body-second-block-label">
+                                                    <RainSVG stroke={mainColor} />
+                                                    {translationsRecord.anotherPrecipText[currentLang]}:
+                                                </div>
+                                                <div className="daily-16__content-list-item-body-second-block-value">
+                                                    {Math.round(weatherDaily.precip_mm)}{" "}
+                                                    <small>{translationsRecord.mm[currentLang]}</small>
+                                                </div>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div className="daily-16__content-list-item-body-second">
-                                        <span className="daily-16__content-list-item-body-second-block daily-16__content-list-item-body-second-block--direction">
-                                            <Compass scale={0.5} angle={windDirAngle} />
-                                            <div className="daily-16__content-list-item-body-second-block-value">
-                                                {convertWindDirToText(windDirAngle, currentLang)}{" "}
-                                                <small>({windDirAngle}&deg;)</small>
-                                            </div>
-                                        </span>
-                                        <span className="daily-16__content-list-item-body-second-block">
-                                            <div className="daily-16__content-list-item-body-second-block-label">
-                                                <SpeedSVG stroke={mainColor} />
-                                                {translationsRecord.windSpeedText[currentLang]}:
-                                            </div>
-                                            <div className="daily-16__content-list-item-body-second-block-value">
-                                                {windSpeed} <small>{translationsRecord.kph[currentLang]}</small>
-                                            </div>
-                                        </span>
-                                        <span className="daily-16__content-list-item-body-second-block">
-                                            <div className="daily-16__content-list-item-body-second-block-label">
-                                                <ConditionSVG stroke={mainColor} />
-                                                {translationsRecord.windTypeText[currentLang]}:
-                                            </div>
-                                            <div className="daily-16__content-list-item-body-second-block-value">
-                                                {getWindType(windSpeed, currentLang)}
-                                            </div>
-                                        </span>
-                                        <span className="daily-16__content-list-item-body-second-block">
-                                            <div className="daily-16__content-list-item-body-second-block-label">
-                                                <RainSVG stroke={mainColor} />
-                                                {translationsRecord.anotherPrecipText[currentLang]}:
-                                            </div>
-                                            <div className="daily-16__content-list-item-body-second-block-value">
-                                                {Math.round(weatherDaily.precip_mm)}{" "}
-                                                <small>{translationsRecord.mm[currentLang]}</small>
-                                            </div>
-                                        </span>
-                                    </div>
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ul>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
             </div>
         </div>
     );

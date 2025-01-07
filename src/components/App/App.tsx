@@ -24,6 +24,7 @@ const App: FC = () => {
     const [currentLang, setCurrentLang] = useState(Language.RU);
     const [isUseApi, setIsUseApi] = useState(false);
     const [isUserCoordinatesSet, setIsUserCoordinatesSet] = useState(false);
+    const [isWeatherDailyLoaded, setIsWeatherDailyLoaded] = useState(false);
     const [mainColor, setMainColor] = useState("white");
 
     const weatherApi = new WeatherApi(WeatherApiConfig.KEY, WeatherApiConfig.HOST, currentLang);
@@ -69,12 +70,15 @@ const App: FC = () => {
 
         if (isUseApi) {
             try {
+                setIsWeatherDailyLoaded(true);
                 weatherDailyJSON = await weatherApi.getFuture(city, 16);
             } catch (err) {
                 console.log("Fetch 'weatherDaily' with error: ", err);
                 weatherDailyJSON = "[]";
             }
         }
+
+        setIsWeatherDailyLoaded(false);
 
         sessionStorage.setItem("weatherDaily", JSON.stringify(weatherDailyJSON));
 
@@ -147,6 +151,7 @@ const App: FC = () => {
                                 currentLang={currentLang}
                                 mainColor={mainColor}
                                 weatherDailyList={weatherDailyList}
+                                isWeatherDailyLoaded={isWeatherDailyLoaded}
                             />
                         </div>
                     </div>
