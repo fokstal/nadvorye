@@ -1,9 +1,9 @@
 import { FC, useState, useEffect, useRef } from "react";
 import { WeatherApiConfig } from "@src/app.config";
-import Home from "@components/Content/Current/Home/Home";
-import Hour24 from "@components/Content/Current/Hour24/Hour24";
-import Wind from "@components/Content/Current/Wind/Wind";
-import Another from "@components/Content/Current/Another/Another";
+import Home from "@root/src/components/Content/Home/Home";
+import Hour24 from "@root/src/components/Content/Hour24/Hour24";
+import Wind from "@root/src/components/Content/Wind/Wind";
+import Another from "@root/src/components/Content/Another/Another";
 import Daily16 from "../Content/Daily16/Daily16";
 import Language from "@const/Language";
 import weatherJSONClear from "@const/weatherJSONClear";
