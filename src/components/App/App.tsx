@@ -43,22 +43,26 @@ const App: FC = () => {
         const cityToFetch = city === currentCity ? currentCity : city;
 
         const weatherFromSessionStorage = sessionStorage.getItem("weather");
+        const weatherDailyFromSessionStorage = sessionStorage.getItem("weatherDaily");
 
         const searchCityInput = searchCityInputRef.current;
         let weatherFromResp: any = weatherJSONClear;
+        let weatherDailyFromResp: any = [];
 
         if (weatherFromSessionStorage) weatherFromResp = JSON.parse(weatherFromSessionStorage);
+        if (weatherDailyFromSessionStorage) weatherDailyFromResp = JSON.parse(weatherDailyFromSessionStorage);
+
         if (isUseApi) {
             weatherFromResp = await weatherApi.getForecast(cityToFetch);
-            const weatherDailyListJSON = await weatherApi.getFuture(city, 16);
-
-            setWeatherDaily(WeatherApi.convertJSONToWeatherDailyModelList(weatherDailyListJSON));
+            weatherDailyFromResp = await weatherApi.getFuture(city, 16);
         }
 
         sessionStorage.setItem("weather", JSON.stringify(weatherFromResp));
+        sessionStorage.setItem("weatherDaily", JSON.stringify(weatherDailyFromResp));
 
         setWeather(WeatherApi.convertJSONToWeatherModel(weatherFromResp));
         setWeatherIn24Hour(WeatherApi.convertJSONToWeatherShortModelList(weatherFromResp));
+        setWeatherDaily(WeatherApi.convertJSONToWeatherDailyModelList(weatherDailyFromResp));
 
         if (searchCityInput) searchCityInput.value = "";
     };
