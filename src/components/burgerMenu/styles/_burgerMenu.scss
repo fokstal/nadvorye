@@ -1,4 +1,6 @@
 .burger-menu {
+    position: absolute;
+    right: 0;
     display: flex;
     flex-direction: column;
     width: 50px;
@@ -33,6 +35,7 @@
             padding: 3px 0;
 
             &-line {
+                background: #434343;
                 border: 2px #434343 solid;
                 border-radius: 10px;
                 margin: 0;
@@ -55,7 +58,7 @@
     }
 
     &--expanded {
-        width: 30%;
+        width: max(30%, 320px);
 
         .burger-menu {
             &__button {
@@ -91,8 +94,12 @@
                     &-item {
                         a {
                             span {
-                                font-size: 28px;
+                                font-size: 1.75rem;
                                 opacity: 1;
+
+                                @media (max-width: 900px) {
+                                    font-size: 1.5rem;
+                                }
                             }
                         }
                     }

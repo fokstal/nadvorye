@@ -5,15 +5,19 @@
     &-link-list {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        font-size: 1.75rem;
+        gap: 1em;
         list-style-type: none;
         padding: 0;
         text-align: center;
 
+        @media (max-width: 900px) {
+            font-size: 1.5rem;
+        }
+
         &-item {
             a {
                 color: whitesmoke;
-                font-size: 28px;
                 font-weight: 100;
                 text-decoration: none;
                 cursor: pointer;

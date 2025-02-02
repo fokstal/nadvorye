@@ -4,10 +4,12 @@
     &-lang {
         display: inline;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 1.25rem;
+        opacity: 1;
+        transition: opacity 0.2s;
 
         &:hover {
-            opacity: 0.6;
+            opacity: 0.5;
         }
     }
 }
