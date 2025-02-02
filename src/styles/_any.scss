@@ -19,7 +19,7 @@ body {
         scrollbar-width: thin;
     }
 
-    .home-link {
+    .root-link {
         display: block !important;
         position: fixed;
         background: none;
@@ -28,8 +28,11 @@ body {
         right: 15px;
         text-decoration: none;
         z-index: 1;
-        transition: opacity 0.2s;
         cursor:n-resize;
+
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s;
 
         &:hover {
             opacity: 0.5;
@@ -42,6 +45,11 @@ body {
 
         &__icon {
             width: 1em;
+        }
+
+        &--visible {
+            opacity: 1;
+            visibility: visible;
         }
     }
 }

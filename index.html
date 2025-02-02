@@ -7,10 +7,30 @@
         <title>Nadvorye</title>
     </head>
     <body>
-        <a id="homeLink" href="#sectionHome" class="home-link" title="home" style="display: none">
-            <img class="home-link__icon" src="./src/assets/icons/home.svg" alt="home" />
-        </a>
         <div id="root"></div>
+        <a id="rootLink" class="root-link" style="display: none">
+            <img class="root-link__icon" src="./src/assets/icons/home.svg" alt="home" />
+        </a>
         <script type="module" src="./src/main.tsx"></script>
+        <script>
+            const root = document.getElementById("root");
+            const rootLink = document.getElementById("rootLink");
+
+            rootLink.addEventListener("click", () => {
+                root.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+
+            root.addEventListener("scroll", () => {
+                if (root.scrollTop < 1000) {
+                    rootLink.classList.remove("root-link--visible");
+                    return;
+                }
+
+                rootLink.classList.add("root-link--visible");
+            });
+        </script>
     </body>
 </html>
