@@ -1,5 +1,4 @@
 import Language from "@const/Language";
-import { fetchWeatherApi } from "openmeteo";
 
 class WeatherApi {
     private _key: string;
@@ -38,40 +37,21 @@ class WeatherApi {
         const timeZoneByCity: any = await this.fetchTimeZone(city);
         const latitude = timeZoneByCity.location.lat;
         const longitude = timeZoneByCity.location.lon;
-        const url = `${WeatherApi.api_OpenMeteo_url}v1/forecast/`;
-        const options = {
-            latitude: latitude,
-            longitude: longitude,
-            daily: [
-                "weather_code",
-                "temperature_2m_max",
-                "temperature_2m_min",
-                "precipitation_sum",
-                "wind_speed_10m_max",
-                "wind_direction_10m_dominant",
-            ],
-            timezone: "GMT",
-            forecast_days: days,
-        };
+        const url = `${WeatherApi.api_OpenMeteo_url}v1/forecast?latitude=${latitude}&longitude=${longitude}`;
+        const options = `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,wind_direction_10m_dominant&timezone=Europe/Minsk&forecast_days=${days}`;
 
         try {
-            const respList = await fetchWeatherApi(url, options);
-            const resp = respList[0];
-            const utcOffsetSeconds = resp.utcOffsetSeconds();
-            const data = resp.daily();
-
-            if (!data) return null;
+            const resp = await fetch(url + options);
+            const data = await resp.json();
 
             const json = {
-                time: WeatherApi.getTimeRange(Number(data.time()), Number(data.timeEnd()), data.interval()).map(
-                    (t) => new Date((t + utcOffsetSeconds) * 1000)
-                ),
-                weatherCode: data.variables(0)!.valuesArray()!,
-                temperature2mMax: data.variables(1)!.valuesArray()!,
-                temperature2mMin: data.variables(2)!.valuesArray()!,
-                precipitationSum: data.variables(3)!.valuesArray()!,
-                windSpeed10mMax: data.variables(4)!.valuesArray()!,
-                windDirection10mDominant: data.variables(5)!.valuesArray()!,
+                temp: data.daily.time,
+                weatherCode: data.daily.weather_code,
+                temperature2mMax: data.daily.temperature_2m_max,
+                temperature2mMin: data.daily.temperature_2m_min,
+                precipitationSum: data.daily.precipitation_sum,
+                windSpeed10mMax: data.daily.wind_speed_10m_max,
+                windDirection10mDominant: data.daily.wind_direction_10m_dominant,
             };
 
             return json;
