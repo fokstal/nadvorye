@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from "react";
+import { FC, useState, useEffect } from "react";
 import Home from "@components/home/home";
 import Hourly from "@components/hourly/hourly";
 import Wind from "@components/wind/wind";
@@ -24,10 +24,10 @@ const AppLayout: FC = () => {
     const [isUserCoordinatesSet, setIsUserCoordinatesSet] = useState(true);
     const [isWeatherIn16DayLoaded, setIsWeatherIn16DayLoaded] = useState(false);
 
-    const appHandler = useRef(new AppHandler());
+    const appHandler = new AppHandler();
 
     const getWeather = async () => {
-        const { todayData, in24HourData } = await appHandler.current.getCurrentWeather();
+        const { todayData, in24HourData } = await appHandler.getCurrentWeather();
 
         setIsWeatherIn16DayLoaded(true);
 
@@ -35,7 +35,7 @@ const AppLayout: FC = () => {
         setWeatherIn24Hour(in24HourData);
 
         setWeatherIn16Day(
-            await appHandler.current.getWeatherIn16Day().then((data) => {
+            await appHandler.getWeatherIn16Day().then((data) => {
                 setIsWeatherIn16DayLoaded(false);
 
                 return data;
@@ -45,7 +45,7 @@ const AppLayout: FC = () => {
 
     const getWeatherByUserCoordinates = async () => {
         if (!isUserCoordinatesSet) {
-            setIsUserCoordinatesSet(await appHandler.current.setCityByUserCoordinates());
+            setIsUserCoordinatesSet(await appHandler.setCityByUserCoordinates());
         }
 
         await getWeather();
