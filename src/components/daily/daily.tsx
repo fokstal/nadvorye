@@ -24,7 +24,15 @@ const Daily: FC<IDaily> = ({ weatherDailyList, isWeatherDataLoaded }) => {
 
     const [isVisible, setIsVisible] = useState(true);
 
-    return (
+    return !isWeatherDataLoaded && weatherDailyList.length === 0 ? (
+        <div className="daily-null content-block" id="sectionDaily">
+            <h2 className="content-block__title">
+                🗓️ {translationsRecord.dailyNavbarTitle[language]}
+                &nbsp;
+                <strong>{translationsRecord.notAvailable[language]}</strong>
+            </h2>
+        </div>
+    ) : (
         <div className={`daily content-block ${isVisible ? "daily--visible" : ""}`} id="sectionDaily">
             <h2 className="daily__title content-block__title" onClick={() => setIsVisible((prev) => !prev)}>
                 🗓️{" "}
