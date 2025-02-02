@@ -3,4 +3,4 @@ const WeatherApiConfig = {
     HOST: "weatherapi-com.p.rapidapi.com",
 };
 
-export { WeatherApiConfig }
+export { WeatherApiConfig };

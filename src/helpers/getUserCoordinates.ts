@@ -1,7 +1,7 @@
 const getUserCoordinates = (): Promise<{ latitude: number; longitude: number } | null> => {
     return new Promise((resolve) => {
         if (!navigator.geolocation) {
-            console.log("Geolocation is not supported by this browser.");
+            console.error("Geolocation is not supported by this browser.");
             resolve(null);
             return;
         }
@@ -12,7 +12,7 @@ const getUserCoordinates = (): Promise<{ latitude: number; longitude: number } |
                 resolve({ latitude, longitude });
             },
             (error) => {
-                console.log("Error getting location: ", error);
+                console.error("Error getting location: ", error);
                 resolve(null);
                 return;
             }

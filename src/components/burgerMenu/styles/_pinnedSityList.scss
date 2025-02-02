@@ -1,0 +1,51 @@
+.burger-menu__pinned-city-list {
+    height: 160px;
+    min-width: 150px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin-bottom: 0;
+
+    transition: all 0.5s;
+    opacity: 0;
+    visibility: hidden;
+
+    &-item {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        font-weight: 100;
+        font-size: 24px;
+        border: 1px transparent solid;
+        cursor: pointer;
+        transition: opacity 0.5s ease;
+        align-items: center;
+        margin-right: 30px;
+
+        &:hover {
+            opacity: 0.7;
+            gap: 10px;
+
+            .burger-menu__pinned-city-list-item-remover {
+                visibility: visible;
+                font-size: 24px;
+            }
+        }
+
+        &-remover {
+            visibility: hidden;
+            transition: all 0.5s;
+            margin-left: 15px;
+            transform: rotate(45deg);
+            font-size: 0;
+
+            &:hover {
+                color: orangered !important;
+            }
+        }
+    }
+}

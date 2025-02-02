@@ -325,6 +325,16 @@ const wmoToIconMap: { [key: number]: number } = {
     99: 1276, // Thunderstorm with heavy hail
 };
 
+const getIconByCode = (code: number): number => {
+    let icon = 113;
+
+    weatherIconsJson.forEach((weatherIcon) => {
+        if (weatherIcon.code === code) icon = weatherIcon.icon;
+    });
+
+    return icon;
+};
+
 const getIconByWmoCode = (wmoCode: number): number => {
     const iconCode = wmoToIconMap[wmoCode];
 
@@ -335,4 +345,4 @@ const getIconByWmoCode = (wmoCode: number): number => {
     return 199;
 };
 
-export default getIconByWmoCode;
+export { getIconByCode, getIconByWmoCode };

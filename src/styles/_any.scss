@@ -16,6 +16,7 @@ body {
         justify-content: center;
         overflow-x: hidden;
         scroll-behavior: smooth;
+        scrollbar-width: thin;
     }
 
     .home-link {
@@ -41,7 +42,7 @@ body {
     }
 }
 
-.current-content-block {
+.content-block {
     background: #ffffff10;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;

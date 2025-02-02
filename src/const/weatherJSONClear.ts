@@ -11,11 +11,11 @@ const weatherJSONClear = {
     },
     current: {
         last_updated_epoch: 0,
-        last_updated: "1994-07-20 00:00",
+        last_updated: "1994-07-10 00:00",
         temp_c: 0,
         temp_f: 0,
         is_day: 0,
-        condition: { text: "", icon: "//cdn.weatherapi.com/weather/64x64/day/113.png", code: 0 },
+        condition: { text: "", icon: "//cdn.weatherapi.com/weather/64x64/day/392.png", code: 1279 },
         wind_mph: 0,
         wind_kph: 0,
         wind_degree: 0,

@@ -31,9 +31,13 @@ const translationsRecord: Record<string, Translations> = {
         "en-US": "Nadvorye",
     },
 
-    hour24Title: {
-        "ru-RU": "24 часовой прогноз",
-        "en-US": "24-hour forecast",
+    hourlyNavbarTitle: {
+        "ru-RU": "Почасовой прогноз",
+        "en-US": "Hourly forecast",
+    },
+    hourlyTitle: {
+        "ru-RU": "часовой прогноз",
+        "en-US": "hourly forecast",
     },
 
     windTitle: {
@@ -49,46 +53,54 @@ const translationsRecord: Record<string, Translations> = {
         "en-US": "Wind type",
     },
 
-    anotherTitle: {
+    detailsTitle: {
         "ru-RU": "Другие данные",
         "en-US": "Another",
     },
-    anotherSunriseText: {
+    detailsSunriseText: {
         "ru-RU": "рассвет",
         "en-US": "sunrise",
     },
-    anotherSunsetText: {
+    detailsSunsetText: {
         "ru-RU": "закат",
         "en-US": "sunset",
     },
-    anotherHumidityText: {
+    detailsHumidityText: {
         "ru-RU": "Влажность",
         "en-US": "Humidity",
     },
-    anotherPressureText: {
+    detailsPressureText: {
         "ru-RU": "Давление",
         "en-US": "Pressure",
     },
-    anotherPrecipText: {
+    detailsPrecipText: {
         "ru-RU": "Осадки",
         "en-US": "Precip",
     },
-    anotherCloudText: {
+    detailsCloudText: {
         "ru-RU": "Облачность",
         "en-US": "Cloud",
     },
-    anotherWQIShortText: {
+    detailsWQIShortText: {
         "ru-RU": "ИКП",
         "en-US": "WQI",
     },
-    anotherWQIText: {
+    detailsWQIText: {
         "ru-RU": "индекс качества погоды",
         "en-US": "weather quality index",
     },
 
-    daily16Title: {
-        "ru-RU": "Прогноз на 16 дней",
-        "en-US": "Forecast for 16 days",
+    dailyNavbarTitle: {
+        "ru-RU": "Ежедневный прогноз",
+        "en-US": "Daily forecast",
+    },
+    dailyFirstPartTitle: {
+        "ru-RU": "Прогноз на",
+        "en-US": "Forecast for",
+    },
+    dailyLastPartTitle: {
+        "ru-RU": "дней",
+        "en-US": "days",
     },
 };
 

@@ -1,3 +1,5 @@
+import Theme from "@const/Theme";
+
 type RGBModel = {
     r: number;
     g: number;
@@ -25,11 +27,11 @@ const hexToRgb = (hex: string): RGBModel => {
     return { r, g, b };
 };
 
-const getTextColor = (dominantColor: string): string => {
+const getTextColor = (dominantColor: string): Theme => {
     const { r, g, b } = hexToRgb(dominantColor);
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
 
-    return brightness > 128 ? "#434343" : "#F8F8F8";
+    return brightness > 128 ? Theme.DARK : Theme.WHITE;
 };
 
 const getDominantColorInHex = (image: HTMLImageElement): string => {

@@ -1,14 +1,14 @@
 import Language from "@const/Language";
-import weatherJSONClear from "@const/weatherJSONClear";
-import WeatherModel from "@models/WeatherModel";
-import WeatherShortModel from "@models/WeatherShortModel";
-import WeatherDailyModel from "@models/WeatherDailyModel";
 import { fetchWeatherApi } from "openmeteo";
 
 class WeatherApi {
     private _key: string;
     private _host: string;
     private _lang: Language;
+    private _api_RapidApi_options;
+
+    private static api_OpenMeteo_url = "https://api.open-meteo.com/";
+    private static api_RapidApi_url = "https://weatherapi-com.p.rapidapi.com/";
 
     public get Key() {
         return this._key;
@@ -24,14 +24,21 @@ class WeatherApi {
         this._key = key;
         this._host = host;
         this._lang = lang;
+
+        this._api_RapidApi_options = {
+            method: "GET",
+            headers: {
+                "x-rapidapi-key": key,
+                "x-rapidapi-host": host,
+            },
+        };
     }
 
-    public async getFuture(city: string, days: 1 | 3 | 7 | 14 | 16): Promise<any | null> {
-        const timeZoneByCity: any = await this.getTimeZone(city);
+    public async fetchDailyForecast(city: string, days: 1 | 3 | 7 | 14 | 16): Promise<any | null> {
+        const timeZoneByCity: any = await this.fetchTimeZone(city);
         const latitude = timeZoneByCity.location.lat;
         const longitude = timeZoneByCity.location.lon;
-
-        const url = "https://api.open-meteo.com/v1/forecast";
+        const url = `${WeatherApi.api_OpenMeteo_url}v1/forecast/`;
         const options = {
             latitude: latitude,
             longitude: longitude,
@@ -48,156 +55,61 @@ class WeatherApi {
         };
 
         try {
-            const weatherFutureResps = await fetchWeatherApi(url, options);
-            const weatherFutureResp = weatherFutureResps[0];
-            const utcOffsetSeconds = weatherFutureResp.utcOffsetSeconds();
-            const daily = weatherFutureResp.daily();
+            const respList = await fetchWeatherApi(url, options);
+            const resp = respList[0];
+            const utcOffsetSeconds = resp.utcOffsetSeconds();
+            const data = resp.daily();
 
-            if (!daily) return null;
+            if (!data) return null;
 
-            const weatherFutureJSON = {
-                time: WeatherApi.getTimeRange(Number(daily.time()), Number(daily.timeEnd()), daily.interval()).map(
+            const json = {
+                time: WeatherApi.getTimeRange(Number(data.time()), Number(data.timeEnd()), data.interval()).map(
                     (t) => new Date((t + utcOffsetSeconds) * 1000)
                 ),
-                weatherCode: daily.variables(0)!.valuesArray()!,
-                temperature2mMax: daily.variables(1)!.valuesArray()!,
-                temperature2mMin: daily.variables(2)!.valuesArray()!,
-                precipitationSum: daily.variables(3)!.valuesArray()!,
-                windSpeed10mMax: daily.variables(4)!.valuesArray()!,
-                windDirection10mDominant: daily.variables(5)!.valuesArray()!,
+                weatherCode: data.variables(0)!.valuesArray()!,
+                temperature2mMax: data.variables(1)!.valuesArray()!,
+                temperature2mMin: data.variables(2)!.valuesArray()!,
+                precipitationSum: data.variables(3)!.valuesArray()!,
+                windSpeed10mMax: data.variables(4)!.valuesArray()!,
+                windDirection10mDominant: data.variables(5)!.valuesArray()!,
             };
 
-            return weatherFutureJSON;
+            return json;
         } catch (error) {
-            throw new Error(`Error on WeatherApi (getFuture): ${error}`);
+            console.error(`Error on WeatherApi (fetchDailyForecast): ${error}`);
         }
+
+        return null;
     }
 
-    public async getTimeZone(city: string): Promise<any> {
-        const url = `https://weatherapi-com.p.rapidapi.com/timezone.json?q=${city}`;
-        const options = {
-            method: "GET",
-            headers: {
-                "x-rapidapi-key": this._key,
-                "x-rapidapi-host": this._host,
-            },
-        };
+    public async fetchTimeZone(city: string): Promise<any | null> {
+        const url = `${WeatherApi.api_RapidApi_url}timezone.json?q=${city}`;
 
         try {
-            const timeZoneResp = await fetch(url, options);
-            const timeZoneJSON = await timeZoneResp.json();
+            const resp = await fetch(url, this._api_RapidApi_options);
+            const json = await resp.json();
 
-            return timeZoneJSON;
+            return json;
         } catch (error) {
-            throw new Error(`Error on WeatherApi (getTimeZone): ${error}`);
+            console.error(`Error on WeatherApi (fetchTimeZone): ${error}`);
         }
+
+        return null;
     }
 
-    public async getForecast(city: string): Promise<any> {
-        const url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${city}&lang=${this._lang}`;
-        const options = {
-            method: "GET",
-            headers: {
-                "x-rapidapi-key": this._key,
-                "x-rapidapi-host": this._host,
-            },
-        };
+    public async fetchTodayForecast(city: string): Promise<any | null> {
+        const url = `${WeatherApi.api_RapidApi_url}forecast.json?q=${city}&lang=${this._lang}`;
 
         try {
-            const weatherResp = await fetch(url, options);
-            const weatherJSON = await weatherResp.json();
+            const resp = await fetch(url, this._api_RapidApi_options);
+            const json = await resp.json();
 
-            return weatherJSON;
+            return json;
         } catch (error) {
-            throw new Error(`Error on WeatherApi (getCurrent): ${error}`);
+            console.error(`Error on WeatherApi (fetchTodayForecast): ${error}`);
         }
-    }
 
-    public static convertJSONToWeatherModel(valueJSON: any): WeatherModel {
-        try {
-            return {
-                location: {
-                    name: valueJSON.location.name,
-                    region: valueJSON.location.region,
-                    country: valueJSON.location.country,
-                    lat: valueJSON.location.lat,
-                    lon: valueJSON.location.lon,
-                },
-                current: {
-                    last_updated: valueJSON.current.last_updated,
-                    temp_c: valueJSON.current.temp_c,
-                    temp_f: valueJSON.current.temp_f,
-                    is_day: valueJSON.current.is_day,
-                    condition: {
-                        code: valueJSON.current.condition.code,
-                        text: valueJSON.current.condition.text,
-                        icon: valueJSON.current.condition.icon,
-                    },
-                    wind_kph: valueJSON.current.wind_kph,
-                    wind_dir: valueJSON.current.wind_dir,
-                    pressure_mb: valueJSON.current.pressure_mb,
-                    precip_mm: valueJSON.current.precip_mm,
-                    feelslike_c: valueJSON.current.feelslike_c,
-                    feelslike_f: valueJSON.current.feelslike_f,
-                    humidity: valueJSON.current.humidity,
-                    cloud: valueJSON.current.cloud,
-                    windchill_c: valueJSON.current.windchill_c,
-                    windchill_f: valueJSON.current.windchill_f,
-                },
-                forecastday: {
-                    astro: {
-                        sunrise: valueJSON.forecast.forecastday[0].astro.sunrise,
-                        sunset: valueJSON.forecast.forecastday[0].astro.sunset,
-                    },
-                },
-            };
-        } catch {}
-
-        return this.convertJSONToWeatherModel(weatherJSONClear);
-    }
-
-    public static convertJSONToWeatherShortModelList(valueJSON: any): WeatherShortModel[] {
-        try {
-            const result: WeatherShortModel[] = [];
-
-            for (let i = 0; i < valueJSON.forecast.forecastday[0].hour.length; i++) {
-                const currentHourData = valueJSON.forecast.forecastday[0].hour[i];
-
-                result.push({
-                    time: currentHourData.time,
-                    temp_c: currentHourData.temp_c,
-                    temp_f: currentHourData.temp_f,
-                    wind_kph: currentHourData.wind_kph,
-                    condition: {
-                        icon: currentHourData.condition.icon,
-                    },
-                });
-            }
-
-            return result;
-        } catch {}
-
-        return this.convertJSONToWeatherShortModelList(weatherJSONClear);
-    }
-
-    public static convertJSONToWeatherDailyModelList(valueJSON: any): WeatherDailyModel[] {
-        const weatherDailyList: WeatherDailyModel[] = [];
-
-        try {
-            for (let i = 0; i < valueJSON.time.length; i++) {
-                weatherDailyList.push({
-                    date: valueJSON.time[i],
-                    weather_code: valueJSON.weatherCode[i],
-                    temp_c_max: valueJSON.temperature2mMax[i],
-                    temp_c_min: valueJSON.temperature2mMin[i],
-                    precip_mm: valueJSON.precipitationSum[i],
-                    wind_kph_max: valueJSON.windSpeed10mMax[i],
-                    wind_dir: valueJSON.windDirection10mDominant[i],
-                });
-            }
-        } catch (err) {}
-
-        return weatherDailyList;
+        return null;
     }
 
     public static getTimeRange(start: number, stop: number, step: number): number[] {

@@ -57,11 +57,11 @@ const calculateWeatherQualityIndex = (
     let levelColor: string;
 
     if (indexValue < 0) {
-        levelColor = "red";
+        levelColor = "#E4717A50";
     } else if (indexValue >= 0 && indexValue <= 20) {
-        levelColor = "orange";
+        levelColor = "#FCE88390";
     } else {
-        levelColor = "greenyellow";
+        levelColor = "#77DD7790";
     }
 
     return { levelColor, indexValue };
