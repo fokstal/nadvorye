@@ -13,7 +13,7 @@
         margin-left: 10px;
         height: 15px;
         transition: all 0.2s;
-        transform: rotate(45deg);
+        transform: rotate(0deg);
         cursor: pointer;
 
         &:hover {
@@ -21,7 +21,7 @@
         }
 
         &--rotate {
-            transform: rotate(0deg);
+            transform: rotate(45deg);
         }
     }
 
