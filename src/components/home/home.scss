@@ -1,5 +1,6 @@
 .home {
     height: 100vh;
+    min-width: 320px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -21,12 +22,18 @@
     &__content {
         display: flex;
         flex-direction: row;
-        gap: 25px;
+        font-size: 1.5rem;
+        gap: 2em;
         margin-top: auto;
         padding: 50px;
 
+        @media (max-width: 900px) {
+            flex-direction: column;
+            font-size: 1rem;
+        }
+
         &-temp {
-            font-size: 80px;
+            font-size: 5em;
         }
 
         &-add {
@@ -34,13 +41,14 @@
             flex-direction: column;
 
             &-city {
-                font-size: 36px;
-            }
-        }
+                font-size: 2.25em;
 
-        &-icon {
-            width: 80px;
-            height: 80px;
+                &-icon {
+                    display: inline-flex;
+                    width: 1.5em;
+                    height: 1.5em;
+                }
+            }
         }
     }
 }

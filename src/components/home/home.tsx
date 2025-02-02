@@ -48,17 +48,21 @@ const Home: FC<IHome> = ({ weather }) => {
                 <div className="home__content">
                     <span className="home__content-temp">{getTempForLocale(weather.current.temp_c, language)}</span>
                     <div className="home__content-add">
-                        <span className="home__content-add-city">{transcribe(weather.location.name, language)}</span>
+                        <span className="home__content-add-city">
+                            {transcribe(weather.location.name, language)}
+                            <img
+                                className="home__content-add-city-icon"
+                                src={`src/assets/icons/weatherIcons/${getIconByCode(
+                                    weather.current.condition.code
+                                )}.webp`}
+                                alt={weather.current.condition.text}
+                                title={weather.current.condition.text}
+                            />
+                        </span>
                         <span className="home__content-add-date">
                             {convertFullDateFrom_ISO8601(weather.current.last_updated, language)}
                         </span>
                     </div>
-                    <img
-                        className="home__content-icon"
-                        src={`src/assets/icons/weatherIcons/${getIconByCode(weather.current.condition.code)}.webp`}
-                        alt={weather.current.condition.text}
-                        title={weather.current.condition.text}
-                    />
                 </div>
                 <BurgerMenu />
             </div>
