@@ -24,7 +24,7 @@ const Wind: FC<IWind> = ({ weatherWind }) => {
     return (
         <div className={`wind content-block ${isVisible ? "wind--visible" : ""}`} id="sectionWind">
             <h2 className="wind__title content-block__title" onClick={() => setIsVisible((prev) => !prev)}>
-                🍃 {translationsRecord.windTitle[language]}
+                <span>🍃</span> {translationsRecord.windTitle[language]}
                 <AngleSVG className="wind__title-arrow content-block__title-arrow" stroke={theme} />
             </h2>
             <div className="wind__content content-block__content">

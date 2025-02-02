@@ -27,7 +27,7 @@ const Hourly: FC<IHourly> = ({ last_updated, weatherHourlyList }) => {
     return (
         <div className={`hourly content-block ${isVisible ? "hourly--visible" : ""}`} id="sectionHourly">
             <h2 className="hourly__title content-block__title" onClick={() => setIsVisible((prev) => !prev)}>
-                ⏰ {weatherHourlyList.length + " " + translationsRecord.hourlyTitle[language]}
+                <span>⏰</span> {weatherHourlyList.length + " " + translationsRecord.hourlyTitle[language]}
                 <AngleSVG className="hourly__title-arrow content-block__title-arrow" stroke={theme} />
             </h2>
             <div className="hourly__content content-block__content">
