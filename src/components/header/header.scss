@@ -3,14 +3,18 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 10vh;
-    width: 100%;
-
+    width: max(100%, 320px);
+    
     &__logo {
+        user-select: none;
         margin: 20px;
-        font-size: 50px;
+        font-size: 3rem;
         opacity: 0.3;
         font-family: "Marck-Script", sans-serif;
+
+        @media (max-width: 900px) {
+            font-size: 2.5rem;
+        }
     }
 
     input {
