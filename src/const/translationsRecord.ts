@@ -26,6 +26,11 @@ const translationsRecord: Record<string, Translations> = {
         "en-US": "min",
     },
 
+    notAvailable: {
+        "ru-RU": "не доступен",
+        "en-US": "is not available",
+    },
+
     headerTitle: {
         "ru-RU": "Надвор'е",
         "en-US": "Nadvorye",
