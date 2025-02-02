@@ -35,7 +35,7 @@ const AppLayout: FC = () => {
         setWeatherIn24Hour(in24HourData);
 
         setWeatherIn16Day(
-            await appHandler.getWeatherIn16Day().then((data) => {
+            await appHandler.getWeatherInDay(16).then((data) => {
                 setIsWeatherIn16DayLoaded(false);
 
                 return data;

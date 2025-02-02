@@ -53,12 +53,12 @@ class AppHandler {
         };
     };
 
-    public getWeatherIn16Day = async (): Promise<WeatherDailyModel[]> => {
+    public getWeatherInDay = async (days: 1 | 3 | 7 | 14 | 16): Promise<WeatherDailyModel[]> => {
         let json: any;
 
         if (this._context.allowApi) {
             try {
-                json = await this._api.fetchDailyForecast(this._context.city, 16);
+                json = await this._api.fetchDailyForecast(this._context.city, days);
             } catch (err) {
                 console.error("Fetch 'weatherDaily' with error: ", err);
                 json = [];
