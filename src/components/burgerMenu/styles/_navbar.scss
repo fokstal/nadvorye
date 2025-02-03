@@ -5,14 +5,18 @@
     &-link-list {
         display: flex;
         flex-direction: column;
-        font-size: 1.75rem;
+        font-size: 1.8rem;
         gap: 1em;
         list-style-type: none;
         padding: 0;
         text-align: center;
 
         @media (max-width: 900px) {
-            font-size: 1.5rem;
+            font-size: 1.5em;
+        }
+
+        @media (max-height: 550px) {
+            font-size: 1rem;
         }
 
         &-item {
@@ -31,6 +35,10 @@
                     font-size: 0;
                     opacity: 0;
                     transition: all 0.5s;
+
+                    @media (max-height: 550px) {
+                        display: inline-block;
+                    }
                 }
             }
         }

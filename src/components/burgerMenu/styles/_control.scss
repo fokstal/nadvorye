@@ -8,6 +8,10 @@
         opacity: 1;
         transition: opacity 0.2s;
 
+        @media (max-height: 550px) {
+            font-size: 1rem;
+        }
+
         &:hover {
             opacity: 0.5;
         }
