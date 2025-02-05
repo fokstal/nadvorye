@@ -7,12 +7,17 @@ import HumiditySVG from "@components/svg/humiditySVG";
 import MercurySVG from "@components/svg/mercurySVG";
 import RainSVG from "@components/svg/rainSVG";
 import CloudSVG from "@components/svg/cloudSVG";
-import QualityIcon from "@components/qualityIcon/qualityIcon";
+import MoodBadSVG from "@components/svg/moodBadSVG";
+import MoodGoodSVG from "@components/svg/moodGoodSVG";
+import MoodHappySVG from "@components/svg/moodHappySVG";
+import MoodAngrySVG from "@components/svg/moodAngrySVG";
+import MoodDefaultSVG from "@components/svg/moodDefaultSVG";
 import translationsRecord from "@const/translationsRecord";
 import calculateWeatherQualityIndex from "@helpers/calculateWeatherQualityIndex";
 import { formatTimeForLocale } from "@helpers/dateConverter";
 import WeatherDetailsModel from "@models/WeatherDetailsModel";
 import "./details.scss";
+import WeatherQualityLevel from "@root/src/const/WeatherQualityLevel";
 
 interface IDetails {
     weatherDetails: WeatherDetailsModel;
@@ -22,6 +27,7 @@ interface IDetails {
 
 const Details: FC<IDetails> = ({ weatherDetails, temp_c, wind_kph }) => {
     const { language, theme } = useAppContext();
+    let weatherMoodComponent;
 
     const weatherQualityIndex = calculateWeatherQualityIndex(
         temp_c,
@@ -30,6 +36,26 @@ const Details: FC<IDetails> = ({ weatherDetails, temp_c, wind_kph }) => {
         weatherDetails.pressure_mb,
         weatherDetails.cloud
     );
+
+    switch (weatherQualityIndex.level) {
+        case WeatherQualityLevel.DEFAULT:
+            weatherMoodComponent = <MoodDefaultSVG />;
+            break;
+        case WeatherQualityLevel.ANGRY:
+            weatherMoodComponent = <MoodAngrySVG />;
+            break;
+        case WeatherQualityLevel.BAD:
+            weatherMoodComponent = <MoodBadSVG />;
+            break;
+        case WeatherQualityLevel.GOOD:
+            weatherMoodComponent = <MoodGoodSVG />;
+            break;
+        case WeatherQualityLevel.HAPPY:
+            weatherMoodComponent = <MoodHappySVG />;
+            break;
+        default:
+            weatherMoodComponent = <MoodDefaultSVG />;
+    }
 
     const [isVisible, setIsVisible] = useState(true);
 
@@ -92,7 +118,7 @@ const Details: FC<IDetails> = ({ weatherDetails, temp_c, wind_kph }) => {
                         </div>
                     </div>
                     <div className="details__content-second">
-                        <QualityIcon levelColor={weatherQualityIndex.levelColor} stroke={theme} />
+                        {weatherMoodComponent}
                         {translationsRecord.detailsWQIShortText[language]} ={" "}
                         <strong>{weatherQualityIndex.indexValue}</strong>
                         <small>{translationsRecord.detailsWQIText[language]}</small>
