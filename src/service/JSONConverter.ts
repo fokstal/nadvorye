@@ -77,9 +77,9 @@ class JSONConverter {
         const weatherDailyList: WeatherDayModel[] = [];
 
         try {
-            for (let i = 0; i < valueJSON.time.length; i++) {
+            for (let i = 0; i < valueJSON.temp.length; i++) {
                 weatherDailyList.push({
-                    date: valueJSON.time[i],
+                    date: valueJSON.temp[i],
                     weather_code: valueJSON.weatherCode[i],
                     temp_c_max: valueJSON.temperature2mMax[i],
                     temp_c_min: valueJSON.temperature2mMin[i],
