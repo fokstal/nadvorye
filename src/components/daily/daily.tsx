@@ -89,7 +89,7 @@ const Daily: FC<IDaily> = ({ weatherDailyList, isWeatherDataLoaded }) => {
                                         </div>
                                         <div className="daily__content-list-item-body-second">
                                             <span className="daily__content-list-item-body-second-block daily__content-list-item-body-second-block--direction">
-                                                <Compass scale={0.5} angle={windDirAngle} />
+                                                <Compass scale={1} angle={windDirAngle} />
                                                 <div className="daily__content-list-item-body-second-block-value">
                                                     {convertWindDirToText(windDirAngle, language)}{" "}
                                                     <small>({windDirAngle}&deg;)</small>
