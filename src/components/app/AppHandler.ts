@@ -1,5 +1,5 @@
 import useAppContext from "./AppContext";
-import weatherJSONClear from "@const/weatherJSONClear";
+import data_Clear from "@assets/data/_Clear";
 import { WeatherApiConfig } from "@src/app.config";
 import WeatherApi from "@service/WeatherApi";
 import JSONConverter from "@service/JSONConverter";
@@ -42,7 +42,7 @@ class AppHandler {
             const jsonFromStorage = sessionStorage.getItem("weather");
 
             if (jsonFromStorage) json = JSON.parse(jsonFromStorage);
-            else json = weatherJSONClear;
+            else json = data_Clear.current;
         }
 
         sessionStorage.setItem("weather", JSON.stringify(json));
@@ -67,7 +67,7 @@ class AppHandler {
             const jsonFromStorage = sessionStorage.getItem("weatherDaily");
 
             if (jsonFromStorage) json = JSON.parse(jsonFromStorage);
-            else json = [];
+            else json = data_Clear.future;
         }
 
         sessionStorage.setItem("weatherDaily", JSON.stringify(json));

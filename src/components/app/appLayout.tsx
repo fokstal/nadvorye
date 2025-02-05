@@ -9,7 +9,7 @@ import WeatherHourModel from "@models/WeatherHourModel";
 import WeatherDailyModel from "@models/WeatherDayModel";
 import JSONConverter from "@service/JSONConverter";
 import translationsRecord from "@const/translationsRecord";
-import weatherJSONClear from "@const/weatherJSONClear";
+import weatherJSONClear from "@root/src/assets/data/_Clear";
 import useAppContext from "./AppContext";
 import AppHandler from "./AppHandler";
 

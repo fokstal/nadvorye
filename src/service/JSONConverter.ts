@@ -1,7 +1,7 @@
-import weatherJSONClear from "@const/weatherJSONClear";
-import WeatherTodayModel from "@root/src/models/WeatherTodayModel";
-import WeatherHourModel from "@root/src/models/WeatherHourModel";
-import WeatherDayModel from "@root/src/models/WeatherDayModel";
+import data_Clear from "@assets/data/_Clear";
+import WeatherTodayModel from "@models/WeatherTodayModel";
+import WeatherHourModel from "@models/WeatherHourModel";
+import WeatherDayModel from "@models/WeatherDayModel";
 
 class JSONConverter {
     public static toWeatherTodayModel(valueJSON: any): WeatherTodayModel {
@@ -44,7 +44,7 @@ class JSONConverter {
             };
         } catch {}
 
-        return this.toWeatherTodayModel(weatherJSONClear);
+        return this.toWeatherTodayModel(data_Clear.current);
     }
 
     public static toWeatherHourModelList(valueJSON: any): WeatherHourModel[] {
@@ -70,7 +70,7 @@ class JSONConverter {
             return result;
         } catch {}
 
-        return this.toWeatherHourModelList(weatherJSONClear);
+        return this.toWeatherHourModelList(data_Clear.current);
     }
 
     public static toWeatherDayModelList(valueJSON: any): WeatherDayModel[] {
