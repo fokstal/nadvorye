@@ -40,11 +40,13 @@ const Daily: FC<IDaily> = ({ weatherDailyList, isWeatherDataLoaded }) => {
         <div className={`daily content-block ${isVisible ? "daily--visible" : ""}`} id="sectionDaily">
             <h2 className="daily__title content-block__header" onClick={() => setIsVisible((prev) => !prev)}>
                 <span>🗓️</span>
-                {translationsRecord.dailyFirstPartTitle[language] +
-                    " " +
-                    weatherDailyList.length +
-                    " " +
-                    translationsRecord.dailyLastPartTitle[language]}
+                {weatherDailyList.length === 0
+                    ? translationsRecord.dailyNavbarTitle[language]
+                    : translationsRecord.dailyFirstPartTitle[language] +
+                      " " +
+                      weatherDailyList.length +
+                      " " +
+                      translationsRecord.dailyLastPartTitle[language]}
                 <AngleSVG className="daily__title-arrow content-block__header-arrow" stroke={theme} />
             </h2>
             <div className="daily__content content-block__body">

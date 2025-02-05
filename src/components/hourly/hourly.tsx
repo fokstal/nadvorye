@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import AngleSVG from "@root/src/components/svg/angleSVG";
 import useAppContext from "@root/src/components/app/AppContext";
 import translationsRecord from "@const/translationsRecord";
@@ -24,10 +24,17 @@ const Hourly: FC<IHourly> = ({ last_updated, weatherHourlyList }) => {
     const [isVisible, setIsVisible] = useState(true);
     const currentTimeItemRef = useRef<HTMLLIElement | null>(null);
 
+    useEffect(() => {
+        if (weatherHourlyList.length === 0) setIsVisible(false);
+    }, []);
+
     return (
         <div className={`hourly content-block ${isVisible ? "hourly--visible" : ""}`} id="sectionHourly">
             <h2 className="hourly__title content-block__header" onClick={() => setIsVisible((prev) => !prev)}>
-                <span>⏰</span> {weatherHourlyList.length + " " + translationsRecord.hourlyTitle[language]}
+                <span>⏰</span>{" "}
+                {weatherHourlyList.length === 0
+                    ? translationsRecord.hourlyNavbarTitle[language]
+                    : weatherHourlyList + " " + translationsRecord.hourlyTitle[language]}
                 <AngleSVG className="hourly__title-arrow content-block__header-arrow" stroke={theme} />
             </h2>
             <div className="hourly__content content-block__body">
