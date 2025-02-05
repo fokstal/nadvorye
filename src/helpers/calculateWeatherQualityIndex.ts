@@ -1,6 +1,8 @@
+import WeatherQualityLevel from "@const/WeatherQualityLevel";
+
 type WeatherQualityIndex = {
     indexValue: number;
-    levelColor: string;
+    level: WeatherQualityLevel;
 };
 
 const calculateWeatherQualityIndex = (
@@ -54,17 +56,19 @@ const calculateWeatherQualityIndex = (
         indexValue += 10;
     }
 
-    let levelColor: string;
+    let level = WeatherQualityLevel.DEFAULT;
 
     if (indexValue < 0) {
-        levelColor = "#E4717A50";
-    } else if (indexValue >= 0 && indexValue <= 20) {
-        levelColor = "#FCE88390";
+        level = WeatherQualityLevel.ANGRY;
+    } else if (indexValue >= 0 && indexValue < 10) {
+        level = WeatherQualityLevel.BAD;
+    } else if (indexValue >= 10 && indexValue < 20) {
+        level = WeatherQualityLevel.GOOD;
     } else {
-        levelColor = "#77DD7790";
+        level = WeatherQualityLevel.HAPPY;
     }
 
-    return { levelColor, indexValue };
+    return { level, indexValue };
 };
 
 export default calculateWeatherQualityIndex;
