@@ -26,11 +26,11 @@ const Hourly: FC<IHourly> = ({ last_updated, weatherHourlyList }) => {
 
     return (
         <div className={`hourly content-block ${isVisible ? "hourly--visible" : ""}`} id="sectionHourly">
-            <h2 className="hourly__title content-block__title" onClick={() => setIsVisible((prev) => !prev)}>
+            <h2 className="hourly__title content-block__header" onClick={() => setIsVisible((prev) => !prev)}>
                 <span>⏰</span> {weatherHourlyList.length + " " + translationsRecord.hourlyTitle[language]}
-                <AngleSVG className="hourly__title-arrow content-block__title-arrow" stroke={theme} />
+                <AngleSVG className="hourly__title-arrow content-block__header-arrow" stroke={theme} />
             </h2>
-            <div className="hourly__content content-block__content">
+            <div className="hourly__content content-block__body">
                 <ul className="hourly__content-list">
                     {weatherHourlyList.map((weatherInHour) => {
                         const weatherInHourlyTime = convertTimeFrom_ISO8601(weatherInHour.time, language);

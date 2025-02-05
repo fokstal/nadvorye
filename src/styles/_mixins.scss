@@ -1,0 +1,29 @@
+@mixin hover-media-opacity($transition-sec: 0.3s, $opacity-value: 0.6) {
+    transition: opacity $transition-sec;
+
+    @media (hover: hover) {
+        &:hover {
+            opacity: $opacity-value;
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            opacity: $opacity-value;
+        }
+    }
+}
+
+@mixin hover-media-custom() {
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
+    }
+
+    @media (hover: none) {
+        &:active {
+            @content;
+        }
+    }
+}

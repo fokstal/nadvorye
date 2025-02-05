@@ -1,28 +1,37 @@
+@import "@styles/mixins";
+
 .burger-menu__pinned-city-list {
+    overflow-y: auto;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
     width: 80%;
-    overflow-y: auto;
-    font-size: 1.3rem;
     gap: 0.5em;
     padding: 0;
 
-    transition: all 0.5s;
-    visibility: hidden;
+    font-size: 1.3rem;
+
     opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
 
     &-item {
+        list-style-type: none;
+        cursor: pointer;
+
         display: flex;
         flex-direction: row;
-        list-style-type: none;
         align-items: center;
-        font-weight: 100;
-        cursor: pointer;
-        transition: opacity 0.5s ease;
+
         margin-right: 15px;
 
-        @media (hover: none) {
+        font-weight: 100;
+
+        transition: opacity 0.5s ease;
+
+        @include hover-media-custom {
             opacity: 0.5;
             gap: 10px;
 
@@ -32,35 +41,17 @@
             }
         }
 
-        @media (hover: hover) {
-            &:hover {
-                opacity: 0.5;
-                gap: 10px;
-
-                .burger-menu__pinned-city-list-item-remover {
-                    visibility: visible;
-                    font-size: 1.5rem;
-                }
-            }
-        }
-
         &-remover {
-            visibility: hidden;
-            transition: all 0.5s;
             margin-left: 15px;
-            transform: rotate(45deg);
+
             font-size: 0;
 
-            @media (hover: none) {
-                &:active {
-                    color: orangered !important;
-                }
-            }
+            visibility: hidden;
+            transition: all 0.5s;
+            transform: rotate(45deg);
 
-            @media (hover: hover) {
-                &:hover {
-                    color: orangered !important;
-                }
+            @include hover-media-custom {
+                color: orangered !important;
             }
         }
     }

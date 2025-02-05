@@ -1,8 +1,18 @@
+@import "@styles/mixins";
+@import "@styles/keyframes";
+
 .daily-null {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
+
     margin-bottom: 50px;
+
+    &__title {
+        cursor: no-drop !important;
+
+        width: 100%;
+    }
 }
 
 .daily {
@@ -10,19 +20,26 @@
 
     &__content {
         display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
+
+        width: 90%;
+        margin: 0 auto;
+
         transition: margin 0.25s !important;
 
         &-loader {
             display: block;
             width: 50px;
             height: 50px;
+
+            margin-bottom: 50px;
+
             border: 5px #ffffff15 solid;
             border-bottom: 5px #ffffff55 solid;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 50px;
         }
 
         &-list {
@@ -30,7 +47,10 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+
+            padding: 0;
+            margin: 0;
+            gap: 30px;
 
             &-block {
                 text-align: center;
@@ -39,25 +59,29 @@
             &-item {
                 display: flex;
                 flex-direction: column;
-                width: 20%;
-                font-size: 14px;
+
+                width: 200px;
                 height: 0;
+                padding: 20px;
+
+                font-size: 14px;
 
                 background: #ffffff15;
                 border-radius: 10px;
-                padding: 20px;
                 transition: box-shadow 0.3s ease, background 0.3s ease;
 
-                &:hover {
+                @include hover-media-custom {
                     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
                     background: #80808030;
                 }
 
                 &-title {
-                    font-size: 32px;
                     margin-top: 10px;
                     margin-bottom: 30px;
+
+                    font-size: 32px;
                     font-weight: 100;
+
                     border-bottom: 1px #434343 solid;
                 }
 
@@ -65,7 +89,9 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
+
                     gap: 30px;
+
                     font-size: 12px;
 
                     &-main {
@@ -81,6 +107,7 @@
                         &-value {
                             display: flex;
                             flex-direction: row;
+
                             gap: 20px;
 
                             div {
@@ -88,8 +115,10 @@
                                 flex-direction: row;
                                 justify-content: space-between;
                                 align-items: center;
-                                font-size: 24px;
+
                                 gap: 10px;
+
+                                font-size: 24px;
 
                                 small {
                                     font-size: 12px;
@@ -101,25 +130,28 @@
                     &-second {
                         display: flex;
                         flex-direction: column;
+
                         gap: 10px;
 
                         &-block {
                             display: flex;
                             flex-direction: row;
-                            align-items: center;
                             justify-content: space-between;
+                            align-items: center;
+
                             gap: 15px;
 
                             &-label {
                                 display: inline-flex;
                                 align-items: center;
+
                                 font-size: 14px;
                                 font-weight: 100;
 
                                 svg {
-                                    margin-right: 5px;
                                     width: 20px;
                                     height: 20px;
+                                    margin-right: 5px;
                                 }
                             }
 
@@ -132,6 +164,7 @@
                                 display: flex;
                                 flex-direction: row;
                                 justify-content: center;
+
                                 margin-bottom: 20px;
 
                                 .daily__content-list-item-body-second-block-value {
@@ -160,9 +193,10 @@
 
         .daily__content {
             height: auto;
+            margin-bottom: 50px;
+
             opacity: 1;
             visibility: visible;
-            margin-bottom: 50px;
 
             &-list {
                 &-item {
@@ -170,15 +204,5 @@
                 }
             }
         }
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
     }
 }

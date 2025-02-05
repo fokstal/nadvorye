@@ -36,11 +36,11 @@ const Details: FC<IDetails> = ({ weatherDetails, temp_c, wind_kph }) => {
     return (
         <>
             <div className={`details content-block ${isVisible ? "details--visible" : ""}`} id="sectionDetails">
-                <h2 className="details__title content-block__title" onClick={() => setIsVisible((prev) => !prev)}>
+                <h2 className="details__title content-block__header" onClick={() => setIsVisible((prev) => !prev)}>
                     <span>🌟</span> {translationsRecord.detailsTitle[language]}
-                    <AngleSVG className="details__title-arrow content-block__title-arrow" stroke={theme} />
+                    <AngleSVG className="details__title-arrow content-block__header-arrow" stroke={theme} />
                 </h2>
-                <div className="details__content content-block__content">
+                <div className="details__content content-block__body">
                     <div className="details__content-main">
                         <div className="details__content-main-sun-state">
                             <div className="details__content-main-sun-state-block details__content-main-sun-state-block--sunrise">

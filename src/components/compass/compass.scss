@@ -1,13 +1,16 @@
+@import "@styles/mixins";
+
 .compass {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
+    padding: 10px;
 
     border-radius: 10%;
-    padding: 10px;
     transition: box-shadow 0.3s ease, background 0.3s ease;
 
-    &:hover {
+    @include hover-media-custom {
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         background: #80808005;
     }

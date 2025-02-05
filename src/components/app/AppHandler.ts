@@ -67,7 +67,7 @@ class AppHandler {
             const jsonFromStorage = sessionStorage.getItem("weatherDaily");
 
             if (jsonFromStorage) json = JSON.parse(jsonFromStorage);
-            json = [];
+            else json = [];
         }
 
         sessionStorage.setItem("weatherDaily", JSON.stringify(json));

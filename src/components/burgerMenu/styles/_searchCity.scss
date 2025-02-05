@@ -1,29 +1,32 @@
+@import "@styles/mixins";
+
 .burger-menu__search-city {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px whitesmoke solid;
+
     font-size: 1.75rem;
 
-    transition: all 0.5s;
-    visibility: hidden;
+    border-bottom: 1px whitesmoke solid;
     opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
 
     @media (max-width: 900px) {
         font-size: 1.5rem;
     }
 
     &-pin {
-        margin-left: 10px;
-        height: 15px;
-        transition: all 0.2s;
-        transform: rotate(0deg);
         cursor: pointer;
 
-        &:hover {
-            opacity: 0.7;
-        }
+        width: 15px;
+        height: 15px;
+        margin-left: 10px;
+
+        transition: all 0.3s !important;
+
+        @include hover-media-opacity;
 
         &--rotate {
             transform: rotate(45deg);
@@ -31,12 +34,14 @@
     }
 
     &-input {
+        width: 70%;
+
+        font-size: 1em;
+        font-weight: 100;
+
         background: transparent;
         border: none;
         color: whitesmoke;
-        font-size: 1em;
-        font-weight: 100;
-        width: 70%;
 
         &:focus-visible {
             outline: none;
@@ -44,20 +49,22 @@
     }
 
     &-btn {
+        cursor: pointer;
+
         display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
         width: 2em;
         height: 2em;
-        font-size: 1em;
-        border-radius: 0;
-        border: none;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
 
-        &:hover {
-            cursor: pointer;
-            opacity: 0.6;
-        }
+        font-size: 1em;
+
+        border: none;
+        border-radius: 0;
+
+        @include hover-media-opacity;
 
         img {
             width: 70%;

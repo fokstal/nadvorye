@@ -23,11 +23,11 @@ const Wind: FC<IWind> = ({ weatherWind }) => {
 
     return (
         <div className={`wind content-block ${isVisible ? "wind--visible" : ""}`} id="sectionWind">
-            <h2 className="wind__title content-block__title" onClick={() => setIsVisible((prev) => !prev)}>
+            <h2 className="wind__title content-block__header" onClick={() => setIsVisible((prev) => !prev)}>
                 <span>🍃</span> {translationsRecord.windTitle[language]}
-                <AngleSVG className="wind__title-arrow content-block__title-arrow" stroke={theme} />
+                <AngleSVG className="wind__title-arrow content-block__header-arrow" stroke={theme} />
             </h2>
-            <div className="wind__content content-block__content">
+            <div className="wind__content content-block__body">
                 <Compass scale={1.5} angle={weatherWindDirectionInfo.angle} />
                 <div className="wind__content-text">
                     <span className="wind__content-text-block wind__content-text-block--direction">

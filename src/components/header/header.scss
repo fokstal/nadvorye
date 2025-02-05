@@ -1,16 +1,20 @@
 .header {
-    position: absolute;
     display: flex;
+    position: absolute;
     flex-direction: row;
     align-items: center;
+
     width: max(100%, 320px);
-    
+
     &__logo {
         user-select: none;
+
         margin: 20px;
-        font-size: 3rem;
-        opacity: 0.3;
+
         font-family: "Marck-Script", sans-serif;
+        font-size: 3rem;
+
+        opacity: 0.3;
 
         @media (max-width: 900px) {
             font-size: 2.5rem;
@@ -18,9 +22,11 @@
     }
 
     input {
+        cursor: grab;
+
         position: absolute;
         left: 60px;
+
         opacity: 0.1;
-        cursor: grab;
     }
 }

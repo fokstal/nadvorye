@@ -1,11 +1,29 @@
+@import "@styles/mixins";
+
 .hourly {
+    @media (max-width: 900px) {
+        &--visible .hourly__content {
+            height: 600px !important;
+
+            &-list {
+                flex-direction: column;
+                flex-wrap: wrap;
+
+                height: 95%;
+            }
+        }
+    }
+
     &__content {
         &-list {
+            overflow-x: auto;
+
             display: flex;
             flex-direction: row;
+
+            padding-left: 13px;
             gap: 50px;
-            padding: 20px;
-            overflow-x: auto;
+
             scrollbar-width: thin;
 
             &-block {
@@ -16,32 +34,37 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
+                padding: 1em;
+
                 font-size: 1rem;
 
                 background: #ffffff15;
                 border-radius: 0.7em;
-                padding: 1em;
                 transition: box-shadow 0.3s ease, background 0.3s ease;
 
-                &:hover {
+                @include hover-media-custom {
                     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
                     background: #80808030;
                 }
 
                 &-temp {
-                    font-size: 2em;
                     margin-bottom: 1em;
+
+                    font-size: 2em;
                 }
 
                 &-icon {
-                    font-size: 2em;
                     width: 2.2em;
                     height: 2.2em;
+
+                    font-size: 2em;
                 }
 
                 &-time {
-                    font-size: 1em;
                     margin-top: 2em;
+
+                    font-size: 1em;
                 }
             }
         }
@@ -56,9 +79,10 @@
 
         .hourly__content {
             height: 320px;
+            padding: 20px !important;
+
             opacity: 1;
             visibility: visible;
-            margin-bottom: 50px;
         }
     }
 }

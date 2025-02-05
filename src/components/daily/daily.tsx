@@ -26,24 +26,28 @@ const Daily: FC<IDaily> = ({ weatherDailyList, isWeatherDataLoaded }) => {
 
     return !isWeatherDataLoaded && weatherDailyList.length === 0 ? (
         <div className="daily-null content-block" id="sectionDaily">
-            <h2 className="content-block__title">
-                <span>🗓️</span> {translationsRecord.dailyNavbarTitle[language]}
+            <h2 className="daily-null__title content-block__header">
+                <span>🗓️</span>
+                <span>
+                    {translationsRecord.dailyNavbarTitle[language]}
+                    &nbsp;
+                    <strong>{translationsRecord.notAvailable[language]}</strong>
+                </span>
                 &nbsp;
-                <strong>{translationsRecord.notAvailable[language]}</strong>
             </h2>
         </div>
     ) : (
         <div className={`daily content-block ${isVisible ? "daily--visible" : ""}`} id="sectionDaily">
-            <h2 className="daily__title content-block__title" onClick={() => setIsVisible((prev) => !prev)}>
+            <h2 className="daily__title content-block__header" onClick={() => setIsVisible((prev) => !prev)}>
                 <span>🗓️</span>
                 {translationsRecord.dailyFirstPartTitle[language] +
                     " " +
                     weatherDailyList.length +
                     " " +
                     translationsRecord.dailyLastPartTitle[language]}
-                <AngleSVG className="daily__title-arrow content-block__title-arrow" stroke={theme} />
+                <AngleSVG className="daily__title-arrow content-block__header-arrow" stroke={theme} />
             </h2>
-            <div className="daily__content content-block__content">
+            <div className="daily__content content-block__body">
                 {isWeatherDataLoaded ? (
                     <div className="daily__content-loader"></div>
                 ) : (

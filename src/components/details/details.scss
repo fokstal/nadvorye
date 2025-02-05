@@ -1,29 +1,28 @@
+@import "@styles/mixins";
+
 .details {
     @media (max-width: 900px) {
-        &--visible {
-            .details__content {
-                width: auto;
-                height: 650px !important;
+        &--visible .details__content {
+            width: auto;
+            height: 640px !important;
 
-                &-main {
-                    flex-direction: column;
-                    gap: 50px;
-                }
+            &-main {
+                flex-direction: column;
+
+                gap: 50px;
             }
         }
     }
 
     @media (max-width: 560px) {
-        &--visible {
-            .details__content {
-                &-main {
-                    &-sun-state {
-                        width: 250px;
-                    }
+        &--visible .details__content {
+            &-main {
+                &-sun-state {
+                    width: 250px;
+                }
 
-                    &-data {
-                        width: 250px;
-                    }
+                &-data {
+                    width: 250px;
                 }
             }
         }
@@ -34,8 +33,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 50px;
+
         margin: 0 auto;
+        gap: 50px;
+
         font-size: 1rem;
 
         &-main {
@@ -43,30 +44,37 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 15%;
+
             width: 100%;
+            gap: 15%;
+
+            >div {
+                @include hover-media-custom {
+                    background: #80808030;
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                }
+            }
 
             &-sun-state {
                 display: flex;
                 flex-direction: column;
-                gap: 40px;
                 justify-content: center;
+
+                width: 320px;
+                padding: 20px;
+                gap: 40px;
+
                 background: #ffffff15;
                 border-radius: 10px;
-                padding: 20px;
                 transition: box-shadow 0.3s ease, background 0.3s ease;
-                width: 320px;
-
-                &:hover {
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-                    background: #80808030;
-                }
 
                 &-block {
                     display: flex;
                     flex-direction: row;
                     align-items: center;
+
                     gap: 1em;
+
                     font-size: 1em;
 
                     transition: filter 0.5s;
@@ -77,18 +85,19 @@
                     }
 
                     strong {
-                        font-size: 2em;
                         margin-left: auto;
+
+                        font-size: 2em;
                     }
 
                     &--sunrise {
-                        &:hover {
+                        @include hover-media-custom {
                             filter: drop-shadow(0 0 2em skyblue);
                         }
                     }
 
                     &--sunset {
-                        &:hover {
+                        @include hover-media-custom {
                             filter: drop-shadow(0 0 2em orangered);
                         }
                     }
@@ -98,44 +107,49 @@
             &-data {
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                flex-wrap: wrap;
+                white-space: nowrap;
                 justify-content: center;
+
+                width: 320px;
+                padding: 20px;
+                gap: 20px;
+
                 background: #ffffff15;
                 border-radius: 10px;
-                padding: 20px;
                 transition: box-shadow 0.3s ease, background 0.3s ease;
-                width: 320px;
-
-                &:hover {
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-                    background: #80808030;
-                }
 
                 &-block {
                     display: flex;
                     flex-direction: row;
                     align-items: center;
+
                     gap: 50px;
+
                     font-size: 1em;
 
                     &-icon {
                         display: inline-flex;
-                        font-size: 2em;
                         align-items: center;
+
                         margin-right: -45px;
 
+                        font-size: 1em;
+
                         svg {
-                            width: 1em;
-                            height: 1em;
+                            width: 2em;
+                            height: 2em;
                         }
                     }
 
                     strong {
-                        font-size: 2em;
                         margin-left: auto;
+
+                        font-size: 1.5em;
 
                         small {
                             font-size: 0.5em;
+                            font-weight: 300;
                         }
                     }
                 }
@@ -144,39 +158,45 @@
 
         &-second {
             display: flex;
+            position: relative;
             flex-direction: row;
-            align-items: center;
             justify-content: center;
-            background: #ffffff15;
-            border-radius: 10px;
+            align-items: center;
             text-align: center;
+
+            width: max(50%, 250px);
+            padding: 20px 20px 0 20px;
+
             font-size: 2rem;
             font-weight: 100;
-            transition: box-shadow 0.3s ease, background 0.3s ease;
-            width: max(50%, 250px);
-            position: relative;
-            padding: 5px 20px;
 
-            &:hover {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: #ffffff15;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+
+            @include hover-media-custom {
                 background: #80808030;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             }
 
             svg {
                 width: 1.8em;
+                height: 1.8em;
                 margin-right: 5px;
                 padding: 10px 0;
             }
 
             strong {
-                font-size: 1.5em;
                 margin-left: 10px;
+
+                font-size: 1.5em;
             }
 
             small {
                 position: absolute;
                 top: 0;
                 right: 10px;
+
                 font-size: 0.5em;
             }
         }
@@ -191,9 +211,10 @@
 
         .details__content {
             height: 370px;
+            margin-bottom: 50px;
+
             opacity: 1;
             visibility: visible;
-            margin-bottom: 50px;
         }
     }
 }
