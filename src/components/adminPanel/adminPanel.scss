@@ -20,7 +20,7 @@
 
     @include hover-media-custom {
         opacity: 1;
-    };
+    }
 
     &__header {
         cursor: pointer;
@@ -79,6 +79,14 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+
+            transition: all 0.3s;
+
+            &--disabled {
+                pointer-events: none;
+
+                opacity: 0.5;
+            }
         }
     }
 
