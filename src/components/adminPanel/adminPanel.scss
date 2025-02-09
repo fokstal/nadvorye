@@ -1,0 +1,105 @@
+@import "@styles/mixins";
+
+.admin-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+
+    width: 10px;
+    height: 200px;
+    padding: 20px 20px 20px 5px;
+    gap: 20px;
+
+    background: #ffffff10;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 0 10px 10px 0;
+    color: #434343;
+    opacity: 0.6;
+    transition: all 0.4s;
+
+    @include hover-media-custom {
+        opacity: 1;
+    };
+
+    &__header {
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+
+        &-icon {
+            width: 1.5em;
+            height: 1.5em;
+
+            transform-origin: center;
+            transform: rotate(-90deg);
+            transition: transform 0.4s ease-out;
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        width: 250px;
+        height: 0;
+        padding-left: 20px;
+
+        border-left: 3px #434343 solid;
+        border-radius: 2px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+
+        &-icon {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        &-api {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            &-checkbox {
+                cursor: pointer;
+
+                width: 1.5em;
+                height: 1.5em;
+            }
+        }
+
+        &-static-data {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &--visible {
+        width: 300px;
+
+        opacity: 1;
+
+        .admin-panel {
+            &__header {
+                &-icon {
+                    transform: rotate(90deg);
+                }
+            }
+
+            &__body {
+                height: 50%;
+
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
