@@ -11,6 +11,7 @@ import DataSVG from "@components/svg/dataSVG";
 import "./adminPanel.scss";
 import transcribe from "@root/src/helpers/transcribeToEnglish";
 import translationsRecord from "@root/src/const/translationsRecord";
+import data_Seul from "@root/src/assets/data/Seul";
 
 enum StaticDataSelect {
     DEFAULT = "default",
@@ -18,6 +19,7 @@ enum StaticDataSelect {
     MINSK = "Minsk",
     OTTAVA = "Ottava",
     PEKIN = "Pekin",
+    SEUL = "Seul",
     VALENCIA = "Valencia",
 }
 
@@ -77,6 +79,14 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
                 changeCity("Валенсия");
                 break;
             }
+            case StaticDataSelect.SEUL: {
+                changeStaticData({
+                    current: data_Seul.current_at_090225_0300,
+                    future: [],
+                });
+                changeCity("Сеул");
+                break;
+            }
             default: {
                 changeStaticData(data_Clear);
                 changeCity("Минск");
@@ -123,6 +133,7 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
                         <option value={StaticDataSelect.MINSK}>{transcribe("Минск", language)}</option>
                         <option value={StaticDataSelect.OTTAVA}>{transcribe("Оттава", language)}</option>
                         <option value={StaticDataSelect.PEKIN}>{transcribe("Пекин", language)}</option>
+                        <option value={StaticDataSelect.SEUL}>{transcribe("Сеул", language)}</option>
                         <option value={StaticDataSelect.VALENCIA}>{transcribe("Валенсия", language)}</option>
                     </select>
                 </div>
