@@ -3,15 +3,15 @@ import data_Clear from "@assets/data/_Clear";
 import data_Minsk from "@assets/data/Minsk";
 import data_Ottava from "@assets/data/Ottava";
 import data_Pekin from "@assets/data/Pekin";
+import data_Seul from "@assets/data/Seul";
 import data_Valencia from "@assets/data/Valencia";
 import useAppContext from "@components/app/AppContext";
 import AngleSVG from "@components/svg/angleSVG";
 import ApiSVG from "@components/svg/apiSVG";
 import DataSVG from "@components/svg/dataSVG";
+import translationsRecord from "@const/translationsRecord";
+import transcribe from "@helpers/transcribeToEnglish";
 import "./adminPanel.scss";
-import transcribe from "@root/src/helpers/transcribeToEnglish";
-import translationsRecord from "@root/src/const/translationsRecord";
-import data_Seul from "@root/src/assets/data/Seul";
 
 enum StaticDataSelect {
     DEFAULT = "default",
