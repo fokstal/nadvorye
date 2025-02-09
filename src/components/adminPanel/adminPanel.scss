@@ -7,19 +7,22 @@
     position: absolute;
 
     width: 10px;
-    height: 200px;
-    padding: 20px 20px 20px 5px;
-    gap: 20px;
+    height: 12em;
+    padding: 1em 1em 1em 5px;
 
     background: #ffffff10;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 1em 1em 0;
     color: #434343;
     opacity: 0.6;
     transition: all 0.4s;
 
     @include hover-media-custom {
         opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+        font-size: 0.7rem;
     }
 
     &__header {
@@ -48,11 +51,11 @@
         flex-direction: column;
         justify-content: space-between;
         position: absolute;
-        left: 20px;
+        left: 1.5em;
 
-        width: 250px;
-        height: 0;
-        padding-left: 40px;
+        width: 17em;
+        height: 50%;
+        padding-left: 2em;
 
         opacity: 0;
         visibility: hidden;
@@ -81,6 +84,8 @@
 
                 width: 1.5em;
                 height: 1.5em;
+
+                font-size: 1em;
             }
         }
 
@@ -92,6 +97,10 @@
 
             transition: all 0.3s;
 
+            &-select {
+                font-size: 1em;
+            }
+
             &--disabled {
                 pointer-events: none;
 
@@ -101,7 +110,7 @@
     }
 
     &--visible {
-        width: 300px;
+        width: 20em;
 
         opacity: 1;
 
@@ -115,8 +124,6 @@
             }
 
             &__body {
-                height: 50%;
-
                 opacity: 1;
                 visibility: visible;
             }
