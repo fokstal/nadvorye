@@ -24,7 +24,7 @@ interface IAdminPanel {
 }
 
 const AdminPanel: FC<IAdminPanel> = ({ style }) => {
-    const { allowApi, changeCity, changeStaticData, toggleAllowApi } = useAppContext();
+    const { theme, allowApi, changeCity, changeStaticData, toggleAllowApi } = useAppContext();
 
     const [isVisible, setIsVisible] = useState(false);
     const [selectedStaticData, setSelectedStaticData] = useState(StaticDataSelect.DEFAULT);
@@ -85,11 +85,11 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
     return (
         <div className={`admin-panel ${isVisible ? "admin-panel--visible" : ""}`} style={style}>
             <div className="admin-panel__header" onClick={() => setIsVisible((prev) => !prev)}>
-                <AngleSVG className="admin-panel__header-icon" />
+                <AngleSVG className="admin-panel__header-icon" stroke={theme} />
             </div>
-            <div className="admin-panel__body">
+            <div className="admin-panel__body" style={{ borderColor: theme }}>
                 <div className="admin-panel__body-api">
-                    <label className="admin-panel__body-api-label">
+                    <label className="admin-panel__body-label">
                         <ApiSVG className="admin-panel__body-icon" />
                         Использовать API:
                     </label>
@@ -105,7 +105,7 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
                         allowApi ? "admin-panel__body-static-data--disabled" : ""
                     }`}
                 >
-                    <label>
+                    <label className="admin-panel__body-label">
                         <DataSVG className="admin-panel__body-icon" />
                         Статические данные:
                     </label>
