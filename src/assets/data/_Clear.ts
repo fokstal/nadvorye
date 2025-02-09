@@ -1,4 +1,6 @@
-const data_Clear = {
+import WeatherDataJSONModel from "@models/WeatherDataJSONModel";
+
+const data_Clear: WeatherDataJSONModel = {
     current: {
         location: {
             name: "Минск",
