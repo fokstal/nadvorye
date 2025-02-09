@@ -30,6 +30,22 @@ const translationsRecord: Record<string, Translations> = {
         "ru-RU": "не доступен",
         "en-US": "is not available",
     },
+    use: {
+        "ru-RU": "Использовать",
+        "en-US": "Use the",
+    },
+    staticData: {
+        "ru-RU": "Статические данные",
+        "en-US": "Static data",
+    },
+    select: {
+        "ru-RU": "Выбрать",
+        "en-US": "Select",
+    },
+    null: {
+        "ru-RU": "пустой",
+        "en-US": "null",
+    },
 
     headerTitle: {
         "ru-RU": "Надвор'е",

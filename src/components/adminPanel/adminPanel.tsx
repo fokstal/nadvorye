@@ -9,6 +9,8 @@ import AngleSVG from "@components/svg/angleSVG";
 import ApiSVG from "@components/svg/apiSVG";
 import DataSVG from "@components/svg/dataSVG";
 import "./adminPanel.scss";
+import transcribe from "@root/src/helpers/transcribeToEnglish";
+import translationsRecord from "@root/src/const/translationsRecord";
 
 enum StaticDataSelect {
     DEFAULT = "default",
@@ -24,7 +26,7 @@ interface IAdminPanel {
 }
 
 const AdminPanel: FC<IAdminPanel> = ({ style }) => {
-    const { theme, allowApi, changeCity, changeStaticData, toggleAllowApi } = useAppContext();
+    const { language, theme, allowApi, changeCity, changeStaticData, toggleAllowApi } = useAppContext();
 
     const [isVisible, setIsVisible] = useState(false);
     const [selectedStaticData, setSelectedStaticData] = useState(StaticDataSelect.DEFAULT);
@@ -91,7 +93,7 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
                 <div className="admin-panel__body-api">
                     <label className="admin-panel__body-label">
                         <ApiSVG className="admin-panel__body-icon" />
-                        Использовать API:
+                        {translationsRecord.use[language]} API:
                     </label>
                     <input
                         className="admin-panel__body-api-checkbox"
@@ -107,7 +109,7 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
                 >
                     <label className="admin-panel__body-label">
                         <DataSVG className="admin-panel__body-icon" />
-                        Статические данные:
+                        {translationsRecord.staticData[language]} :
                     </label>
                     <select
                         className="admin-panel__body-static-data-select"
@@ -115,13 +117,13 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
                         onChange={handleSelectStaticData}
                     >
                         <option value={StaticDataSelect.DEFAULT} disabled selected>
-                            Выбор
+                            {translationsRecord.select[language]}
                         </option>
-                        <option value={StaticDataSelect.NULL}>пустой</option>
-                        <option value={StaticDataSelect.MINSK}>Минск</option>
-                        <option value={StaticDataSelect.OTTAVA}>Оттава</option>
-                        <option value={StaticDataSelect.PEKIN}>Пекин</option>
-                        <option value={StaticDataSelect.VALENCIA}>Валенсия</option>
+                        <option value={StaticDataSelect.NULL}>{translationsRecord.null[language]} </option>
+                        <option value={StaticDataSelect.MINSK}>{transcribe("Минск", language)}</option>
+                        <option value={StaticDataSelect.OTTAVA}>{transcribe("Оттава", language)}</option>
+                        <option value={StaticDataSelect.PEKIN}>{transcribe("Пекин", language)}</option>
+                        <option value={StaticDataSelect.VALENCIA}>{transcribe("Валенсия", language)}</option>
                     </select>
                 </div>
             </div>
