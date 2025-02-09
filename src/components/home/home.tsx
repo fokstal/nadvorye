@@ -45,7 +45,7 @@ const Home: FC<IHome> = ({ weather }) => {
         <>
             <div className="home" id="sectionHome">
                 <Header />
-                <AdminPanel style={{top: "5%"}}/>
+                <AdminPanel style={{top: "200px"}}/>
                 <img className="home__background change-img-fade" ref={imgBackgroundRef} />
                 <div className="home__content">
                     <span className="home__content-temp">{getTempForLocale(weather.current.temp_c, language)}</span>
