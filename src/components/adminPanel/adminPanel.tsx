@@ -127,7 +127,7 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
                         value={selectedStaticData}
                         onChange={handleSelectStaticData}
                     >
-                        <option value={StaticDataSelect.DEFAULT} disabled selected>
+                        <option value={StaticDataSelect.DEFAULT} disabled>
                             {translationsRecord.select[language]}
                         </option>
                         <option value={StaticDataSelect.NULL}>{translationsRecord.null[language]} </option>
