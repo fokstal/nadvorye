@@ -38,7 +38,8 @@ const AdminPanel: FC<IAdminPanel> = ({ style }) => {
     };
 
     useEffect(() => {
-        sessionStorage.clear();
+        localStorage.removeItem("weather");
+        localStorage.removeItem("weatherDaily");
 
         switch (selectedStaticData) {
             case StaticDataSelect.DEFAULT:
