@@ -1,10 +1,10 @@
 import { FC, ReactNode, useReducer } from "react";
 import { BurgerMenuContext } from "./BurgerMenuContext";
-import SessionStorageWorker from "@root/src/helpers/SessionStorageWorker";
+import LocalStorageWorker from "@root/src/helpers/LocalStorageWorker";
 
 const initValue = {
     isOpen: false,
-    pinnedCityList: SessionStorageWorker.getPinnedCityArr(),
+    pinnedCityList: LocalStorageWorker.getPinnedCityArr(),
 };
 
 enum IBurgerMenuReducerType {
@@ -30,7 +30,7 @@ const reducer = (state: typeof initValue, action: IBurgerMenuAction) => {
                 if (!state.pinnedCityList.includes(action.city)) {
                     state.pinnedCityList.push(action.city);
 
-                    SessionStorageWorker.setPinnedCityArr(state.pinnedCityList);
+                    LocalStorageWorker.setPinnedCityArr(state.pinnedCityList);
                 }
             }
 
@@ -39,7 +39,7 @@ const reducer = (state: typeof initValue, action: IBurgerMenuAction) => {
         case IBurgerMenuReducerType.REMOVE_CITY: {
             state.pinnedCityList = state.pinnedCityList.filter((pinnedCity) => pinnedCity !== action.city);
 
-            SessionStorageWorker.setPinnedCityArr(state.pinnedCityList);
+            LocalStorageWorker.setPinnedCityArr(state.pinnedCityList);
 
             return { ...state };
         }

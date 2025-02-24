@@ -6,6 +6,7 @@ import WeatherTodayModel from "@models/WeatherTodayModel";
 import WeatherDailyModel from "@models/WeatherDayModel";
 import WeatherHourModel from "@models/WeatherHourModel";
 import getUserCoordinates from "@helpers/getUserCoordinates";
+import LocalStorageWorker from "@helpers/LocalStorageWorker";
 
 class AppHandler {
     private _api: WeatherApi;
@@ -38,13 +39,13 @@ class AppHandler {
         if (this._context.allowApi) {
             json = await this._api.fetchTodayForecast(this._context.city);
         } else {
-            const jsonFromStorage = sessionStorage.getItem("weather");
+            const jsonFromStorage = LocalStorageWorker.getWeatherJson();
 
             if (jsonFromStorage) json = JSON.parse(jsonFromStorage);
             else json = this._context.staticData.current;
         }
 
-        sessionStorage.setItem("weather", JSON.stringify(json));
+        LocalStorageWorker.setWeatherJson(json);
 
         return {
             todayData: JSONConverter.toWeatherTodayModel(json),
@@ -63,13 +64,13 @@ class AppHandler {
                 json = [];
             }
         } else {
-            const jsonFromStorage = sessionStorage.getItem("weatherDaily");
+            const jsonFromStorage = LocalStorageWorker.getWeatherDailyJson();
 
             if (jsonFromStorage) json = JSON.parse(jsonFromStorage);
             else json = this._context.staticData.future;
         }
 
-        sessionStorage.setItem("weatherDaily", JSON.stringify(json));
+        LocalStorageWorker.setWeatherDailyJson(json);
 
         return JSONConverter.toWeatherDayModelList(json);
     };
